@@ -1,4 +1,5 @@
 // M0DELO DE LOS RECURSOS
+
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 

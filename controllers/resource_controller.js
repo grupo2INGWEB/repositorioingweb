@@ -40,6 +40,7 @@ exports.updateResource = async (req, res) => {
         });
     }
     try {
+        // BUSCAR EL RECURSO POR EL ID
         let resource = await Resource.findById({ _id: req.params.id })
         if (!resource) {
             return res.status(401).json({ error: 'El Recurso no Existe' })
@@ -59,6 +60,7 @@ exports.updateResource = async (req, res) => {
                     tags,
                     updateDate
                 } = req.body;
+                // CREA UN NUEVO OBJETO QUE SE VA A ENVIAR PARA ACTUALIZAR
                 const newResource = {
                     title,
                     description,
@@ -68,6 +70,7 @@ exports.updateResource = async (req, res) => {
                     tags,
                     updateDate
                 }
+                // actualizar datos
                 resource = await Resource.findByIdAndUpdate({ _id: resource._id }, { $set: newResource }, { new: true });
                 return res.json({ msg: 'Recurso actualizado con éxito', resource }) // Response of backend. Good Process
             }
@@ -207,6 +210,7 @@ exports.allResources = async (req, res) => {
         });
     }
     try {
+        // PARA TRAER TODOS LOS RECURSOS .find()
         const resources = await Resource.find()
         return res.json({ resources }) // Response of backend. Good Process
     } catch (error) {
