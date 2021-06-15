@@ -1,0 +1,56 @@
+header {
+    background-color: var(--colorPrimaryBackground);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    /* width: 100%; */
+}
+
+header .logo {
+    width: 20%;
+    height: 5rem;
+    margin: 0;
+    background-color: rgb(68, 68, 68);
+}
+
+header nav {
+    width: 60%;
+    color: #fff!important;
+    padding: 2rem 0;
+    /* margin: 0; */
+    /* height: 100%; */
+}
+
+header nav ul {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 5rem;
+    /* width: 100%; */
+}
+
+header nav li, header nav li a {
+    font-size: 1.4rem;
+    /* width: 14.2%; */
+    text-align: end;
+    border-bottom: 2px solid rgba(255, 255, 255, 0);
+    padding-bottom: 1rem;
+    color: #fff!important;
+}
+
+header nav li {
+    margin-right: 1.8rem;
+}
+
+header nav li:hover {
+    cursor: pointer;
+    border-bottom: 2px solid var(--colorPrimary);
+}
+
+header nav li a:hover {
+    color: var(--colorPrimary)!important;
+}
+header nav li i:hover {
+    color: var(--colorPrimary)!important;
+}
