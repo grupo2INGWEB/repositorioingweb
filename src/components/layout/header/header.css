@@ -42,7 +42,14 @@ header nav li, header nav li a {
 header nav li {
     margin-right: 1.8rem;
 }
-
+header nav select{
+    background-color: transparent;
+    color: #fff;
+    border: none;
+}
+header nav select:hover{
+    cursor: pointer;
+}
 header nav li:hover {
     cursor: pointer;
     border-bottom: 2px solid var(--colorPrimary);

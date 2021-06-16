@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import './header.css';
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import Modal from 'react-modal';
 
 const customStyles = {
@@ -29,6 +29,9 @@ Modal.setAppElement('#root');
 
 const LayoutHeader = props => {
 
+
+    const history = useHistory();
+
     const [modalIsOpen, setIsOpen] = useState(false);
     const [modal2IsOpen, setIsOpen2] = useState(false);
 
@@ -45,6 +48,31 @@ const LayoutHeader = props => {
         setIsOpen2(false);
     }
 
+    // Función para escuchar cambios en el select de recurso
+    const handleChangeRecurso = useCallback((e) => {
+        console.log(e.target.options.selectedIndex);
+        const itemSelected = e.target.options.selectedIndex;
+        switch (itemSelected) {
+            case 0:
+                // Redirigir a los recursos (Home)
+                history.push('/');
+                break;
+            case 1:
+                // Redirigir a Crear recurso
+                history.push('/create-resource');
+                break;
+            case 2:
+                // Redirigir a Mis recursos
+                history.push('/my-resource');
+                break;
+
+            default:
+                break;
+        }
+    });
+
+
+
     return (
         <>
             <header>
@@ -53,13 +81,42 @@ const LayoutHeader = props => {
                 </div>
                 <nav>
                     <ul>
-                        <li><Link to='/create-resource'>Crear Recurso</Link></li>
-                        <li><Link>Especialidad</Link></li>
-                        <li><Link>Mas Valorado</Link></li>
-                        <li><Link>Recomendados</Link></li>
-                        <li><Link>Recientes</Link></li>
-                        <li><i class="fas fa-search" ></i></li>
-                        <li><i class="fas fa-sign-out-alt" onClickCapture={openModal}></i></li>
+                        <li><select name="recurso" id="recurso" onChange={handleChangeRecurso}>
+                            <option value="0">Recursos</option>
+                            <option value="1">Crear Recurso</option>
+                            <option value="2">Mis Recursos</option>
+                            {/* <option value="audi">Audi</option> */}
+                        </select></li>
+                        <li><select name="especialidad" id="especialidad">
+                            <option value="0">Especialidad</option>
+                            <option value="1">Educacuón Infantil</option>
+                            <option value="2">Educacuón Primaria</option>
+                            <option value="2">Educacuón Secundaria</option>
+                            <option value="2">Educacuón Superior</option>
+                            {/* <option value="audi">Audi</option> */}
+                        </select></li>
+                        {/* <li><Link to='/create-resource'>Crear Recurso</Link></li> */}
+                        {/* <li><Link>Especialidad</Link></li> */}
+                        <li><a onClickCapture={() => {
+                            history.push('/all-resource', 'Más Valorados');
+                            window.scroll({
+                                top: 0
+                            })
+                        }} >Más Valorado</a></li>
+                        <li><a onClickCapture={() => {
+                            history.push('/all-resource', 'Recomendados');
+                            window.scroll({
+                                top: 0
+                            })
+                        }}>Recomendados</a></li>
+                        <li><a onClickCapture={() => {
+                            history.push('/all-resource', 'Recientes');
+                            window.scroll({
+                                top: 0
+                            })
+                        }}>Recientes</a></li>
+                        <li><i className="fas fa-search" ></i></li>
+                        <li><i className="fas fa-sign-out-alt" onClickCapture={openModal}></i></li>
                     </ul>
                 </nav>
             </header>
