@@ -22,7 +22,7 @@ header nav {
     /* height: 100%; */
 }
 
-header nav ul {
+header nav > ul {
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -32,15 +32,17 @@ header nav ul {
 
 header nav li, header nav li a {
     font-size: 1.4rem;
-    /* width: 14.2%; */
     text-align: end;
     border-bottom: 2px solid rgba(255, 255, 255, 0);
-    padding-bottom: 1rem;
+    /* padding-bottom: 1rem; */
     color: #fff!important;
 }
+header nav li a{
+    display: block;
+}
 
-header nav li {
-    margin-right: 1.8rem;
+header nav ul > li {
+    margin-right: 2rem;
 }
 header nav select{
     background-color: transparent;
@@ -50,9 +52,12 @@ header nav select{
 header nav select:hover{
     cursor: pointer;
 }
-header nav li:hover {
+header nav .ul-nav > li:hover  {
     cursor: pointer;
     border-bottom: 2px solid var(--colorPrimary);
+}
+header nav .ul-nav > li:hover >ul {
+    display: block;
 }
 
 header nav li a:hover {
@@ -61,3 +66,24 @@ header nav li a:hover {
 header nav li i:hover {
     color: var(--colorPrimary)!important;
 }
+header nav .ul-nav li ul{
+    padding-top: 1em;
+    /* padding-left: .5rem; */
+    margin-left: .5em;
+    position: absolute;
+    background-color: var(--colorPrimaryBackground);
+    display: none;
+    padding-bottom: .5em;
+}
+header nav .ul-nav li ul li{
+    /* background-color: red; */
+    margin: 0 auto;
+    padding: .5rem 1rem;
+    text-align: start;
+    
+}
+header nav .ul-nav li ul li:hover{
+    color: var(--colorPrimary)!important;
+}
+
+

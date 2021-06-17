@@ -28,7 +28,7 @@ const custom2Styles = {
 Modal.setAppElement('#root');
 
 const LayoutHeader = props => {
-
+    const isAdmin = false;
 
     const history = useHistory();
 
@@ -49,9 +49,8 @@ const LayoutHeader = props => {
     }
 
     // Función para escuchar cambios en el select de recurso
-    const handleChangeRecurso = useCallback((e) => {
-        console.log(e.target.options.selectedIndex);
-        const itemSelected = e.target.options.selectedIndex;
+    const handleChangeRecurso = useCallback((itemSelected) => {
+       
         switch (itemSelected) {
             case 0:
                 // Redirigir a los recursos (Home)
@@ -69,7 +68,7 @@ const LayoutHeader = props => {
             default:
                 break;
         }
-    });
+    },[history]);
 
 
 
@@ -80,36 +79,51 @@ const LayoutHeader = props => {
                     <Link to='/'>Logo</Link>
                 </div>
                 <nav>
-                    <ul>
-                        <li><select name="recurso" id="recurso" onChange={handleChangeRecurso}>
-                            <option value="0">Recursos</option>
-                            <option value="1">Crear Recurso</option>
-                            <option value="2">Mis Recursos</option>
-                            {/* <option value="audi">Audi</option> */}
-                        </select></li>
-                        <li><select name="especialidad" id="especialidad">
-                            <option value="0">Especialidad</option>
-                            <option value="1">Educacuón Infantil</option>
-                            <option value="2">Educacuón Primaria</option>
-                            <option value="2">Educacuón Secundaria</option>
-                            <option value="2">Educacuón Superior</option>
-                            {/* <option value="audi">Audi</option> */}
-                        </select></li>
-                        {/* <li><Link to='/create-resource'>Crear Recurso</Link></li> */}
-                        {/* <li><Link>Especialidad</Link></li> */}
-                        <li><a onClickCapture={() => {
+                    <ul className="ul-nav">
+                        <li>
+                            <p>Recursos <i class="fas fa-sort-down"></i></p>
+                            <ul>
+                                <li onClickCapture={()=>handleChangeRecurso(1)} >Crear Recurso</li>
+                                <li onClickCapture={()=>handleChangeRecurso(2)}>Mis Recursos</li>
+                                {/* En caso de ser admin saldrá esta opcion */}
+                                {
+                                    isAdmin ?
+                                        <li >Recursos Pendientes</li> :
+                                        <></>
+                                }
+                            </ul>
+
+                        </li>
+                        <li>
+                            <p>Especialidad <i class="fas fa-sort-down"></i></p>
+                            <ul>
+                                <li >Educaciónn Infantil</li>
+                                <li >Educaciónn Primaria</li>
+                                <li >Educaciónn Secundaria</li>
+                                <li >Educaciónn Superior</li>
+                                <li >Mis Recursos</li>
+                                {/* En caso de ser admin saldrá esta opcion */}
+                                {
+                                    isAdmin ?
+                                        <li >Recursos Pendientes</li> :
+                                        <></>
+                                }
+                            </ul>
+
+                        </li>
+                        <li><a href="/#" onClickCapture={() => {
                             history.push('/all-resource', 'Más Valorados');
                             window.scroll({
                                 top: 0
                             })
                         }} >Más Valorado</a></li>
-                        <li><a onClickCapture={() => {
+                        <li><a href="/#" onClickCapture={() => {
                             history.push('/all-resource', 'Recomendados');
                             window.scroll({
                                 top: 0
                             })
                         }}>Recomendados</a></li>
-                        <li><a onClickCapture={() => {
+                        <li><a href="/#" onClickCapture={() => {
                             history.push('/all-resource', 'Recientes');
                             window.scroll({
                                 top: 0

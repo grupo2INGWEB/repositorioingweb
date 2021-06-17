@@ -1,9 +1,12 @@
+// Importamos css global 
 import './App.css';
+// Importamos Componentes de react-router-dom (libreria externa) para declarar las rutas de la web
 import {
   BrowserRouter as Router,
   Switch,
   Route,
 } from "react-router-dom";
+// Aqui se importan mis componntes
 import Home from './page/home';
 import CreateResource from './page/create-resource/createResource';
 import LayoutHeader from './components/layout/header/header';
@@ -13,8 +16,10 @@ import MyResources from './page/my-resources/myResource';
 
 const App = () => {
   return (
+    // Router Commponente de la libreria react-router-dom
     <Router>
-      <LayoutHeader>
+      {/* Aqui se muestra elheader )(nav) */}
+      <LayoutHeader> 
         <Switch>
           <Route path='/' exact component={Home} />
             {/* <Home />
