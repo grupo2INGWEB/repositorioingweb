@@ -30,14 +30,14 @@ exports.newUser = async (req, res) => {
         usuario.password = newPass; // update the password attribute of user instance with the new hashed password
         await usuario.save(); // save data in the BD     
         // Comprobar que tipo de usuario es
-        if(usuario.rol === "internauta"){
+        if (usuario.rol === "internauta") {
             const token = jwt.sign({
                 id: usuario._id,
                 nombre: usuario.name
             }, process.env.SECRETA);
-            return res.json({ msg: 'Usuario Creado Correctamente', user: usuario, token }) // Response of backend. Good Process
+            return res.json({ user: usuario, token }) // Response of backend. Good Process
         }
-        res.json({ msg: 'Usuario Creado Correctamente', user: usuario }) // Response of backend. Good Process
+        res.json({ user: usuario }) // Response of backend. Good Process
     } catch (error) {
         console.log("Hubo un error en: Function nuevoUsuario")
         console.log(error);

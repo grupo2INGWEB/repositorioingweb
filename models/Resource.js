@@ -1,5 +1,4 @@
 // M0DELO DE LOS RECURSOS
-
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -29,6 +28,11 @@ const resourceSchema = new Schema({
         required: true,
         trim: true
     },
+    nameAuthor: {
+        type: String,
+        required: true,
+        trim: true
+    },
     calificacion: {
         type: Number,
         default: 0
@@ -42,25 +46,46 @@ const resourceSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Usuario',
     },
-    condition:{
+    nameAdmin: {
         type: String,
-        trim:true,
-        default:'Por publicar'
+        trim: true,
     },
-    tags:{
+    condition: {
+        type: String,
+        trim: true,
+        default: 'Por publicar'
+    },
+    tags: {
         type: Array,
-        trim:true,
+        trim: true,
         required: true
     },
-    create:{
+    create: {
         type: String,
-        trim:true,
-        required:true
+        trim: true,
+        required: true
     },
-    updateDate:{
+    updateDate: {
+        type: String,
+        trim: true
+    },
+    specialty: {
+        type: String,
+        trim: true
+    },
+    category: {
+        type: String,
+        trim: true
+    },
+    university: {
+        type: String,
+        trim: true
+    },
+    platform: {
         type: String,
         trim: true
     }
+
 })
 
 module.exports = mongoose.model('Resource', resourceSchema);

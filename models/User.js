@@ -2,31 +2,31 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const usuariosSchema = new Schema({
-    email:{
+    email: {
         type: String,
         required: true,
         unique: true,
-        lowercase:true,
+        lowercase: true,
         trim: true
     },
-    name:{
+    name: {
         type: String,
         required: true,
         trim: true
     },
-    telefono:{
+    telefono: {
         type: String,
         trim: true
     },
-    rol:{
+    rol: {
         type: String,
         required: true,
         trim: true
     },
-    password:{
+    password: {
         type: String,
         required: true,
-        trim:true
+        trim: true
     }
 })
 

@@ -9,7 +9,7 @@ const auth = require('../middleware/auth_middleware');
 
 // logearse
 router.post('/',
-// VALIDAS QUE LOS CAMPOS SEAN OBLIGATORIOS
+    // VALIDAS QUE LOS CAMPOS SEAN OBLIGATORIOS
     [
         check('email', 'Agrega un E-mail válido').isEmail(),
         check('password', 'El password es necesario').not().isEmpty()

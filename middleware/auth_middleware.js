@@ -15,12 +15,12 @@ module.exports = (req, res, next) => {
             const usuario = jwt.verify(token, process.env.SECRETA);
             // aGREAGR UNA PROPIEDAD
             // req={
-                // pr1: asdasdasd
+            // pr1: asdasdasd
             // }
             req.usuario = usuario
             // req={
-                // pr1: asdasdasd
-                // usuario: 
+            // pr1: asdasdasd
+            // usuario: 
             // }
         } catch (error) {
             req.error = "Error en el servidor"

@@ -39,7 +39,7 @@ exports.userAuth = async (req, res) => {
                 email: usuario.email
             }, process.env.SECRETA);
 
-            return res.json({ msg: 'Usuario corecto!', token }) // Response of backend. Good Process
+            return res.json({ token, user: usuario }) // Response of backend. Good Process
         }
         res.status(401).json({ msg: 'La contraseña es incorrecta' }) // Response of backend. Incorrect Pass
     } catch (error) {
@@ -59,7 +59,7 @@ exports.authenticatedUser = async (req, res) => {
         // Retornar error al frontend
         return res.status(401).json({ error: req.error })
     }
-    
+
     if (req.usuario) {
         return res.json({
             usuario: req.usuario

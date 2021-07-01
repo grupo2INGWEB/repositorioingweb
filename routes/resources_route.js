@@ -40,7 +40,7 @@ router.put('/cambiarestado/:id',
 );
 // ELIMINAR RECURSO
 router.delete('/:id',
-resourceController.deleteResource
+    resourceController.deleteResource
 )
 // OBRTENER TODOS LOS RECURSOS
 router.get('/',
@@ -49,6 +49,18 @@ router.get('/',
 // OBTENER MIS RECURSOS
 router.get('/myresources',
     resourceController.myResources
+);
+// OBTENER RECURSOS RECIENTES
+router.get('/recentresources',
+    resourceController.recentResources
+);
+// OBTENER RECURSOS Más valorados
+router.get('/recentresources',
+    resourceController.mostCalificationResources
+);
+// OBTENER RECURSOS PENDIENTES
+router.get('/pendingResources',
+    resourceController.pendingResources
 );
 
 module.exports = router;
