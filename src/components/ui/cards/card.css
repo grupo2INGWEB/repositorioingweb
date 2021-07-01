@@ -1,4 +1,4 @@
-.container-row-arounds{
+.container-row-arounds {
     width: 100%;
     display: flex;
     justify-content: space-around;
@@ -7,7 +7,8 @@
     margin-top: 3rem;
     margin-bottom: 3rem;
 }
-.card{
+
+.card {
     width: 28%;
     box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.075);
     border-radius: 10px;
@@ -16,50 +17,60 @@
     background-color: rgb(249, 249, 249);
     /* margin-right: 3rem; */
 }
-.card .title{
+
+.card .title {
     display: flex;
     align-items: center;
     justify-content: space-between;
     font-size: 1.8rem;
 }
-.card .title p{
+
+.card .title p {
     font-size: 1.5rem;
 }
-.card .title i{
+
+.card .title i {
     color: red;
 }
-.card .title h4{
+
+.card .title h4 {
     color: var(--colorPrimary);
 }
-.card .info{
+
+.card .info {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     font-size: 1rem;
     flex-wrap: wrap;
 }
+
 .card .info p {
     margin-right: 1.8rem;
     margin-bottom: .5rem;
 }
-.card .description{
+
+.card .description {
     margin-top: 1rem;
     font-size: 1.4rem;
     text-align: justify;
     margin-bottom: 1rem;
 }
-.card .author{
+
+.card .author {
     margin-top: .6rem;
     font-size: 1.4rem;
     font-style: italic;
     margin-bottom: 1rem;
 }
-.card .tags{
+
+.card .tags {
     display: flex;
     flex-wrap: wrap;
     margin-top: 1rem;
 }
-.card .tags .tag{
+
+.card .tags .tag {
     margin-right: 1rem;
     width: 24.5%;
     text-align: center;
@@ -69,11 +80,13 @@
     color: #fff;
     font-size: 1.4rem;
 }
-.container-redes{
+
+.container-redes {
     display: flex;
     justify-content: flex-end;
     margin-top: 2rem;
 }
+
 .container-redes .bg-black {
     background-color: #000;
     color: #fff;
@@ -83,29 +96,103 @@
     width: 6%;
     text-align: center;
 }
-.container-redes .bg-black:hover{
+
+.container-redes .bg-black:hover {
     cursor: pointer;
     opacity: 0.7;
 }
-.container-btn{
+
+.container-btn {
     width: 100%;
     display: flex;
     justify-content: center;
 }
-.btn-leer{
+
+.btn-leer {
     /* background-color: aqua; */
     color: var(--colorPrimary);
     margin: 2rem auto 1rem auto;
     padding: .6rem 4rem;
-    text-align: center; 
+    text-align: center;
     border: 1px solid var(--colorPrimary);
 }
-.btn-leer{
+
+.btn-leer {
     color: var(--colorPrimary);
     width: 100%;
 }
-.btn-leer:hover{
+
+.btn-leer:hover {
     cursor: pointer;
     color: #fff;
     background-color: var(--colorPrimary);
+}
+
+.container-isPending {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 3.3rem;
+}
+
+.container-isPending .btn-condition {
+    padding: 5px 10px;
+    width: 27%;
+    background-color: var(--colorPrimary);
+    border-radius: 4px;
+    border: 1px solid rgb(25, 187, 4);
+}
+
+.container-isPending .btn-condition:hover {
+    cursor: pointer;
+    opacity: .8;
+}
+
+.container-isPending .btn-condition p {
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+}
+
+.container-btnsAction {
+    width: 60%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.container-btnsAction .btn-edit {
+    border: 1px solid var(--colorPrimary);
+    width: 46%;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.container-btnsAction .btn-edit:hover {
+    cursor: pointer;
+}
+
+.container-btnsAction .btn-edit p {
+    padding: 5px;
+    color: var(--colorPrimary);
+    text-align: center;
+    font-size: 14px;
+}
+
+.container-btnsAction .btn-vermas {
+    width: 46%;
+    border-radius: 4px;
+    margin-right: 10px;
+    background-color: var(--colorPrimary);
+}
+
+.container-btnsAction .btn-vermas:hover {
+    cursor: pointer;
+}
+
+.container-btnsAction .btn-vermas p {
+    padding: 5px;
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
 }

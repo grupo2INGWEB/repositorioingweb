@@ -1,7 +1,13 @@
 import React, { useCallback, useState } from 'react';
+import Swal from "sweetalert2";
 import './header.css';
 import { Link, useHistory } from "react-router-dom"
 import Modal from 'react-modal';
+import { useFormRegister } from '../../../hooks/useFormRegister';
+import { useFormLogin } from '../../../hooks/useFormLogin';
+import { useDispatch, useSelector } from 'react-redux';
+import { cerrarSesion } from '../../../redux/actions/authAction'
+import { reinicarState } from '../../../redux/actions/resourceAction'
 
 const customStyles = {
     content: {
@@ -28,9 +34,27 @@ const custom2Styles = {
 Modal.setAppElement('#root');
 
 const LayoutHeader = props => {
-    const isAdmin = false;
-
     const history = useHistory();
+    const dispatch = useDispatch();
+
+    const [values, handleInputChange, handleBlur, sendDataRegister] = useFormRegister({
+        email: "",
+        name: "",
+        password: "",
+        repassword: "",
+        errorRegister: ""
+    })
+    const [valuesLogin, handleInputChangeLogin, sendDataLogin] = useFormLogin({
+        email2: "",
+        password2: "",
+        errorLogin: ""
+    })
+
+    const { email2, password2, errorLogin } = valuesLogin;
+    const { email, name, password, repassword, errorRegister } = values;
+    const {
+        auth: { fetching, userData, msgError },
+    } = useSelector((state) => state);
 
     const [modalIsOpen, setIsOpen] = useState(false);
     const [modal2IsOpen, setIsOpen2] = useState(false);
@@ -50,7 +74,6 @@ const LayoutHeader = props => {
 
     // Función para escuchar cambios en el select de recurso
     const handleChangeRecurso = useCallback((itemSelected) => {
-       
         switch (itemSelected) {
             case 0:
                 // Redirigir a los recursos (Home)
@@ -64,11 +87,32 @@ const LayoutHeader = props => {
                 // Redirigir a Mis recursos
                 history.push('/my-resource');
                 break;
+            case 3:
+                // Redirigir a Mis recursos
+                history.push('/pending-resource');
+                break;
 
             default:
                 break;
         }
-    },[history]);
+    }, [history]);
+
+    const logOut = () => {
+        Swal.fire({
+            title: "¿Deseas Salir?",
+            icon: "question",
+            showConfirmButton: true,
+            showDenyButton: true,
+            confirmButtonText: "Sí",
+            denyButtonText: "No",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch(cerrarSesion());
+                dispatch(reinicarState());
+                localStorage.clear();
+            }
+        });
+    }
 
 
 
@@ -80,20 +124,28 @@ const LayoutHeader = props => {
                 </div>
                 <nav>
                     <ul className="ul-nav">
-                        <li>
-                            <p>Recursos <i class="fas fa-sort-down"></i></p>
-                            <ul>
-                                <li onClickCapture={()=>handleChangeRecurso(1)} >Crear Recurso</li>
-                                <li onClickCapture={()=>handleChangeRecurso(2)}>Mis Recursos</li>
-                                {/* En caso de ser admin saldrá esta opcion */}
-                                {
-                                    isAdmin ?
-                                        <li >Recursos Pendientes</li> :
-                                        <></>
-                                }
-                            </ul>
+                        {
+                            !userData ?
+                                <></>
+                                :
+                                userData?.user.rol !== "internauta" ?
+                                    <li>
+                                        <p>Recursos <i class="fas fa-sort-down"></i></p>
+                                        <ul>
+                                            <li onClickCapture={() => handleChangeRecurso(1)} >Crear Recurso</li>
+                                            <li onClickCapture={() => handleChangeRecurso(2)}>Mis Recursos</li>
+                                            {/* En caso de ser admin saldrá esta opcion */}
+                                            {
+                                                userData?.user.rol === "admin" ?
+                                                    <li onClickCapture={() => handleChangeRecurso(3)} >Recursos Pendientes</li> :
+                                                    <></>
+                                            }
+                                        </ul>
 
-                        </li>
+                                    </li>
+                                    : <></>
+
+                        }
                         <li>
                             <p>Especialidad <i class="fas fa-sort-down"></i></p>
                             <ul>
@@ -101,13 +153,6 @@ const LayoutHeader = props => {
                                 <li >Educaciónn Primaria</li>
                                 <li >Educaciónn Secundaria</li>
                                 <li >Educaciónn Superior</li>
-                                <li >Mis Recursos</li>
-                                {/* En caso de ser admin saldrá esta opcion */}
-                                {
-                                    isAdmin ?
-                                        <li >Recursos Pendientes</li> :
-                                        <></>
-                                }
                             </ul>
 
                         </li>
@@ -130,7 +175,13 @@ const LayoutHeader = props => {
                             })
                         }}>Recientes</a></li>
                         <li><i className="fas fa-search" ></i></li>
-                        <li><i className="fas fa-sign-out-alt" onClickCapture={openModal}></i></li>
+                        {
+                            userData ?
+                                <li><i className="fas fa-sign-out-alt" onClickCapture={logOut}></i></li>
+                                :
+                                <li><i className="fas fa-sign-in-alt" onClickCapture={openModal}></i></li>
+                        }
+
                     </ul>
                 </nav>
             </header>
@@ -144,10 +195,26 @@ const LayoutHeader = props => {
                 <div className="container-login">
                     <h2>Repositorio</h2>
                     <strong>Correo</strong>
-                    <input type="email" name="email" id="email" placeholder="Correo" />
+                    <input type="email" name="email2" id="email2" placeholder="Correo" value={email2} onChangeCapture={handleInputChangeLogin} />
                     <strong>Contraseña</strong>
-                    <input type="password" name="password" id="password" placeholder="Contraseña" />
-                    <button className="btn-ingresar">Ingresar</button>
+                    <input type="password" name="password2" id="password2" placeholder="Contraseña" value={password2} onChangeCapture={handleInputChangeLogin} />
+                    {
+                        errorLogin !== "" ?
+                            <p className="error-msg">{errorLogin}</p>
+                            : <></>
+                    }
+                    <button className="btn-ingresar" onClickCapture={() => {
+                        console.log("CLICK");
+                        if (!fetching) {
+                            console.log("CLICK2");
+                            sendDataLogin(closeModal)
+                        }
+                    }}>
+                        {
+                            fetching ? "Iniciando..." : "Ingresar"
+                        }
+
+                    </button>
                     <button onClickCapture={() => {
                         closeModal();
                         openModalRegister();
@@ -163,12 +230,28 @@ const LayoutHeader = props => {
                 <div className="container-login">
                     <h2>Registro</h2>
                     <strong>Nombre</strong>
-                    <input type="text" name="name" id="name" placeholder=" Tu Nombre" />
+                    <input type="text" name="name" id="name" placeholder=" Tu Nombre" value={name} onChangeCapture={handleInputChange} />
                     <strong>Correo</strong>
-                    <input type="email" name="email" id="email" placeholder="Correo" />
+                    <input type="email" name="email" id="email" placeholder="Correo" value={email} onChangeCapture={handleInputChange} />
                     <strong>Contraseña</strong>
-                    <input type="password" name="password" id="password" placeholder="Contraseña" />
-                    <button className="btn-ingresar">Registrarse</button>
+                    <input type="password" name="password" id="password" placeholder="Contraseña" value={password} onChangeCapture={handleInputChange} />
+                    <strong>Repite la Contraseña</strong>
+                    <input type="password" name="repassword" id="repassword" placeholder="Contraseña" value={repassword} onChangeCapture={handleInputChange} onBlur={handleBlur} />
+                    {
+                        errorRegister !== "" ?
+                            <p className="error-msg">{errorRegister}</p>
+                            : <></>
+                    }
+                    {
+                        msgError ?
+                            <p className="error-msg">{msgError}</p>
+                            : <></>
+                    }
+                    <button className="btn-ingresar" onClickCapture={() => {
+                        if (!fetching) {
+                            sendDataRegister()
+                        }
+                    }}> {fetching ? "Registrando..." : "Registrarse"}</button>
                     <button
                         onClickCapture={() => {
                             closeModal2();

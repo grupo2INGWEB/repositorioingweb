@@ -1,23 +1,22 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import Card from '../../components/ui/cards/card';
-import './myResource.css';
+// import './myResource.css';
 
 
-const MyResources = () => {
+const PendingResources = () => {
 
     const {
-        resources: { myResources },
+        resources: { pendingResources },
     } = useSelector((state) => state);
 
     return (
         <div className="container">
-            <h2 className="title-me-resources">Mis Recursos</h2>
+            <h2 className="title-me-resources">Recursos Pendientes</h2>
             <div className="container-row-arounds">
                 {
-                    myResources?.map((resource) => {
+                    pendingResources?.map((resource) => {
                         return <Card
-                            key={resource._id}
                             calificacion={resource.calificacion}
                             condition={resource.condition}
                             country={resource.country}
@@ -29,7 +28,8 @@ const MyResources = () => {
                             tags={resource.tags}
                             title={resource.title}
                             nameAuthor={resource.nameAuthor}
-
+                            isPending={true}
+                            isAdmin={true}
                         />
                     })
                 }
@@ -40,4 +40,4 @@ const MyResources = () => {
     );
 }
 
-export default MyResources;
+export default PendingResources;

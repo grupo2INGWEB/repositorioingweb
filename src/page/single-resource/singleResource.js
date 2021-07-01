@@ -1,20 +1,35 @@
 import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
 import './singleResource.css'
 // import icon from '../../../assets/profile.png'
 
 const SingleResource = () => {
+    const history = useHistory();
+    const {
+        resources: { singleResource },
+    } = useSelector((state) => state);
+
+    const redirigir = () => {
+        history.push('/');
+    }
     useEffect(() => {
-        window.scroll({
-            top: 0
-        })
-    }, [])
+        if (!singleResource) {
+            redirigir()
+        } else {
+            window.scroll({
+                top: 0
+            })
+
+        }
+    }, [singleResource])
     return (
         <div className="container mb">
-            <h3 className="title-single">Title of Single Resource</h3>
+            <h3 className="title-single">{singleResource?.title}</h3>
             <h4 className="color-p">Descripción</h4>
             <div className="info-single">
-                <p><strong>Publicado por:</strong> Lorem Ipsum</p>
-                <p><strong>Lenguaje:</strong> Lorem Ipsum</p>
+                <p><strong>Publicado por:</strong> {singleResource?.nameAdmin ? singleResource?.nameAdmin : "-------"}</p>
+                <p><strong>Lenguaje:</strong> {singleResource?.language}</p>
                 <p><strong>Fecha:</strong> 10/06/2021</p>
             </div>
             <div className="resource-single">
@@ -26,52 +41,39 @@ const SingleResource = () => {
             </div>
             <div className="calification-single">
                 <p>Calificación:</p>
-                <p><i class="fas fa-heart"></i>  20</p>
+                <p><i class="fas fa-heart"></i>  {singleResource?.calificacion}</p>
             </div>
             <div className="description-single">
                 <p>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit rem in minima at, beatae perspiciatis sit blanditiis! Nesciunt vel harum corrupti laborum aspernatur, repellat rem saepe distinctio sit molestiae asperiores!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui pariatur distinctio similique numquam, iusto saepe vero unde, veniam deleniti eum, deserunt recusandae quo ex assumenda autem. Asperiores voluptatibus quaerat odio!
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus suscipit nostrum, itaque, vel quidem quas placeat sunt corporis esse asperiores ipsa fuga, molestiae alias. Impedit, quisquam? Quae doloribus architecto vero!
+                    {singleResource?.description}
                 </p>
                 <br />
-                <p>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit rem in minima at, beatae perspiciatis sit blanditiis! Nesciunt vel harum corrupti laborum aspernatur, repellat rem saepe distinctio sit molestiae asperiores!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui pariatur distinctio similique numquam, iusto saepe vero unde, veniam deleniti eum, deserunt recusandae quo ex assumenda autem. Asperiores voluptatibus quaerat odio!
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus suscipit nostrum, itaque, vel quidem quas placeat sunt corporis esse asperiores ipsa fuga, molestiae alias. Impedit, quisquam? Quae doloribus architecto vero!
-                </p>
             </div>
             <div className="author-single">
                 <p>Autor:</p>
-                <p>- Lorem Ipsum</p>
+                <p>- {singleResource?.nameAuthor}</p>
             </div>
             <div className="tags-single">
                 <strong className="color-p">Tags:</strong>
                 <div className="tags">
-                    <div className="tag">
-                        Lorem
-                    </div>
-                    <div className="tag">
-                        Lorem
-                    </div>
-                    <div className="tag">
-                        Lorem
-                    </div>
-                    <div className="tag">
-                        Lorem
-                    </div>
-                    <div className="tag">
-                        Lorem
-                    </div>
+                    {
+                        singleResource?.tags.map((tag) =>
+                            <div className="tag">
+                                {tag}
+                            </div>
+                        )
+                    }
                 </div>
 
             </div>
             <div className="detalles-single">
                 <p className="detail">Detalles</p>
-                <p><strong>Especialidad: </strong> Educación Infantil</p>
-                <p><strong>Lenguaje: </strong> Español</p>
-                <p><strong>Universidad: </strong> Universidad Técnica Particular de Loja</p>
-                <p><strong>País: </strong> Ecuador</p>
-                <p><strong>Plataforma: </strong> Moodle</p>
-                <p><strong>Categoría: </strong> Matemáticas</p>
+                <p><strong>Especialidad: </strong>{singleResource?.specialty}</p>
+                <p><strong>Lenguaje: </strong> {singleResource?.language}</p>
+                <p><strong>Universidad: </strong> {singleResource?.university}</p>
+                <p><strong>País: </strong> {singleResource?.country}</p>
+                <p><strong>Plataforma: </strong> {singleResource?.platform}</p>
+                <p><strong>Categoría: </strong> {singleResource?.category}</p>
                 <div className="container-shared">
                     <p>Compartir: </p>
                     <div className="icons">

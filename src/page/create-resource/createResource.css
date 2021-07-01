@@ -1,25 +1,30 @@
-.title-resource{
+.title-resource {
     color: var(--colorPrimary);
     font-size: 2.4rem;
     margin-bottom: 4rem;
 }
-.mt-container{
+
+.mt-container {
     margin-top: 5rem;
     padding-bottom: 6rem;
 }
-.formulario{
+
+.formulario {
     width: 100%;
 }
-.container-border{
+
+.container-border {
     padding: 1.5rem 2.5rem;
     border: 1px solid rgba(173, 173, 173, 0.788);
     border-radius: 5px;
     margin-bottom: 2rem;
 }
-.container-border p{
+
+.container-border p {
     margin-bottom: 1rem;
 }
-.formulario input{
+
+.formulario input {
     padding: .5rem;
     width: 100%;
     border-top: none;
@@ -28,41 +33,89 @@
     border-bottom: 1px solid rgba(173, 173, 173, 0.788);
     background-color: rgba(255, 255, 255, 0);
 }
-.formulario input:focus{
+
+.formulario input:focus {
     /* background-color: red; */
     outline: none;
 }
-.container-border-recurso{
+
+.container-border-recurso {
     margin-top: 1rem;
     padding: 1rem 1.5rem;
     border: 1px solid rgba(173, 173, 173, 0.788);
     border-radius: 5px;
     margin-bottom: 2rem;
     display: flex;
-    align-items: center;
+    /* align-items: center; */
 }
-.container-border-recurso i{
+
+.container-addTags {
+    margin-top: 1rem;
+    background-color: rgba(223, 223, 223, 0.459);
+    min-height: 100px;
+    display: flex;
+    padding: 10px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.agg-tag button:hover {
+    cursor: pointer;
+}
+
+.container-tag {
+    padding: 5px 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    background-color: rgba(204, 204, 204, 0.589);
+}
+
+.container-error {
+    background-color: red;
+    border-radius: 4px;
+    padding: 8px;
+}
+
+.container-error p {
+    color: #fff!important;
+    text-align: center;
+}
+
+.container-tag p {
+    margin: 0;
+}
+
+.container-border-recurso i {
     color: var(--colorPrimary);
     margin-right: 2rem;
 }
-.container-border-recurso i:hover{
+
+.container-border-recurso i:hover {
     cursor: pointer;
     font-size: large;
 }
-.container-sb{
+
+.container-sb {
     margin-top: 3rem;
 }
-.container-sb .agg-tag{
+
+.container-sb .agg-tag {
     margin-top: 1rem;
     display: flex;
 }
-.container-sb .mb-1{
+
+.container-sb .mb-1 {
     margin-bottom: 1rem;
 }
-.container-sb .agg-tag input{
+
+.container-sb .agg-tag input {
     width: 85%!important;
 }
-.container-sb .agg-tag button{
+
+.container-sb .agg-tag button {
     width: 15%!important;
     background-color: rgba(255, 255, 255, 0);
     border: 1px solid var(--colorPrimary);
@@ -70,7 +123,7 @@
     border-radius: 5px;
 }
 
-.footer{
+.footer {
     /* width: 100%; */
     background-color: var(--colorPrimaryBackground);
     /* height: 4rem; */
@@ -78,7 +131,8 @@
     display: flex;
     justify-content: flex-end;
 }
-.footer .btn-guardar{
+
+.footer .btn-guardar {
     padding: .8rem 4rem;
     color: #fff;
     text-align: center;
@@ -86,9 +140,9 @@
     width: 10%;
     border-radius: 5px;
 }
-.footer .btn-guardar:hover{
+
+.footer .btn-guardar:hover {
     cursor: pointer;
     opacity: .94;
     font-weight: 700;
 }
-
