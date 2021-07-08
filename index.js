@@ -11,7 +11,7 @@ const app = express();
 conectarDB();
 
 // Puerto de la app
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 5000;
 
 // Habilitar los valores de un body (para las consultas) cunado mandas datos desde Frontend hal backend
 app.use(express.json())

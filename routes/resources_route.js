@@ -55,7 +55,7 @@ router.get('/recentresources',
     resourceController.recentResources
 );
 // OBTENER RECURSOS Más valorados
-router.get('/recentresources',
+router.get('/mostCalifications',
     resourceController.mostCalificationResources
 );
 // OBTENER RECURSOS PENDIENTES
