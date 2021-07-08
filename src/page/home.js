@@ -7,18 +7,21 @@ import TitleSection from '../components/ui/title-section/title-section';
 const Home = () => {
 
     const {
-        resources: { listRecentResources }
+        resources: { listRecentResources, listMostValued }
     } = useSelector((state) => state);
 
     const shortRecent = () => {
         return listRecentResources.slice(0, 6);
+    }
+    const shortValued = () => {
+        return listMostValued.slice(0, 6);
     }
 
     return (
         <>
             {/* <LayoutHeader> */}
             <div className="container">
-                <TitleSection nombre="Recientes" url='/all-resource' state="Recientes" mostrarBtn={false} />
+                <TitleSection nombre="Recientes" url='/all-resource' state="Recientes" mostrarBtn={true} />
                 <div className="container-row-arounds">
                     {
                         listRecentResources.length === 0 ?
@@ -45,11 +48,32 @@ const Home = () => {
 
                     }
                 </div>
-                <TitleSection nombre="Más Valorados" url='/all-resource' state="Más Valorados" mostrarBtn={false} />
+                <TitleSection nombre="Más Valorados" url='/all-resource' state="Más Valorados" mostrarBtn={true} />
                 <div className="container-row-arounds">
-                    <h3>No hay Recursos Valorados</h3>
+                    {
+                        listMostValued.length === 0 ?
+                            <h3>No hay Recursos recientes</h3>
+                            : shortValued().map((resource) =>
+                                <Card
+                                    calificacion={resource.calificacion}
+                                    condition={resource.condition}
+                                    country={resource.country}
+                                    create={resource.create}
+                                    description={resource.description}
+                                    id={resource._id}
+                                    language={resource.language}
+                                    nameAuthor={resource.nameAuthor}
+                                    plataform={resource.plataform}
+                                    tags={resource.tags}
+                                    title={resource.title}
+                                    isAdmin={false}
+                                    isPending={false}
+                                    key={resource._id}
+                                />
+                            )
+                    }
                 </div>
-                <TitleSection nombre="Recomendados" url='/all-resource' state="Recomendados" mostrarBtn={false} />
+                <TitleSection nombre="Recomendados" url='/all-resource' state="Recomendados" mostrarBtn={true} />
                 <div className="container-row-arounds">
                     <h3>No hay Recursos Recomendados</h3>
                 </div>

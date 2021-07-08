@@ -71,7 +71,7 @@ const Card = ({
         <div className="card">
             <div className="title">
                 <h4>{title}</h4>
-                <p><i class="fas fa-heart"></i>  {calificacion}</p>
+                <p><i className="fas fa-heart"></i>  {calificacion}</p>
             </div>
             <div className="info">
                 <p><strong>Publicado por:</strong> {nameAuthor}</p>
@@ -98,13 +98,13 @@ const Card = ({
             </div>
             <div className="container-redes">
                 <div className="bg-black">
-                    <i class="fab fa-facebook-f"></i>
+                    <i className="fab fa-facebook-f"></i>
                 </div>
                 <div className="bg-black">
-                    <i class="fab fa-twitter"></i>
+                    <i className="fab fa-twitter"></i>
                 </div>
                 <div className="bg-black">
-                    <i class="fas fa-link"></i>
+                    <i className="fas fa-link"></i>
                 </div>
 
             </div>

@@ -14,7 +14,10 @@ import {
     CHANGE_SINGLE_RESOURCE,
     GET_RECENT_RESOURCES,
     GET_RECENT_RESOURCES_SUCCESS,
-    GET_RECENT_RESOURCES_ERROR
+    GET_RECENT_RESOURCES_ERROR,
+    GET_MORE_CALIFICATION_RESOURCES,
+    GET_MORE_CALIFICATION_RESOURCES_ERROR,
+    GET_MORE_CALIFICATION_RESOURCES_SUCCESS
 } from '../../types/types'
 
 const initialState = {
@@ -26,8 +29,10 @@ const initialState = {
     pendingResources: null,
     singleResource: null,
     fetchingRecent: false,
+    fetchingValued: false,
     msgErrorRecent: null,
-    listRecentResources: []
+    listRecentResources: [],
+    listMostValued: [],
 }
 export const resourceReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -125,10 +130,22 @@ export const resourceReducer = (state = initialState, action) => {
                 fetchingRecent: false,
                 msgErrorRecent: action.payload
             }
+        case GET_MORE_CALIFICATION_RESOURCES:
+            return {
+                ...state,
+                fetchingValued: true
+            }
+        case GET_MORE_CALIFICATION_RESOURCES_SUCCESS:
+            return {
+                ...state,
+                fetchingValued: false,
+                listMostValued: action.payload
+            }
 
 
-        case CERRAR_SESION:
-            return initialState;
+
+        // case CERRAR_SESION:
+        //     return initialState;
         default:
             return initialState;
     }

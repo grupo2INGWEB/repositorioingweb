@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router';
 // import { useHistory } from 'react-router';
 import { startLoginEmailPass } from '../redux/actions/authAction'
 
 export const useFormLogin = (initialState = {}) => {
+
     const dispatch = useDispatch()
-    // const history = useHistory();
+    const history = useHistory();
     const [valuesLogin, setValuesLogin] = useState(initialState);
 
 
@@ -19,7 +21,7 @@ export const useFormLogin = (initialState = {}) => {
         if (valuesLogin.errorLogin === "") {
             console.log("")
             if (valuesLogin.email2 !== "" && valuesLogin.password2 !== "") {
-                dispatch(startLoginEmailPass(valuesLogin.email2, valuesLogin.password2, closeModal))
+                dispatch(startLoginEmailPass(valuesLogin.email2, valuesLogin.password2, closeModal, history))
             }
         } else {
             setValuesLogin({

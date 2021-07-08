@@ -33,7 +33,7 @@ const SingleResource = () => {
                 <p><strong>Fecha:</strong> 10/06/2021</p>
             </div>
             <div className="resource-single">
-                <p><i class="fas fa-link"></i> <strong>Descargar recurso</strong></p>
+                <p><i className="fas fa-link"></i> <strong>Descargar recurso</strong></p>
                 <hr />
                 <p><strong>Tipo:</strong> Documento</p>
                 <hr />
@@ -41,7 +41,7 @@ const SingleResource = () => {
             </div>
             <div className="calification-single">
                 <p>Calificación:</p>
-                <p><i class="fas fa-heart"></i>  {singleResource?.calificacion}</p>
+                <p><i className="fas fa-heart"></i>  {singleResource?.calificacion}</p>
             </div>
             <div className="description-single">
                 <p>
@@ -78,13 +78,13 @@ const SingleResource = () => {
                     <p>Compartir: </p>
                     <div className="icons">
                         <div className="bg-black">
-                            <i class="fab fa-facebook-f"></i>
+                            <i className="fab fa-facebook-f"></i>
                         </div>
                         <div className="bg-black">
-                            <i class="fab fa-twitter"></i>
+                            <i className="fab fa-twitter"></i>
                         </div>
                         <div className="bg-black">
-                            <i class="fas fa-link"></i>
+                            <i className="fas fa-link"></i>
                         </div>
 
                     </div>

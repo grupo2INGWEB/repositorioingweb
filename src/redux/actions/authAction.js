@@ -8,8 +8,9 @@ import {
     LOGIN_USUARIO_SUCCESS,
     CERRAR_SESION
 } from '../../types/types'
+import { obtenerRecursosMasValorados, obtenerRecursosPendientes, obtenerRecursosRecientes, obtenerMisRecursos } from './resourceAction';
 
-export const startLoginEmailPass = (email, password, closeModal) => {
+export const startLoginEmailPass = (email, password, closeModal, history) => {
     return async (dispatch) => {
         dispatch({
             type: LOGIN_USUARIO,
@@ -25,7 +26,14 @@ export const startLoginEmailPass = (email, password, closeModal) => {
                     type: LOGIN_USUARIO_SUCCESS,
                     payload: resp.data
                 })
-                localStorage.setItem("userData", JSON.stringify(resp.data))
+                localStorage.setItem("userData", JSON.stringify(resp.data));
+                // history.push('/')
+                obtenerRecursosMasValorados(dispatch);
+                obtenerRecursosRecientes(dispatch);
+                obtenerMisRecursos(dispatch, resp.data.token);
+                if (resp.data.user.rol === "admin") {
+                    obtenerRecursosPendientes(dispatch);
+                }
                 closeModal()
             }
 
@@ -73,7 +81,7 @@ export const registerUser = (email, password, name, rol, history) => {
                     payload: resp.data
                 })
                 localStorage.setItem("userData", JSON.stringify(resp.data))
-                history.replace("/");
+                history.push("/");
             } else {
                 // si el usuario lo creo un admin
                 console.log("==> CREADO POR UN ADMIN")
@@ -96,10 +104,13 @@ export const registerUser = (email, password, name, rol, history) => {
     }
 }
 
-export const cerrarSesion = () => {
+export const cerrarSesion = (history) => {
     return (dispatch) => {
         dispatch({
             type: CERRAR_SESION
         })
+        history.push('/')
+        // obtenerRecursosMasValorados(dispatch);
+        // obtenerRecursosRecientes(dispatch);
     }
 }

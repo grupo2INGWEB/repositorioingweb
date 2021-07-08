@@ -6,6 +6,7 @@ import ListAllResources from "../page/list-resource/list-all-resources"
 import MyResources from "../page/my-resources/myResource"
 import SingleResource from "../page/single-resource/singleResource"
 import PendingResources from "../page/pending-resource/pendingResource"
+import UserManagement from "../page/user-management/userManagement"
 
 export const AppRouter = () => {
     return (
@@ -19,6 +20,7 @@ export const AppRouter = () => {
                     <Route path='/all-resource' exact component={ListAllResources} />
                     <Route path='/my-resource' exact component={MyResources} />
                     <Route path='/pending-resource' exact component={PendingResources} />
+                    <Route path='/users' exact component={UserManagement} />
                 </Switch>
             </LayoutHeader>
         </Router>

@@ -91,6 +91,10 @@ const LayoutHeader = props => {
                 // Redirigir a Mis recursos
                 history.push('/pending-resource');
                 break;
+            case 4:
+                // Redirigir a Mis recursos
+                history.push('/users');
+                break;
 
             default:
                 break;
@@ -107,9 +111,9 @@ const LayoutHeader = props => {
             denyButtonText: "No",
         }).then((result) => {
             if (result.isConfirmed) {
-                dispatch(cerrarSesion());
-                dispatch(reinicarState());
                 localStorage.clear();
+                dispatch(cerrarSesion(history));
+                dispatch(reinicarState());
             }
         });
     }
@@ -125,12 +129,17 @@ const LayoutHeader = props => {
                 <nav>
                     <ul className="ul-nav">
                         {
+                            userData?.user.rol === "admin" ?
+                                <li onClickCapture={() => handleChangeRecurso(4)} >Usuarios</li> :
+                                <></>
+                        }
+                        {
                             !userData ?
                                 <></>
                                 :
                                 userData?.user.rol !== "internauta" ?
                                     <li>
-                                        <p>Recursos <i class="fas fa-sort-down"></i></p>
+                                        <p>Recursos <i className="fas fa-sort-down"></i></p>
                                         <ul>
                                             <li onClickCapture={() => handleChangeRecurso(1)} >Crear Recurso</li>
                                             <li onClickCapture={() => handleChangeRecurso(2)}>Mis Recursos</li>
@@ -147,7 +156,7 @@ const LayoutHeader = props => {
 
                         }
                         <li>
-                            <p>Especialidad <i class="fas fa-sort-down"></i></p>
+                            <p>Especialidad <i className="fas fa-sort-down"></i></p>
                             <ul>
                                 <li >Educaciónn Infantil</li>
                                 <li >Educaciónn Primaria</li>
@@ -156,19 +165,19 @@ const LayoutHeader = props => {
                             </ul>
 
                         </li>
-                        <li><a href="/#" onClickCapture={() => {
+                        <li><a onClickCapture={() => {
                             history.push('/all-resource', 'Más Valorados');
                             window.scroll({
                                 top: 0
                             })
                         }} >Más Valorado</a></li>
-                        <li><a href="/#" onClickCapture={() => {
+                        <li><a onClickCapture={() => {
                             history.push('/all-resource', 'Recomendados');
                             window.scroll({
                                 top: 0
                             })
                         }}>Recomendados</a></li>
-                        <li><a href="/#" onClickCapture={() => {
+                        <li><a onClickCapture={() => {
                             history.push('/all-resource', 'Recientes');
                             window.scroll({
                                 top: 0

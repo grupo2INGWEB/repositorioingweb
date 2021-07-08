@@ -16,7 +16,10 @@ import {
     CHANGE_SINGLE_RESOURCE,
     GET_RECENT_RESOURCES,
     GET_RECENT_RESOURCES_SUCCESS,
-    GET_RECENT_RESOURCES_ERROR
+    GET_RECENT_RESOURCES_ERROR,
+    GET_MORE_CALIFICATION_RESOURCES,
+    GET_MORE_CALIFICATION_RESOURCES_ERROR,
+    GET_MORE_CALIFICATION_RESOURCES_SUCCESS
 } from '../../types/types'
 
 export const crearRecurso = (data, accessToken, resetValues, alertOK) => {
@@ -156,7 +159,11 @@ export const obtenerRecursosRecientes = async (dispatch) => {
         type: GET_RECENT_RESOURCES
     })
     try {
-        const resp = await clienteAxios.get('resource/recentresources');
+        const resp = await clienteAxios.get('resource/recentresources', {
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+            }
+        });
         console.log("===> RECURSOS RECIENTES");
         console.log(resp.data.resources);
         dispatch({
@@ -165,12 +172,40 @@ export const obtenerRecursosRecientes = async (dispatch) => {
         })
 
     } catch (error) {
-        console.log("===> Error al obtener Recursos Pendientes")
+        console.log("===> Error al obtener Recursos RECIENTES")
         console.log(error);
         console.log(error?.response);
         dispatch({
             type: GET_RECENT_RESOURCES_ERROR,
-            payload: "Error al obtener recursos Pendientes"
+            payload: "Error al obtener recursos RECIENTES"
+        })
+
+    }
+}
+export const obtenerRecursosMasValorados = async (dispatch) => {
+    dispatch({
+        type: GET_MORE_CALIFICATION_RESOURCES
+    })
+    try {
+        const resp = await clienteAxios.get('resource/mostCalifications', {
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+            }
+        });
+        console.log("===> RECURSOS MÁS VALORADOS");
+        console.log(resp.data.resources);
+        dispatch({
+            type: GET_MORE_CALIFICATION_RESOURCES_SUCCESS,
+            payload: resp.data.resources
+        })
+
+    } catch (error) {
+        console.log("===> Error al obtener Recursos más valorados")
+        console.log(error);
+        console.log(error?.response);
+        dispatch({
+            type: GET_MORE_CALIFICATION_RESOURCES_ERROR,
+            payload: "Error al obtener recursos más valoradps"
         })
 
     }

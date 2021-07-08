@@ -18,7 +18,7 @@ const TitleSection = ({ nombre, url, state, mostrarBtn }) => {
                         }
                         }>
                             <p>Ver más</p>
-                            <i class="fas fa-chevron-right"></i>
+                            <i className="fas fa-chevron-right"></i>
                         </div>
                         : <></>
                 }

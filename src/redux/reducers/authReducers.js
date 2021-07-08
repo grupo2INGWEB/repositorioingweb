@@ -57,7 +57,11 @@ export const authReducer = (state = initialState, action) => {
                 userData: null
             }
         case CERRAR_SESION:
-            return initialState;
+            return {
+                fetching: false,
+                msgError: null,
+                userData: null,
+            };
 
         default:
             return initialState;

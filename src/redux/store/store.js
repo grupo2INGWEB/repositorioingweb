@@ -2,7 +2,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { authReducer } from '../reducers/authReducers';
 import thunk from 'redux-thunk';
 import { resourceReducer } from '../reducers/resourceReducers';
-import { obtenerMisRecursos, obtenerRecursosPendientes, obtenerRecursosRecientes } from '../actions/resourceAction'
+import { obtenerMisRecursos, obtenerRecursosMasValorados, obtenerRecursosPendientes, obtenerRecursosRecientes } from '../actions/resourceAction'
 
 const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 
@@ -23,6 +23,7 @@ export const store = createStore(
 // Recuperar los datos 
 export default function generateStore() {
     let store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)));
+    obtenerRecursosMasValorados(store.dispatch);
     obtenerRecursosRecientes(store.dispatch);
     if (localStorage.getItem("userData")) {
         const data = JSON.parse(localStorage.getItem("userData"));

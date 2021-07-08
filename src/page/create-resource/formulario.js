@@ -37,7 +37,7 @@ const Formulario = ({ title,
             <div className="container-recurso">
                 <p>Agregar Recurso</p>
                 <div className="container-border-recurso">
-                    <i class="fas fa-link"></i>
+                    <i className="fas fa-link"></i>
                     <p>Agregar Recurso</p>
                     <hr />
                     <p>Tipo: Documento</p>
