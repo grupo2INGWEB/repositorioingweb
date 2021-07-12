@@ -7,7 +7,7 @@ import TitleSection from '../components/ui/title-section/title-section';
 const Home = () => {
 
     const {
-        resources: { listRecentResources, listMostValued }
+        resources: { listRecentResources, listMostValued, listRecommended }
     } = useSelector((state) => state);
 
     const shortRecent = () => {
@@ -15,6 +15,9 @@ const Home = () => {
     }
     const shortValued = () => {
         return listMostValued.slice(0, 6);
+    }
+    const shortRecommended = () => {
+        return listRecommended.slice(0, 6);
     }
 
     return (
@@ -36,12 +39,22 @@ const Home = () => {
                                     id={resource._id}
                                     language={resource.language}
                                     nameAuthor={resource.nameAuthor}
-                                    plataform={resource.plataform}
+                                    platform={resource.platform}
                                     tags={resource.tags}
                                     title={resource.title}
-                                    isAdmin={false}
+                                    isAdmin={true}
                                     isPending={false}
                                     key={resource._id}
+                                    university={resource.university}
+                                    category={resource.category}
+                                    specialty={resource.specialty}
+                                    usersLikes={resource.usersLikes}
+                                    comments={resource.comments}
+                                    author={resource.author}
+                                    nameResource={resource.nameResource}
+                                    urlResource={resource.urlResource}
+                                    originalNameResource={resource.originalNameResource}
+
                                 />
                             )
 
@@ -63,19 +76,61 @@ const Home = () => {
                                     id={resource._id}
                                     language={resource.language}
                                     nameAuthor={resource.nameAuthor}
-                                    plataform={resource.plataform}
+                                    platform={resource.platform}
                                     tags={resource.tags}
                                     title={resource.title}
-                                    isAdmin={false}
+                                    university={resource.university}
+                                    category={resource.category}
+                                    specialty={resource.specialty}
+                                    isAdmin={true}
                                     isPending={false}
                                     key={resource._id}
+                                    usersLikes={resource.usersLikes}
+                                    nameAdmin={resource.nameAdmin}
+                                    comments={resource.comments}
+                                    author={resource.author}
+                                    nameResource={resource.nameResource}
+                                    urlResource={resource.urlResource}
+                                    originalNameResource={resource.originalNameResource}
                                 />
                             )
                     }
                 </div>
                 <TitleSection nombre="Recomendados" url='/all-resource' state="Recomendados" mostrarBtn={true} />
                 <div className="container-row-arounds">
-                    <h3>No hay Recursos Recomendados</h3>
+                    {
+                        listRecommended.length === 0 ?
+                            <h3>No hay Recursos Recomendados</h3>
+                            :
+                            shortRecommended().map((resource) =>
+                                <Card
+                                    calificacion={resource.calificacion}
+                                    condition={resource.condition}
+                                    country={resource.country}
+                                    create={resource.create}
+                                    description={resource.description}
+                                    id={resource._id}
+                                    language={resource.language}
+                                    nameAuthor={resource.nameAuthor}
+                                    platform={resource.platform}
+                                    tags={resource.tags}
+                                    title={resource.title}
+                                    university={resource.university}
+                                    category={resource.category}
+                                    specialty={resource.specialty}
+                                    isAdmin={true}
+                                    isPending={false}
+                                    key={resource._id}
+                                    usersLikes={resource.usersLikes}
+                                    nameAdmin={resource.nameAdmin}
+                                    comments={resource.comments}
+                                    author={resource.author}
+                                    nameResource={resource.nameResource}
+                                    urlResource={resource.urlResource}
+                                    originalNameResource={resource.originalNameResource}
+                                />
+                            )
+                    }
                 </div>
             </div>
             {/* </LayoutHeader> */}

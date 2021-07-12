@@ -7,7 +7,7 @@ import { useFormRegister } from '../../../hooks/useFormRegister';
 import { useFormLogin } from '../../../hooks/useFormLogin';
 import { useDispatch, useSelector } from 'react-redux';
 import { cerrarSesion } from '../../../redux/actions/authAction'
-import { reinicarState } from '../../../redux/actions/resourceAction'
+import { filterSpecialtyResources, reinicarState } from '../../../redux/actions/resourceAction'
 
 const customStyles = {
     content: {
@@ -118,6 +118,11 @@ const LayoutHeader = props => {
         });
     }
 
+    const tipoEspecialidad = (title) => {
+        dispatch(filterSpecialtyResources(title))
+        history.push('/all-resource', title)
+    }
+
 
 
     return (
@@ -158,10 +163,10 @@ const LayoutHeader = props => {
                         <li>
                             <p>Especialidad <i className="fas fa-sort-down"></i></p>
                             <ul>
-                                <li >Educaciónn Infantil</li>
-                                <li >Educaciónn Primaria</li>
-                                <li >Educaciónn Secundaria</li>
-                                <li >Educaciónn Superior</li>
+                                <li onClickCapture={() => tipoEspecialidad("Educación Infantil")} >Educación Infantil</li>
+                                <li onClickCapture={() => tipoEspecialidad("Educación Primaria")} >Educación Primaria</li>
+                                <li onClickCapture={() => tipoEspecialidad("Educación Secundaria")} >Educación Secundaria</li>
+                                <li onClickCapture={() => tipoEspecialidad("Educación Superior")} >Educación Superior</li>
                             </ul>
 
                         </li>

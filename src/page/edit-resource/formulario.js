@@ -1,7 +1,6 @@
 import React from 'react';
 import Input from './inputForm';
 import InputForm from './inputFormBorder';
-import Dropzone from './Dropzone';
 
 const Formulario = ({ title,
     description,
@@ -16,7 +15,7 @@ const Formulario = ({ title,
     setTag,
     tags,
     setTags,
-    agregarArchivo
+    setValuesResource
 }) => {
     return (
         <div className="formulario">
@@ -42,9 +41,7 @@ const Formulario = ({ title,
                     <i className="fas fa-link"></i>
                     <p>Agregar Recurso</p>
                     <hr />
-                    <Dropzone
-                        agregarArchivo={agregarArchivo}
-                    />
+                    <p>Tipo: Documento</p>
                 </div>
             </div>
             <div className="container-sb">
@@ -70,14 +67,14 @@ const Formulario = ({ title,
                 }
             </div>
             <div className="container-sb">
-                <p className="mb-1">Especialidad</p>
+                <p className="mb-1">{title}</p>
                 <select name="specialty" id="specialtyCreate" onChange={onChange} value={specialty}>
                     <option value="Educación Infantil">Educación Infantil</option>
                     <option value="Educación Primaria">Educación Primaria</option>
                     <option value="Educación Secundaria">Educación Secundaria</option>
                     <option value="Educación Superior">Educación Superior</option>
                 </select>
-
+                {/* <input type="text" value={specialty} name="specialty" id="specialty" onChange={onChange} /> */}
             </div>
             <Input
                 id="category"
@@ -116,9 +113,9 @@ const Formulario = ({ title,
             />
             <Input
                 id="platform"
-                name="platform"
+                name="Plataforma"
                 placeholder="Escribe la platforma..."
-                title="Plataforma"
+                title="platforma"
                 value={platform}
                 onChange={onChange}
             />

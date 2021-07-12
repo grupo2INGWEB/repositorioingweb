@@ -1,24 +1,29 @@
-.title-single{
+.title-single {
     margin-top: 6rem;
     color: var(--colorPrimary);
     font-size: 3rem;
 }
-.mb{
+
+.mb {
     padding-bottom: 10rem;
 }
-.info-single{
+
+.info-single {
     display: flex;
 }
-.info-single p{
+
+.info-single p {
     margin-right: 3rem;
     margin-top: 0;
     margin-bottom: 0;
 }
-.color-p{
+
+.color-p {
     color: var(--colorPrimary);
     margin-bottom: 1rem;
 }
-.resource-single{
+
+.resource-single {
     margin-top: 2rem;
     display: flex;
     align-items: center;
@@ -27,50 +32,61 @@
     padding: .5rem 1.5rem;
     font-size: 1.4rem;
 }
-.resource-single hr{
+
+.resource-single hr {
     border-width: 10px!important;
     color: chartreuse;
     border-color: chartreuse;
 }
-.resource-single .p-download{
+
+.resource-single .p-download {
     text-decoration: underline;
     color: rgb(0, 49, 185);
 }
-.calification-single{
+
+.calification-single {
     margin-top: 2rem;
     display: flex;
 }
-.calification-single p:first-of-type{
+
+.calification-single p:first-of-type {
     color: var(--colorPrimary);
     font-weight: bold;
     margin-right: 1rem;
 }
-.calification-single i{
+
+.calification-single i {
     color: red;
 }
-.description-single{
+
+.description-single {
     width: 100%;
     margin-top: 2rem;
     text-align: justify;
     line-height: 2.5rem;
 }
-.author-single{
+
+.author-single {
     margin-top: 2rem;
 }
-.author-single p:first-of-type{
+
+.author-single p:first-of-type {
     color: var(--colorPrimary);
     font-weight: bold;
 }
-.tags-single{
+
+.tags-single {
     width: 100%;
     margin-top: 2rem;
 }
-.tags-single .tags{
+
+.tags-single .tags {
     display: flex;
     flex-wrap: wrap;
     margin-top: 1rem;
 }
-.tags-single .tags .tag{
+
+.tags-single .tags .tag {
     margin-right: 1rem;
     width: 18%;
     text-align: center;
@@ -80,36 +96,44 @@
     color: #fff;
     font-size: 1.4rem;
 }
-.detalles-single{
+
+.detalles-single {
     margin-top: 2rem;
 }
-.detalles-single .detail{
+
+.detalles-single .detail {
     font-weight: bold;
     font-size: 1.8rem;
     margin-bottom: 1rem;
 }
-.detalles-single p{
+
+.detalles-single p {
     margin-bottom: .5rem;
 }
-.detalles-single strong{
+
+.detalles-single strong {
     margin-right: .5rem;
 }
-.container-shared{
+
+.container-shared {
     width: 100%;
     display: flex;
     align-items: center;
     margin-top: 1rem;
 }
-.container-shared p{
+
+.container-shared p {
     margin-right: 1.3rem;
     font-weight: bold;
 }
-.container-shared .icons{
+
+.container-shared .icons {
     display: flex;
     align-items: center;
     width: 80%;
 }
-.container-shared .icons .bg-black{
+
+.container-shared .icons .bg-black {
     background-color: black;
     color: #fff;
     border-radius: 100%;
@@ -118,55 +142,67 @@
     width: 2%;
     text-align: center;
 }
-.container-shared .icons .bg-black:hover{
+
+.container-shared .icons .bg-black:hover {
     cursor: pointer;
     opacity: .8;
 }
-.comments{
+
+.comments {
     margin-top: 6rem;
 }
-.comments h4{
+
+.comments h4 {
     font-size: 1.8rem;
 }
-.comment{
+
+.comment {
     width: 100%;
     display: flex;
     align-items: center;
     margin-top: 3rem;
 }
-.comment .img{
-    width: 15%;
+
+.comment .img {
+    width: 5%;
     overflow: hidden;
     border-radius: 100%;
     margin-right: 4rem;
 }
-.comment .img img{
+
+.comment .img img {
     width: 100%;
 }
-.comment .decription-comment{
+
+.comment .decription-comment {
     text-align: justify;
 }
-.comment .decription-comment .autor{
+
+.comment .decription-comment .autor {
     font-weight: bold;
     margin-bottom: .5rem;
     /* font-size: 1.4rem; */
 }
-.comment .decription-comment .date-comment{
+
+.comment .decription-comment .date-comment {
     color: var(--colorPrimary);
     font-size: 1.4rem;
     margin-top: .5rem;
 }
-.aggComments{
+
+.aggComments {
     width: 100%;
     margin-top: 4rem;
 }
-.aggComments textarea{
+
+.aggComments textarea {
     width: 100%;
     padding: 1rem;
     border-color: rgb(190, 190, 190);
     border-radius: 5px;
 }
-.aggComments button{
+
+.aggComments button {
     margin-top: 1rem;
     background-color: var(--colorPrimary);
     padding: 1rem 7rem;
@@ -175,7 +211,15 @@
     color: #fff;
     font-weight: bold;
 }
-.aggComments button:hover{
+
+.aggComments button:hover {
     cursor: pointer;
     opacity: .8;
+}
+
+.autor-admin {
+    margin-bottom: .4rem;
+    color: var(--colorPrimary);
+    font-weight: 800;
+    font-size: 14px;
 }

@@ -24,12 +24,21 @@ const PendingResources = () => {
                             description={resource.description}
                             id={resource._id}
                             language={resource.language}
-                            plataform={resource.plataform}
+                            platform={resource.platform}
                             tags={resource.tags}
                             title={resource.title}
                             nameAuthor={resource.nameAuthor}
                             isPending={true}
                             isAdmin={true}
+                            university={resource.university}
+                            category={resource.category}
+                            specialty={resource.specialty}
+                            usersLikes={resource.usersLikes}
+                            comments={resource.comments}
+                            author={resource.author}
+                            nameResource={resource.nameResource}
+                            urlResource={resource.urlResource}
+                            originalNameResource={resource.originalNameResource}
                         />
                     })
                 }

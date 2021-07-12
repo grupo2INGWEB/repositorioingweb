@@ -2,7 +2,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { authReducer } from '../reducers/authReducers';
 import thunk from 'redux-thunk';
 import { resourceReducer } from '../reducers/resourceReducers';
-import { obtenerMisRecursos, obtenerRecursosMasValorados, obtenerRecursosPendientes, obtenerRecursosRecientes } from '../actions/resourceAction'
+import { obtenerMisRecursos, obtenerRecursosMasValorados, obtenerRecursosPendientes, obtenerRecursosRecientes, obtenerRecursosRecomendados } from '../actions/resourceAction'
 
 const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 
@@ -25,13 +25,13 @@ export default function generateStore() {
     let store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)));
     obtenerRecursosMasValorados(store.dispatch);
     obtenerRecursosRecientes(store.dispatch);
+    obtenerRecursosRecomendados(store.dispatch);
     if (localStorage.getItem("userData")) {
         const data = JSON.parse(localStorage.getItem("userData"));
         obtenerMisRecursos(store.dispatch, data.token)
         // Si el usuario es admin consultar recursos pendientes
         console.log(data.user)
         if (data.user.rol === "admin") {
-            console.log("OBTENER RECURSOS PENDIENTES")
             obtenerRecursosPendientes(store.dispatch);
         }
     }

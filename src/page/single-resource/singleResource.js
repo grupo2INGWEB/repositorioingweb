@@ -1,18 +1,42 @@
-import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import './singleResource.css'
+import Swal from 'sweetalert2'
+import { comentarElRecurso } from '../../redux/actions/resourceAction';
+import { parseDate } from '../../helpers/helpers';
+import { urlApi } from '../../constantes/constants';
 // import icon from '../../../assets/profile.png'
 
 const SingleResource = () => {
     const history = useHistory();
+    const disptach = useDispatch();
+    const [comment, setComment] = useState("");
     const {
-        resources: { singleResource },
+        auth: { userData },
+        resources: { singleResource, fetching },
     } = useSelector((state) => state);
 
     const redirigir = () => {
         history.push('/');
     }
+    const startComment = () => {
+        disptach(comentarElRecurso(singleResource.id, userData.token, comment, setComment))
+    }
+
+    const comprobarSesion = () => {
+        if (!userData) {
+            // Mostrar Alerta de iniciar sesón
+            Swal.fire({
+                title: "Debes de iniciar sesión, para poder comentar este recurso",
+                icon: "warning"
+            })
+        } else {
+            startComment()
+        }
+    }
+
+
     useEffect(() => {
         if (!singleResource) {
             redirigir()
@@ -35,9 +59,13 @@ const SingleResource = () => {
             <div className="resource-single">
                 <p><i className="fas fa-link"></i> <strong>Descargar recurso</strong></p>
                 <hr />
-                <p><strong>Tipo:</strong> Documento</p>
+                {/* <p><strong>Tipo:</strong> Documento</p> */}
                 <hr />
-                <p className="p-download">Descargar</p>
+                <a
+                    href={`${urlApi}resource/descargar/${singleResource?.nameResource}`}
+                    className="p-download"
+                    download
+                >Descargar</a>
             </div>
             <div className="calification-single">
                 <p>Calificación:</p>
@@ -72,7 +100,7 @@ const SingleResource = () => {
                 <p><strong>Lenguaje: </strong> {singleResource?.language}</p>
                 <p><strong>Universidad: </strong> {singleResource?.university}</p>
                 <p><strong>País: </strong> {singleResource?.country}</p>
-                <p><strong>Plataforma: </strong> {singleResource?.platform}</p>
+                <p><strong>platforma: </strong> {singleResource?.platform}</p>
                 <p><strong>Categoría: </strong> {singleResource?.category}</p>
                 <div className="container-shared">
                     <p>Compartir: </p>
@@ -90,53 +118,37 @@ const SingleResource = () => {
                     </div>
                 </div>
             </div>
+            {/* Comentarios */}
             <div className="comments">
                 <h4>Comentarios</h4>
                 {/* Comentario 1 */}
-                <div className="comment">
-                    <div className="img">
-                        <img src="/profile.png" alt="Profile Icon" />
-                    </div>
-                    <div className="decription-comment">
-                        <p className="autor">Nombre del Autor</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam illum rerum ipsum tempore saepe itaque tempora obcaecati? Maxime hic optio corrupti dolore, repudiandae officiis quo eveniet accusantium recusandae magni exercitationem!
-                        Lorem ipsum dolor. facilis, at expedita, nobis ad nihil optio! Nisi, laborum hic asperiores velit natus iste sapiente.
-                        </p>
-                        <p className="date-comment">10/06/2021</p>
-                    </div>
-                </div>
-                {/* Comentario 2 */}
-                <div className="comment">
-                    <div className="img">
-                        <img src="/profile.png" alt="Profile Icon" />
-                    </div>
-                    <div className="decription-comment">
-                        <p className="autor">Nombre del Autor</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam illum rerum ipsum tempore saepe itaque tempora obcaecati? Maxime hic optio corrupti dolore, repudiandae officiis quo eveniet accusantium recusandae magni exercitationem!
-                        Lorem ipsum dolor. facilis, at expedita, nobis ad nihil optio! Nisi, laborum hic asperiores velit natus iste sapiente.
-                        </p>
-                        <p className="date-comment">10/06/2021</p>
-                    </div>
-                </div>
-                {/* Comentario 3 */}
-                <div className="comment">
-                    <div className="img">
-                        <img src="/profile.png" alt="Profile Icon" />
-                    </div>
-                    <div className="decription-comment">
-                        <p className="autor">Nombre del Autor</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam illum rerum ipsum tempore saepe itaque tempora obcaecati? Maxime hic optio corrupti dolore, repudiandae officiis quo eveniet accusantium recusandae magni exercitationem!
-                        Lorem ipsum dolor. facilis, at expedita, nobis ad nihil optio! Nisi, laborum hic asperiores velit natus iste sapiente.
-                        </p>
-                        <p className="date-comment">10/06/2021</p>
-                    </div>
-                </div>
+                {
+                    singleResource?.comments.map((comment) =>
+                        <div className="comment">
+                            <div className="img">
+                                <img src="/profile.png" alt="Profile Icon" />
+                            </div>
+                            <div className="decription-comment">
+                                <p className="autor">{comment.autor} <span className="autor-admin">{comment.idUser === singleResource.author ? "Autor" : ""} </span> </p>
+
+                                <p>{comment.comment}</p>
+                                <p className="date-comment">{parseDate(comment.created)}</p>
+                            </div>
+                        </div>
+                    )
+                }
 
             </div>
             <div className="aggComments">
                 <h4>Agregar Comentario</h4>
-                <textarea name="aggComent" id="aggComent" placeholder="Agrega un comentario..." ></textarea>
-                <button>Agregar</button>
+                <textarea name="aggComent" id="aggComent" placeholder="Agrega un comentario..." value={comment}
+                    onChange={(e) => setComment(e.target.value)}
+                ></textarea>
+                <button onClickCapture={comprobarSesion} >
+                    {
+                        fetching ? "Publicando...." : "Agregar"
+                    }
+                </button>
             </div>
         </div>
     );

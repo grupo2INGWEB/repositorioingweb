@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useFormCreateResource } from '../../hooks/useFormCreateResource';
 import './createResource.css'
@@ -14,27 +14,37 @@ const CreateResource = () => {
   const [tag, setTag] = useState("");
   const [tags, setTags] = useState([]);
 
-  const [valuesResource, handleInputChangeResource, sendDataResource] = useFormCreateResource({
+  const [valuesResource, handleInputChangeResource, sendDataResource, setValuesResource, agregarArchivo] = useFormCreateResource({
     title: "",
     description: "",
     language: "",
-    plataform: "",
+    platform: "",
     country: "",
-    specialty: "",
+    specialty: "Educación Infantil",
     category: "",
     university: "",
+    // archivo: null
   })
 
   const {
     title,
     description,
     language,
-    plataform,
+    platform,
     country,
     specialty,
     category,
     university,
+    // archivo
   } = valuesResource;
+
+  useEffect(() => {
+    setValuesResource({
+      ...valuesResource,
+      tags
+    })
+  }, [tags])
+
   return (
     <>
       <div className="container mt-container">
@@ -45,7 +55,7 @@ const CreateResource = () => {
           country={country}
           description={description}
           language={language}
-          plataform={plataform}
+          platform={platform}
           specialty={specialty}
           university={university}
           onChange={handleInputChangeResource}
@@ -53,6 +63,7 @@ const CreateResource = () => {
           setTags={setTags}
           tag={tag}
           tags={tags}
+          agregarArchivo={agregarArchivo}
         />
       </div>
       {

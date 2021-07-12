@@ -39,6 +39,20 @@
     outline: none;
 }
 
+.formulario select {
+    width: 100%;
+    padding: 10px 0;
+    background-color: rgba(255, 255, 255, 0);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid rgba(173, 173, 173, 0.788);
+}
+
+.formulario select:focus {
+    outline: none;
+}
+
 .container-border-recurso {
     margin-top: 1rem;
     padding: 1rem 1.5rem;
@@ -46,7 +60,7 @@
     border-radius: 5px;
     margin-bottom: 2rem;
     display: flex;
-    /* align-items: center; */
+    align-items: center;
 }
 
 .container-addTags {
@@ -91,11 +105,6 @@
 .container-border-recurso i {
     color: var(--colorPrimary);
     margin-right: 2rem;
-}
-
-.container-border-recurso i:hover {
-    cursor: pointer;
-    font-size: large;
 }
 
 .container-sb {
@@ -145,4 +154,34 @@
     cursor: pointer;
     opacity: .94;
     font-weight: 700;
+}
+
+.container-dropzone {
+    border: 1px dashed rgb(143, 143, 143);
+    width: 20%;
+}
+
+.container-dropzone:hover {
+    cursor: pointer;
+}
+
+.container-dropzone input {
+    width: 100%;
+    background-color: red;
+}
+
+.container-dropzone p {
+    text-align: center;
+    font-weight: 600;
+    font-size: 14px;
+    margin: .8rem 0;
+}
+
+.container-selectDoc {
+    background-color: #fff;
+    padding: .2rem 0;
+    margin: 0 .8rem .5rem .8rem;
+    border-radius: 4px;
+    box-shadow: 0 -2px 8px rgba(182, 182, 182, 0.349);
+    text-align: center;
 }

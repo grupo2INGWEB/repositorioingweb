@@ -6,7 +6,10 @@ import {
     LOGIN_USUARIO,
     LOGIN_USUARIO_ERROR,
     LOGIN_USUARIO_SUCCESS,
-    CERRAR_SESION
+    CERRAR_SESION,
+    CREATE_USER,
+    CREATE_USER_ERROR,
+    CREATE_USER_SUCCESS
 } from '../../types/types'
 import { obtenerRecursosMasValorados, obtenerRecursosPendientes, obtenerRecursosRecientes, obtenerMisRecursos } from './resourceAction';
 
@@ -27,7 +30,6 @@ export const startLoginEmailPass = (email, password, closeModal, history) => {
                     payload: resp.data
                 })
                 localStorage.setItem("userData", JSON.stringify(resp.data));
-                // history.push('/')
                 obtenerRecursosMasValorados(dispatch);
                 obtenerRecursosRecientes(dispatch);
                 obtenerMisRecursos(dispatch, resp.data.token);
@@ -35,6 +37,7 @@ export const startLoginEmailPass = (email, password, closeModal, history) => {
                     obtenerRecursosPendientes(dispatch);
                 }
                 closeModal()
+                history.push('/')
             }
 
         } catch (error) {
@@ -112,5 +115,41 @@ export const cerrarSesion = (history) => {
         history.push('/')
         // obtenerRecursosMasValorados(dispatch);
         // obtenerRecursosRecientes(dispatch);
+    }
+}
+export const create_user = (values, accessToken, resetValues, alertaOk, alertaError) => {
+    return async (dispatch) => {
+        dispatch({
+            type: CREATE_USER
+        })
+        try {
+            const final = await clienteAxios.post('user/', values, {
+                headers: {
+                    'Authorization': `bearer ${accessToken}`,
+                    'Content-Type': 'application/json',
+                }
+            })
+            console.log("===> RESP CREAR USUARIO");
+            console.log(final.data);
+            dispatch({
+                type: CREATE_USER_SUCCESS
+            })
+            alertaOk()
+            resetValues()
+        } catch (error) {
+            console.log("====> Error al Crear usuario.")
+            console.log(error.response);
+            dispatch({
+                type: CREATE_USER_ERROR,
+                payload: "Error al crear usuario"
+            })
+            alertaError()
+            setTimeout(() => {
+                dispatch({
+                    type: CREATE_USER_ERROR,
+                    payload: null
+                })
+            }, 5000)
+        }
     }
 }

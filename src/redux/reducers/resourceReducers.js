@@ -17,7 +17,19 @@ import {
     GET_RECENT_RESOURCES_ERROR,
     GET_MORE_CALIFICATION_RESOURCES,
     GET_MORE_CALIFICATION_RESOURCES_ERROR,
-    GET_MORE_CALIFICATION_RESOURCES_SUCCESS
+    GET_MORE_CALIFICATION_RESOURCES_SUCCESS,
+    UPDATE_RESOURCE,
+    UPDATE_RESOURCE_ERROR,
+    UPDATE_RESOURCE_SUCCESS,
+    COMMENT_RESOURCE,
+    COMMENT_RESOURCE_ERROR,
+    COMMENT_RESOURCE_SUCCESS,
+    FILTER_SPECIALTY,
+    FILTER_SPECIALTY_ERROR,
+    FILTER_SPECIALTY_SUCCESS,
+    GET_RECOMMENDED_RESOURCES,
+    GET_RECOMMENDED_RESOURCES_ERROR,
+    GET_RECOMMENDED_RESOURCES_SUCCESS
 } from '../../types/types'
 
 const initialState = {
@@ -33,6 +45,8 @@ const initialState = {
     msgErrorRecent: null,
     listRecentResources: [],
     listMostValued: [],
+    listSpecialty: [],
+    listRecommended: []
 }
 export const resourceReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -141,12 +155,82 @@ export const resourceReducer = (state = initialState, action) => {
                 fetchingValued: false,
                 listMostValued: action.payload
             }
+        case UPDATE_RESOURCE:
+            return {
+                ...state,
+                fetching: true
+            }
+        case UPDATE_RESOURCE_ERROR:
+            return {
+                ...state,
+                fetching: false,
+                msgError: action.payload
+            }
+        case UPDATE_RESOURCE_SUCCESS:
+            return {
+                ...state,
+                fetching: false,
+                msgError: null,
+                singleResource: action.payload
+            }
 
-
-
-        // case CERRAR_SESION:
-        //     return initialState;
+        case COMMENT_RESOURCE:
+            return {
+                ...state,
+                fetching: true,
+                msgError: null,
+            }
+        case COMMENT_RESOURCE_ERROR:
+            return {
+                ...state,
+                fetching: false,
+                msgError: action.payload
+            }
+        case COMMENT_RESOURCE_SUCCESS:
+            return {
+                ...state,
+                fetching: false,
+                singleResource: action.payload
+            }
+        case FILTER_SPECIALTY:
+            return {
+                ...state,
+                fetching: true,
+                msgError: null
+            }
+        case FILTER_SPECIALTY_SUCCESS:
+            return {
+                ...state,
+                fetching: false,
+                listSpecialty: action.payload,
+                msgError: null
+            }
+        case FILTER_SPECIALTY_SUCCESS:
+            return {
+                ...state,
+                fetching: false,
+                msgError: action.payload
+            }
+        case GET_RECOMMENDED_RESOURCES:
+            return {
+                ...state,
+                fetching: true,
+                msgError: null
+            }
+        case GET_RECOMMENDED_RESOURCES_SUCCESS:
+            return {
+                ...state,
+                fetching: false,
+                listRecommended: action.payload,
+                msgError: null
+            }
+        case GET_RECOMMENDED_RESOURCES_ERROR:
+            return {
+                ...state,
+                fetching: false,
+                msgError: action.payload
+            }
         default:
-            return initialState;
+            return state;
     }
 }

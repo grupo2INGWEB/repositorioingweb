@@ -19,19 +19,28 @@ import {
     GET_RECENT_RESOURCES_ERROR,
     GET_MORE_CALIFICATION_RESOURCES,
     GET_MORE_CALIFICATION_RESOURCES_ERROR,
-    GET_MORE_CALIFICATION_RESOURCES_SUCCESS
+    GET_MORE_CALIFICATION_RESOURCES_SUCCESS,
+    UPDATE_RESOURCE,
+    UPDATE_RESOURCE_ERROR,
+    UPDATE_RESOURCE_SUCCESS,
+    COMMENT_RESOURCE,
+    COMMENT_RESOURCE_ERROR,
+    COMMENT_RESOURCE_SUCCESS,
+    FILTER_SPECIALTY,
+    FILTER_SPECIALTY_ERROR,
+    FILTER_SPECIALTY_SUCCESS,
+    GET_RECOMMENDED_RESOURCES,
+    GET_RECOMMENDED_RESOURCES_ERROR,
+    GET_RECOMMENDED_RESOURCES_SUCCESS
 } from '../../types/types'
 
-export const crearRecurso = (data, accessToken, resetValues, alertOK) => {
+export const crearRecurso = (data, accessToken, resetValues, alertOK, archivo) => {
     console.log(accessToken);
     return async (dispatch) => {
         dispatch({
             type: CREATE_RESOURCE,
         })
         try {
-            data.tags = [
-                "tag"
-            ];
             data.create = Date.now().toString();
             const resp = await clienteAxios.post('resource/', data, {
                 headers: {
@@ -40,12 +49,19 @@ export const crearRecurso = (data, accessToken, resetValues, alertOK) => {
                 }
             })
             console.log("====> DATA CREACIÓN DE RECURSO")
-            console.log(resp.data);
+            console.log(resp.data.resource);
+            const formData = new FormData();
+            formData.append('archivo', archivo);
+            const resp2 = await clienteAxios.post(`resource/subirArchivo/${resp.data.resource._id}`, formData)
+            console.log("===> SE CREÓ EL LINK CORRECTAMENTE");
+            console.log(resp2.data)
             dispatch({
                 type: CREATE_RESOURCE_SUCCESS,
                 payload: true
             })
+
             resetValues();
+
             alertOK();
             setTimeout(() => {
                 dispatch({
@@ -71,6 +87,164 @@ export const crearRecurso = (data, accessToken, resetValues, alertOK) => {
     }
 }
 
+export const comentarElRecurso = (id, accessToken, comment, setComment) => {
+    return async (dispatch) => {
+        dispatch({
+            type: COMMENT_RESOURCE
+        })
+        try {
+            const resp = await clienteAxios.put(`resource/comment/${id}`, {
+                comment,
+                created: Date.now().toString()
+            },
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `bearer ${accessToken}`
+                    }
+                });
+            dispatch({
+                type: COMMENT_RESOURCE_SUCCESS,
+                payload: resp.data.resource
+            })
+            console.log("======> Comentar Ok");
+            console.log(resp.data)
+            setComment("")
+            obtenerRecursosRecientes(dispatch);
+            obtenerRecursosMasValorados(dispatch);
+            obtenerMisRecursos(dispatch, accessToken);
+            obtenerRecursosPendientes(dispatch);
+        } catch (error) {
+            console.log("===> Error al Dar Like");
+            console.log(error.response);
+            dispatch({
+                type: COMMENT_RESOURCE_ERROR,
+                action: "Error al comentar recurso"
+            })
+        }
+
+    }
+}
+
+export const filterSpecialtyResources = (specialty) => {
+
+    return async (dispatch) => {
+        dispatch({
+            type: FILTER_SPECIALTY
+        })
+        try {
+            const resp = await clienteAxios.post('resource/specialty', {
+                specialty
+            }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+            console.log("===> RESULTADOS DE FILTRO POR ESPECIALIDAD");
+            console.log(resp.data.resources);
+            dispatch({
+                type: FILTER_SPECIALTY_SUCCESS,
+                payload: resp.data.resources
+            })
+        } catch (error) {
+            console.log("==> Error al filtrar especualidad")
+            console.log(error?.response);
+            dispatch({
+                type: FILTER_SPECIALTY_ERROR,
+                payload: "Error al filtar por especialidad"
+            })
+
+        }
+    }
+
+}
+
+export const likeARecurso = (id, accessToken) => {
+    return async (dispatch) => {
+        try {
+            const resp = await clienteAxios.put(`resource/like/${id}`, {},
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `bearer ${accessToken}`
+                    }
+                });
+            console.log("======> Like Ok");
+            obtenerRecursosRecientes(dispatch);
+            obtenerRecursosMasValorados(dispatch);
+            obtenerMisRecursos(dispatch, accessToken);
+            obtenerRecursosPendientes(dispatch);
+        } catch (error) {
+            console.log("===> Error al Dar Like");
+            console.log(error.response);
+        }
+
+    }
+}
+export const disLikeARecurso = (id, accessToken) => {
+    return async (dispatch) => {
+        try {
+            const resp = await clienteAxios.put(`resource/dislike/${id}`, {},
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `bearer ${accessToken}`
+                    }
+                });
+            console.log("======> Like Ok");
+            obtenerRecursosRecientes(dispatch);
+            obtenerRecursosMasValorados(dispatch);
+            obtenerMisRecursos(dispatch, accessToken);
+            obtenerRecursosPendientes(dispatch);
+        } catch (error) {
+            console.log("===> Error al Dar Like");
+            console.log(error.response);
+        }
+
+    }
+}
+
+export const actualizarRecurso = (data, id, accessToken, resetValues, alertOK, mostrarAlertaError) => {
+    console.log(accessToken);
+    return async (dispatch) => {
+        dispatch({
+            type: UPDATE_RESOURCE,
+        })
+        try {
+            data.updateDate = Date.now().toString();
+            const resp = await clienteAxios.put(`resource/${id}`, data, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `bearer ${accessToken}`
+                }
+            })
+            console.log("====> DATA ACTUALIZAR RECURSO")
+            console.log(resp.data);
+            dispatch({
+                type: UPDATE_RESOURCE_SUCCESS,
+                payload: resp.data.resource
+            })
+            resetValues();
+            alertOK();
+        } catch (error) {
+            console.log("====> Error al actualizar recurso");
+            console.log(error);
+            console.log(error.response);
+            dispatch({
+                type: UPDATE_RESOURCE_ERROR,
+                payload: "No se pudo actualizar el recurso."
+            })
+            mostrarAlertaError()
+            setTimeout(() => {
+                dispatch({
+                    type: UPDATE_RESOURCE_ERROR,
+                    payload: null
+                })
+            }, 5000)
+        }
+    }
+}
+
 export const obtenerMisRecursos = async (dispatch, accessToken) => {
     try {
         const resp = await clienteAxios.get('resource/myresources', {
@@ -78,8 +252,6 @@ export const obtenerMisRecursos = async (dispatch, accessToken) => {
                 'Authorization': `bearer ${accessToken}`
             }
         })
-        console.log("==== MIS RECURSOS ===");
-        console.log(resp.data)
         dispatch({
             type: GET_MY_RESOURCES_SUCCESS,
             payload: resp.data.resources
@@ -102,8 +274,6 @@ export const obtenerRecursosPendientes = async (dispatch) => {
     })
     try {
         const resp = await clienteAxios.get('resource/pendingResources')
-        console.log("===> RECURSOS PENDIENTES");
-        console.log(resp.data.resources);
 
         dispatch({
             type: GET_PENDING_RESOURCES_SUCCESS,
@@ -116,6 +286,31 @@ export const obtenerRecursosPendientes = async (dispatch) => {
         dispatch({
             type: GET_PENDING_RESOURCES_ERROR,
             payload: "No se pudieron ontener los recursos Pendientes"
+        })
+    }
+    // }
+}
+export const obtenerRecursosRecomendados = async (dispatch) => {
+    // return async (dispatch) => {
+    dispatch({
+        type: GET_RECOMMENDED_RESOURCES
+    })
+    try {
+        const resp = await clienteAxios.get('resource/recommended')
+
+        console.log("=== Recursos Recomendados")
+        console.log(resp.data);
+        dispatch({
+            type: GET_RECOMMENDED_RESOURCES_SUCCESS,
+            payload: resp.data.resources
+        })
+
+    } catch (error) {
+        console.log("==> Error al obtener Recursos Recomendados");
+        console.log(error);
+        dispatch({
+            type: GET_RECOMMENDED_RESOURCES_ERROR,
+            payload: "No se pudieron ontener los recursos Recomendados"
         })
     }
     // }
@@ -164,8 +359,6 @@ export const obtenerRecursosRecientes = async (dispatch) => {
                 'Access-Control-Allow-Origin': '*'
             }
         });
-        console.log("===> RECURSOS RECIENTES");
-        console.log(resp.data.resources);
         dispatch({
             type: GET_RECENT_RESOURCES_SUCCESS,
             payload: resp.data.resources
@@ -192,8 +385,6 @@ export const obtenerRecursosMasValorados = async (dispatch) => {
                 'Access-Control-Allow-Origin': '*'
             }
         });
-        console.log("===> RECURSOS MÁS VALORADOS");
-        console.log(resp.data.resources);
         dispatch({
             type: GET_MORE_CALIFICATION_RESOURCES_SUCCESS,
             payload: resp.data.resources
@@ -211,15 +402,23 @@ export const obtenerRecursosMasValorados = async (dispatch) => {
     }
 }
 
-export const changeSinglePage = (data, history) => {
+export const changeSinglePage = (data, history, isEdit) => {
     return (dispatch) => {
         dispatch({
             type: CHANGE_SINGLE_RESOURCE,
             payload: data
         })
-        setTimeout(() => {
-            history.push('/single-resource');
-        }, 1200)
+        if (!isEdit) {
+            setTimeout(() => {
+                history.push('/single-resource');
+            }, 1000)
+
+        } else {
+            console.log("====> Navegar a editar");
+            setTimeout(() => {
+                history.push('/edit-resource');
+            }, 1000)
+        }
     }
 }
 

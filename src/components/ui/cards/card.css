@@ -72,9 +72,9 @@
 
 .card .tags .tag {
     margin-right: 1rem;
-    width: 24.5%;
+    /* width: 24.5%; */
     text-align: center;
-    padding: .4rem;
+    padding: .4rem .8rem;
     margin-bottom: .5rem;
     background-color: var(--colorPrimary);
     color: #fff;
@@ -192,6 +192,40 @@
 
 .container-btnsAction .btn-vermas p {
     padding: 5px;
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+}
+
+.btn-pendiente {
+    background-color: rgb(145, 145, 145);
+    border: none;
+    box-shadow: 0 -2px 6px rgba(102, 102, 102, 0.301);
+    padding: 5px 10px;
+    width: 27%;
+    border-radius: 4px;
+}
+
+.btn-pendiente p {
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+}
+
+.title i:hover {
+    cursor: pointer;
+}
+
+.btn-aprobado {
+    background-color: var(--colorPrimary);
+    border: none;
+    box-shadow: 0 -2px 6px rgba(102, 102, 102, 0.301);
+    padding: 5px 10px;
+    width: 27%;
+    border-radius: 4px;
+}
+
+.btn-aprobado p {
     color: #fff;
     text-align: center;
     font-size: 14px;

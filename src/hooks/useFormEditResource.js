@@ -1,14 +1,13 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // import { useHistory } from 'react-router';
-import { crearRecurso } from '../redux/actions/resourceAction'
+import { actualizarRecurso, crearRecurso } from '../redux/actions/resourceAction'
 import Swal from "sweetalert2";
 
-export const useFormCreateResource = (initialState = {}) => {
+export const useFormEditResource = (initialState = {}) => {
     const dispatch = useDispatch()
     // const history = useHistory();
     const [valuesResource, setValuesResource] = useState(initialState);
-    const [archivo, setArchivo] = useState({});
 
     const {
         auth: { userData },
@@ -29,16 +28,20 @@ export const useFormCreateResource = (initialState = {}) => {
             icon: "success",
         });
     }
-    const sendDataResource = () => {
+    const mostrarAlertaError = () => {
+        return Swal.fire({
+            title: "No se pudo editar el recurso!",
+            icon: "error",
+        });
+    }
+    const sendDataResource = (id) => {
         if (valuesResource.title !== "" && valuesResource.description !== "" && valuesResource.language !== "" &&
             valuesResource.platform !== "" && valuesResource.country !== "" && valuesResource.specialty !== "" &&
             valuesResource.category !== "" && valuesResource.university !== "") {
-            dispatch(crearRecurso(valuesResource, userData.token, resetValues, mostrarAlertaOk, archivo));
+
+            dispatch(actualizarRecurso(valuesResource, id, userData.token, resetValues, mostrarAlertaOk, mostrarAlertaError));
         }
     }
-    const agregarArchivo = (archivo) => {
-        setArchivo(archivo)
-    }
 
-    return [valuesResource, handleInputChangeResource, sendDataResource, setValuesResource, agregarArchivo];
+    return [valuesResource, handleInputChangeResource, sendDataResource, setValuesResource];
 }
