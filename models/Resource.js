@@ -3,6 +3,18 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const resourceSchema = new Schema({
+    urlResource: {
+        type: String,
+        trim: true
+    },
+    nameResource: {
+        type: String,
+        trim: true
+    },
+    originalNameResource: {
+        type: String,
+        trim: true
+    },
     title: {
         type: String,
         required: true,
@@ -17,11 +29,6 @@ const resourceSchema = new Schema({
         type: String,
         trim: true,
         required: true,
-    },
-    plataform: {
-        type: String,
-        required: true,
-        trim: true
     },
     country: {
         type: String,
@@ -84,6 +91,14 @@ const resourceSchema = new Schema({
     platform: {
         type: String,
         trim: true
+    },
+    usersLikes: {
+        type: Array,
+        default: []
+    },
+    comments: {
+        type: Array,
+        default: []
     }
 
 })

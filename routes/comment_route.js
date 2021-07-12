@@ -8,7 +8,7 @@ router.post('/',
         check('title', 'El título es obligatorio').notEmpty(),
         check('description', 'La descripción es necesaria').not().isEmpty(),
         check('language', 'El lenguaje es obligatorio').not().isEmpty(),
-        check('plataform', 'La plataforma es obligatoria').not().isEmpty(),
+        check('platform', 'La platforma es obligatoria').not().isEmpty(),
         check('country', 'El país es obligatorio').not().isEmpty(),
         check('tags', 'Los tags son obligatorios').not().isEmpty(),
         check('tags', 'Los tags deben de ser un arreglo').isArray(),
@@ -21,7 +21,7 @@ router.put('/:id',
         check('title', 'El título es obligatorio').notEmpty(),
         check('description', 'La descripción es necesaria').not().isEmpty(),
         check('language', 'El lenguaje es obligatorio').not().isEmpty(),
-        check('plataform', 'La plataforma es obligatoria').not().isEmpty(),
+        check('platform', 'La platforma es obligatoria').not().isEmpty(),
         check('country', 'El país es obligatorio').not().isEmpty(),
         check('tags', 'Los tags son obligatorios').not().isEmpty(),
         check('tags', 'Los tags deben de ser un arreglo').isArray(),
@@ -36,7 +36,7 @@ router.put('/cambiarestado/:id',
     resourceController.changeCondition
 );
 router.delete('/:id',
-resourceController.deleteResource
+    resourceController.deleteResource
 )
 
 router.get('/',
