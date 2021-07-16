@@ -31,7 +31,10 @@ import {
     FILTER_SPECIALTY_SUCCESS,
     GET_RECOMMENDED_RESOURCES,
     GET_RECOMMENDED_RESOURCES_ERROR,
-    GET_RECOMMENDED_RESOURCES_SUCCESS
+    GET_RECOMMENDED_RESOURCES_SUCCESS,
+    GET_TAGS_IGUALES,
+    GET_TAGS_IGUALES_ERROR,
+    GET_TAGS_IGUALES_SUCCESS
 } from '../../types/types'
 
 export const crearRecurso = (data, accessToken, resetValues, alertOK, archivo) => {
@@ -427,6 +430,29 @@ export const reinicarState = () => {
         dispatch({
             type: CERRAR_SESION
         })
+    }
+}
+
+export const buscarPorTags = (tag) => {
+    return async (dispatch) => {
+        dispatch({
+            type: GET_TAGS_IGUALES
+        })
+        try {
+            const resp = await clienteAxios.get(`resource/resourceTags/${tag}`);
+            dispatch({
+                type: GET_TAGS_IGUALES_SUCCESS,
+                payload: resp.data.resources
+            })
+
+        } catch (error) {
+            console.log("==> Error al buscar por tags");
+            console.log(error);
+            dispatch({
+                type: GET_TAGS_IGUALES_ERROR,
+                payload: "Error al obtener tags parecidos"
+            })
+        }
     }
 }
 

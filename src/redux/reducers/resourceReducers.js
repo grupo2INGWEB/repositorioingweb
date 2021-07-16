@@ -29,7 +29,10 @@ import {
     FILTER_SPECIALTY_SUCCESS,
     GET_RECOMMENDED_RESOURCES,
     GET_RECOMMENDED_RESOURCES_ERROR,
-    GET_RECOMMENDED_RESOURCES_SUCCESS
+    GET_RECOMMENDED_RESOURCES_SUCCESS,
+    GET_TAGS_IGUALES,
+    GET_TAGS_IGUALES_ERROR,
+    GET_TAGS_IGUALES_SUCCESS
 } from '../../types/types'
 
 const initialState = {
@@ -46,7 +49,8 @@ const initialState = {
     listRecentResources: [],
     listMostValued: [],
     listSpecialty: [],
-    listRecommended: []
+    listRecommended: [],
+    listResourcesTags: []
 }
 export const resourceReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -229,6 +233,24 @@ export const resourceReducer = (state = initialState, action) => {
                 ...state,
                 fetching: false,
                 msgError: action.payload
+            }
+        case GET_TAGS_IGUALES:
+            return {
+                ...state,
+                fetching: true,
+                msgError: null
+            }
+        case GET_TAGS_IGUALES_ERROR:
+            return {
+                ...state,
+                fetching: false,
+                msgError: action.payload
+            }
+        case GET_TAGS_IGUALES_SUCCESS:
+            return {
+                ...state,
+                fetching: false,
+                listResourcesTags: action.payload
             }
         default:
             return state;
