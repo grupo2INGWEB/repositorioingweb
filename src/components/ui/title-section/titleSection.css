@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;900&display=swap');
+.title-section{
+    padding: 1rem 0;
+    width: 100%;
+    margin-top: 4rem;
+}
+.title{
+    /* font-size: 2.3rem;
+    margin: 0; */
+    color: rgb(102, 101, 101);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 27px;
+    text-transform: capitalize;
+}
+.separador{
+    padding: 0!important;
+    margin: 0!important;
+}
+.container-row-between{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.2rem;
+    /* background-color: red; */
+}
+/* Botón ver Más */
+.btn-verMas{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .3rem .6rem;
+    font-family: 'Montserrat', sans-serif;
+    border: 1px solid var(--colorPrimary);
+    border-radius: 5px;
+    color: var(--colorPrimary);
+}
+.btn-verMas:hover{
+    cursor: pointer;
+    background-color: var(--colorPrimary);
+    color: #fff;
+}
+.btn-verMas p{
+    margin-right: .6rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+.btn-verMas i{
+    margin: 0;
+    font-size: 1rem;
+}
