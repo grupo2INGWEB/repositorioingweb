@@ -156,12 +156,12 @@ const Card = ({
   };
 
   return (
-    <div className="d-flex m-4">
+    <div className="d-flex m-2">
       <div className={darkmode ? "card-black" : "card"}>
         <img
           // src={originalNameResource ? originalNameResource:"https://icdn.dtcn.com/image/digitaltrends_es/m-de-volvo-carros-bajo-demanda-feat.jpg"}
           src="https://icdn.dtcn.com/image/digitaltrends_es/m-de-volvo-carros-bajo-demanda-feat.jpg"
-          class="rounded-top-2 card-img-top img-top "
+          className="rounded-top-2 card-img-top img-top "
           alt="carro"
         />
         {/* <p>

@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;500;600;900&family=Raleway&display=swap');
 .card {
-    width: 40rem;
+    width: 35rem;
     box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.075);
     border-radius: 10px;
     margin-bottom: 3rem;
@@ -8,7 +8,7 @@
 }
 
 .card-black {
-    width: 40rem;
+    width: 35rem;
     box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.075);
     border-radius: 10px;
     margin-bottom: 3rem;
