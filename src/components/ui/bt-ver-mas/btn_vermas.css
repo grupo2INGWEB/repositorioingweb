@@ -1,0 +1,16 @@
+.ver-mas{
+    color: rgb(48, 48, 48);
+    background-color: rgb(38, 226, 170);
+    border-radius: 20px;
+    top: 10px;
+    font-weight: bold;
+    /* padding-top: 20px; */
+  }
+  .ver-mas-content{
+    margin-top: 5px;
+  }
+  .ver-mas:hover{
+    color: #fff;
+    background-color: var(--colorPrimary);
+    /* padding-top: 20px; */
+  }

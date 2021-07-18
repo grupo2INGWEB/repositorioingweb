@@ -1,7 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Raleway:wght@200;400;600;700;900&display=swap');
+.topSeparatos {
+    height: 12rem;
+}
+
 .title-single {
-    margin-top: 6rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
     color: var(--colorPrimary);
     font-size: 3rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
 }
 
 .mb {
@@ -12,25 +20,51 @@
     display: flex;
 }
 
+.description-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    color: #464646;
+}
+
+.title-detail {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    color: #464646;
+}
+
 .info-single p {
     margin-right: 3rem;
     margin-top: 0;
     margin-bottom: 0;
 }
 
+.detail-conten {
+    font-family: 'Raleway', sans-serif;
+    font-size: 18px;
+    color: black;
+}
+
 .color-p {
-    color: var(--colorPrimary);
+    margin-top: 25px;
+    color: rgb(14 185 134);
     margin-bottom: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
 }
 
 .resource-single {
     margin-top: 2rem;
     display: flex;
-    align-items: center;
     border: 1px solid rgb(196, 196, 196);
-    border-radius: 5px;
-    padding: .5rem 1.5rem;
+    border-radius: 8px;
     font-size: 1.4rem;
+}
+
+.resource-single:hover {
+    background-color: #464646;
+    border: 1px solid rgb(196, 196, 196);
+    color: white;
 }
 
 .resource-single hr {
@@ -49,11 +83,16 @@
     display: flex;
 }
 
-.calification-single p:first-of-type {
-    color: var(--colorPrimary);
+.titleCalificacion {
+    color: #0eb986;
     font-weight: bold;
     margin-right: 1rem;
+    font-size: 18px;
 }
+
+/* .calification-single p:first-of-type {
+    color: var(--colorPrimary);
+} */
 
 .calification-single i {
     color: red;
@@ -64,15 +103,11 @@
     margin-top: 2rem;
     text-align: justify;
     line-height: 2.5rem;
+    font-family: 'Raleway', sans-serif;
 }
 
 .author-single {
     margin-top: 2rem;
-}
-
-.author-single p:first-of-type {
-    color: var(--colorPrimary);
-    font-weight: bold;
 }
 
 .tags-single {
@@ -109,10 +144,39 @@
 
 .detalles-single p {
     margin-bottom: .5rem;
+    font-family: 'Raleway', sans-serif;
 }
 
 .detalles-single strong {
     margin-right: .5rem;
+}
+
+.about-author {
+    margin-top: 1rem;
+    padding: 1.5rem;
+    background-color: white;
+    border: 1px solid rgb(253, 253, 253);
+    border-radius: 10px;
+}
+
+.cover {
+    background-size: cover;
+    object-fit: cover;
+}
+
+.thumb {
+    padding-right: 12rem;
+}
+
+.name {
+    color: var(--colorPrimary);
+    font-size: 2.5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+.separator-redes {
+    height: 1rem;
 }
 
 .container-shared {

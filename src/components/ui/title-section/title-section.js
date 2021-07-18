@@ -5,12 +5,12 @@ import { useHistory } from "react-router-dom"
 const TitleSection = ({ nombre, url, state, mostrarBtn }) => {
     const history = useHistory();
     return (
-        <div className="title-section">
+        <div className="title-section pb-4">
             <div className="container-row-between">
                 <h3 className="title">{nombre}</h3>
                 {
                     mostrarBtn ?
-                        <div className="btn-verMas" onClickCapture={() => {
+                        <div className="btn-verMas px-4" onClickCapture={() => {
                             history.push(url, state);
                             window.scroll({
                                 top: 0

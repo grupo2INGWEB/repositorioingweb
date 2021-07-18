@@ -1,4 +1,14 @@
-.title-all-resources{
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;900&display=swap');
+.title-all-resources {
     padding-left: 1rem;
     margin-top: 3rem;
+    color: rgb(102, 101, 101);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 25px;
+    text-transform: capitalize;
+}
+
+.separator-resouse {
+    height: 12rem;
 }

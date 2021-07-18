@@ -34,7 +34,7 @@ import {
     GET_RECOMMENDED_RESOURCES_SUCCESS,
     GET_TAGS_IGUALES,
     GET_TAGS_IGUALES_ERROR,
-    GET_TAGS_IGUALES_SUCCESS
+    GET_TAGS_IGUALES_SUCCESS,
 } from '../../types/types'
 
 export const crearRecurso = (data, accessToken, resetValues, alertOK, archivo) => {

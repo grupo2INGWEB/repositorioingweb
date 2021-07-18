@@ -32,7 +32,7 @@ import {
     GET_RECOMMENDED_RESOURCES_SUCCESS,
     GET_TAGS_IGUALES,
     GET_TAGS_IGUALES_ERROR,
-    GET_TAGS_IGUALES_SUCCESS
+    GET_TAGS_IGUALES_SUCCESS,
 } from '../../types/types'
 
 const initialState = {
@@ -50,7 +50,8 @@ const initialState = {
     listMostValued: [],
     listSpecialty: [],
     listRecommended: [],
-    listResourcesTags: []
+    listResourcesTags: [],
+    listRecommended: []
 }
 export const resourceReducer = (state = initialState, action) => {
     switch (action.type) {

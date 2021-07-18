@@ -1,141 +1,284 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import Card from '../components/ui/cards/card';
+import React from "react";
+import { useSelector } from "react-redux";
+import BtnVerMas from "../components/ui/bt-ver-mas/btn_vermas";
+import Card from "../components/ui/cards/card";
 // import Cards from '../components/ui/cards/cards';
-import TitleSection from '../components/ui/title-section/title-section';
+import TitleSection from "../components/ui/title-section/title-section";
+import Fotter from "./footer-section/footer";
 
 const Home = () => {
+  const {
+    resources: { listRecentResources, listMostValued, listRecommended },
+  } = useSelector((state) => state);
 
-    const {
-        resources: { listRecentResources, listMostValued, listRecommended }
-    } = useSelector((state) => state);
+  const shortRecent = () => {
+    return listRecentResources.slice(0, 6);
+  };
+  const shortValued = () => {
+    return listMostValued.slice(0, 6);
+  };
+  const shortRecommended = () => {
+    return listRecommended.slice(0, 6);
+  };
 
-    const shortRecent = () => {
-        return listRecentResources.slice(0, 6);
-    }
-    const shortValued = () => {
-        return listMostValued.slice(0, 6);
-    }
-    const shortRecommended = () => {
-        return listRecommended.slice(0, 6);
-    }
-
-    return (
-        <>
-            {/* <LayoutHeader> */}
-            <div className="container">
-                <TitleSection nombre="Recientes" url='/all-resource' state="Recientes" mostrarBtn={true} />
-                <div className="container-row-arounds">
-                    {
-                        listRecentResources.length === 0 ?
-                            <h3>No hay Recursos recientes</h3>
-                            : shortRecent().map((resource) =>
-                                <Card
-                                    calificacion={resource.calificacion}
-                                    condition={resource.condition}
-                                    country={resource.country}
-                                    create={resource.create}
-                                    description={resource.description}
-                                    id={resource._id}
-                                    language={resource.language}
-                                    nameAuthor={resource.nameAuthor}
-                                    platform={resource.platform}
-                                    tags={resource.tags}
-                                    title={resource.title}
-                                    isAdmin={true}
-                                    isPending={false}
-                                    key={resource._id}
-                                    university={resource.university}
-                                    category={resource.category}
-                                    specialty={resource.specialty}
-                                    usersLikes={resource.usersLikes}
-                                    comments={resource.comments}
-                                    author={resource.author}
-                                    nameResource={resource.nameResource}
-                                    urlResource={resource.urlResource}
-                                    originalNameResource={resource.originalNameResource}
-
-                                />
-                            )
-
-
-                    }
+  return (
+    <>
+      {/* <LayoutHeader> */}
+      <div>
+        <div className="">
+          <div className="separator"></div>
+          <div class="container col-xxl-8  ">
+            <div class="row flex-lg-row-reverse align-items-center ">
+              <div class="col-10 col-sm-8 col-lg-6">
+                <img
+                  src="https://i.imgur.com/SlSVIUZ.png"
+                  class="d-block mx-lg-auto img-fluid mt-4"
+                  alt="Bootstrap Themes"
+                  width="700"
+                  height="300"
+                  loading="lazy"
+                />
+              </div>
+              <div class="col-lg-6 description">
+                <h1 class="display-5 fw-bold lh-1 mb-3">
+                  Recursos Disponibles
+                </h1>
+                {/* <hr/>      */}
+                <p className="description-header pt-2">
+                  Encuentra los artículos más buscados dentro de la comunidad,
+                  conoce nuevas experiencias, lee, busca, aprende.
+                </p>
+                <hr />
+                <p className="text-muted description-header fs-4">
+                  Te recomendamos visitar las siguientes secciones...
+                </p>
+                <div
+                  id="navbar-example2"
+                  class="d-grid gap-2 d-md-flex justify-content-md-start pt-4"
+                >
+                  <a href="#scrollspyHeading1">
+                    <button
+                      type="button"
+                      class="btn p-2 px-5 text-btn btn-actions-success w-100"
+                    >
+                      Recientes
+                    </button>
+                  </a>
+                  <a href="#scrollspyHeading2">
+                    <button
+                      type="button"
+                      class="btn btn-outline-secondary btn-lg px-4 text-btn btn-actions-success w-100"
+                    >
+                      Mas Valorados
+                    </button>
+                  </a>
                 </div>
-                <TitleSection nombre="Más Valorados" url='/all-resource' state="Más Valorados" mostrarBtn={true} />
-                <div className="container-row-arounds">
-                    {
-                        listMostValued.length === 0 ?
-                            <h3>No hay Recursos recientes</h3>
-                            : shortValued().map((resource) =>
-                                <Card
-                                    calificacion={resource.calificacion}
-                                    condition={resource.condition}
-                                    country={resource.country}
-                                    create={resource.create}
-                                    description={resource.description}
-                                    id={resource._id}
-                                    language={resource.language}
-                                    nameAuthor={resource.nameAuthor}
-                                    platform={resource.platform}
-                                    tags={resource.tags}
-                                    title={resource.title}
-                                    university={resource.university}
-                                    category={resource.category}
-                                    specialty={resource.specialty}
-                                    isAdmin={true}
-                                    isPending={false}
-                                    key={resource._id}
-                                    usersLikes={resource.usersLikes}
-                                    nameAdmin={resource.nameAdmin}
-                                    comments={resource.comments}
-                                    author={resource.author}
-                                    nameResource={resource.nameResource}
-                                    urlResource={resource.urlResource}
-                                    originalNameResource={resource.originalNameResource}
-                                />
-                            )
-                    }
-                </div>
-                <TitleSection nombre="Recomendados" url='/all-resource' state="Recomendados" mostrarBtn={true} />
-                <div className="container-row-arounds">
-                    {
-                        listRecommended.length === 0 ?
-                            <h3>No hay Recursos Recomendados</h3>
-                            :
-                            shortRecommended().map((resource) =>
-                                <Card
-                                    calificacion={resource.calificacion}
-                                    condition={resource.condition}
-                                    country={resource.country}
-                                    create={resource.create}
-                                    description={resource.description}
-                                    id={resource._id}
-                                    language={resource.language}
-                                    nameAuthor={resource.nameAuthor}
-                                    platform={resource.platform}
-                                    tags={resource.tags}
-                                    title={resource.title}
-                                    university={resource.university}
-                                    category={resource.category}
-                                    specialty={resource.specialty}
-                                    isAdmin={true}
-                                    isPending={false}
-                                    key={resource._id}
-                                    usersLikes={resource.usersLikes}
-                                    nameAdmin={resource.nameAdmin}
-                                    comments={resource.comments}
-                                    author={resource.author}
-                                    nameResource={resource.nameResource}
-                                    urlResource={resource.urlResource}
-                                    originalNameResource={resource.originalNameResource}
-                                />
-                            )
-                    }
-                </div>
+              </div>
             </div>
-            {/* </LayoutHeader> */}
-        </>
-    );
-}
+            <div className="separator"></div>
+          </div>
+          <div
+            data-bs-spy="scroll"
+            data-bs-target="#navbar-example2"
+            data-bs-offset="0"
+            class="scrollspy-example"
+            tabindex="0"
+          >
+            <div
+              className="separator-area text-secondary text-center"
+              id="scrollspyHeading1"
+            >
+              <h1 className="fw-bold text-white">Publicaciones Recientes</h1>
+              <div className="col-lg-6 mx-auto">
+                <p className="description-text-separator">
+                  Quickly design and customize responsive mobile-first sites
+                  with Bootstrap, the world’s most popular front-end open source
+                  toolkit, featuring Sass variables and mixins, responsive grid
+                  system, extensive prebuilt components, and powerful JavaScript
+                  plugins.
+                </p>
+              </div>
+            </div>
+            <div className="section-recientes">
+              <div className="container">
+                <div className="d-flex justify-content-center flex-wrap ">
+                  {/* <TitleSection
+                  nombre="Recientes"
+                  url="/all-resource"
+                  state="Recientes"
+                  mostrarBtn={true}
+                />
+                 */}
+
+                  {listRecentResources.length === 0 ? (
+                    <h3>No hay Recursos recientes</h3>
+                  ) : (
+                    shortRecent().map((resource) => (
+                      <Card
+                        calificacion={resource.calificacion}
+                        condition={resource.condition}
+                        country={resource.country}
+                        create={resource.create}
+                        description={resource.description}
+                        id={resource._id}
+                        language={resource.language}
+                        nameAuthor={resource.nameAuthor}
+                        platform={resource.platform}
+                        tags={resource.tags}
+                        title={resource.title}
+                        isAdmin={true}
+                        isPending={false}
+                        key={resource._id}
+                        university={resource.university}
+                        category={resource.category}
+                        specialty={resource.specialty}
+                        usersLikes={resource.usersLikes}
+                        comments={resource.comments}
+                        author={resource.author}
+                        nameResource={resource.nameResource}
+                        urlResource={resource.urlResource}
+                        originalNameResource={resource.originalNameResource}
+                        darkmode={true}
+                      />
+                    ))
+                  )}
+                </div>
+              </div>
+              <div className="w-100 text-center pt-4" id="scrollspyHeading2">
+                <BtnVerMas
+                  nombre="Más Recientes"
+                  url="/all-resource"
+                  state="Recientes"
+                // url="/all-resource"
+                // state="Más Valorados"
+                />
+              </div>
+            </div>
+            <div className="section-valorados">
+              <div className="title-section-valorados container">
+                <h1 className="fw-bold text-dark">Mas Valorados</h1>
+                <hr />
+              </div>
+              <div className="d-flex justify-content-center flex-wrap container">
+                {listMostValued.length === 0 ? (
+                  <h3>No hay Recursos recientes</h3>
+                ) : (
+                  shortValued().map((resource) => (
+                    <Card
+                      calificacion={resource.calificacion}
+                      condition={resource.condition}
+                      country={resource.country}
+                      create={resource.create}
+                      description={resource.description}
+                      id={resource._id}
+                      language={resource.language}
+                      nameAuthor={resource.nameAuthor}
+                      platform={resource.platform}
+                      tags={resource.tags}
+                      title={resource.title}
+                      university={resource.university}
+                      category={resource.category}
+                      specialty={resource.specialty}
+                      isAdmin={true}
+                      isPending={false}
+                      key={resource._id}
+                      usersLikes={resource.usersLikes}
+                      nameAdmin={resource.nameAdmin}
+                      comments={resource.comments}
+                      author={resource.author}
+                      nameResource={resource.nameResource}
+                      urlResource={resource.urlResource}
+                      originalNameResource={resource.originalNameResource}
+                    />
+                  ))
+                )}
+              </div>
+              <div className="w-100 text-center pt-4 pb-5">
+                <BtnVerMas
+                  nombre="Ver Más Valorados"
+                  // url="/all-resource"
+                  // state="Recientes"
+                  url="/all-resource"
+                  state="Más Valorados"
+                />
+              </div>
+            </div>
+            {/* <TitleSection
+            nombre="Recomendados"
+            url="/all-resource"
+            state="Recomendados"
+            mostrarBtn={true}
+          /> */}
+            <div className="recomendados-section">
+              <div className="second-separator text-secondary text-center">
+                <h1 className="fw-bold text-dark">
+                  Publicaciones Recomendadas
+                </h1>
+                <div className="col-lg-6 mx-auto">
+                  <p className="description-text-separator">
+                    Quickly design and customize responsive mobile-first sites
+                    with Bootstrap, the world’s most popular front-end open
+                    source toolkit, featuring Sass variables and mixins,
+                    responsive grid system, extensive prebuilt components, and
+                    powerful JavaScript plugins.
+                  </p>
+                </div>
+              </div>
+              <div>
+                <div className="d-flex justify-content-center flex-wrap">
+                  {listRecommended.length === 0 ? (
+                    <h3>No hay Recursos Recomendados</h3>
+                  ) : (
+                    shortRecommended().map((resource) => (
+                      <Card
+                        calificacion={resource.calificacion}
+                        condition={resource.condition}
+                        country={resource.country}
+                        create={resource.create}
+                        description={resource.description}
+                        id={resource._id}
+                        language={resource.language}
+                        nameAuthor={resource.nameAuthor}
+                        platform={resource.platform}
+                        tags={resource.tags}
+                        title={resource.title}
+                        university={resource.university}
+                        category={resource.category}
+                        specialty={resource.specialty}
+                        isAdmin={true}
+                        isPending={false}
+                        key={resource._id}
+                        usersLikes={resource.usersLikes}
+                        nameAdmin={resource.nameAdmin}
+                        comments={resource.comments}
+                        author={resource.author}
+                        nameResource={resource.nameResource}
+                        urlResource={resource.urlResource}
+                        originalNameResource={resource.originalNameResource}
+                      />
+                    ))
+                  )}
+                </div>
+              </div>
+              <div className="w-100 text-center pt-4 pb-5">
+                <BtnVerMas
+                  nombre="Ver Recomendados"
+                  // url="/all-resource"
+                  // state="Recientes"
+                  url="/all-resource"
+                  state="Recomendados"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="extencion-recomendados">
+          <Fotter />
+        </div>
+        {/* </LayoutHeader> */}
+      </div>
+    </>
+  );
+};
 
 export default Home;

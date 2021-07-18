@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;500;600;900&family=Raleway&display=swap');
 header {
     background-color: var(--colorPrimaryBackground);
     display: flex;
@@ -34,8 +35,13 @@ header nav li, header nav li a {
     font-size: 1.4rem;
     text-align: end;
     border-bottom: 2px solid rgba(255, 255, 255, 0);
+    font-family: 'Montserrat', sans-serif;
     /* padding-bottom: 1rem; */
     color: #fff!important;
+}
+
+.item-icons {
+    margin-left: 5rem;
 }
 
 header nav li a {
@@ -67,6 +73,7 @@ header nav .ul-nav>li:hover>ul {
 
 header nav li a:hover {
     color: var(--colorPrimary)!important;
+    font-weight: 600;
 }
 
 header nav li i:hover {

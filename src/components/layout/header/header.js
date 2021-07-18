@@ -127,7 +127,7 @@ const LayoutHeader = props => {
 
     return (
         <>
-            <header>
+            <header className="fixed-top">
                 <div className="logo">
                     <Link to='/'>Logo</Link>
                 </div>
@@ -162,7 +162,7 @@ const LayoutHeader = props => {
                         }
                         <li>
                             <p>Especialidad <i className="fas fa-sort-down"></i></p>
-                            <ul>
+                            <ul className="subMenu">
                                 <li onClickCapture={() => tipoEspecialidad("Educación Infantil")} >Educación Infantil</li>
                                 <li onClickCapture={() => tipoEspecialidad("Educación Primaria")} >Educación Primaria</li>
                                 <li onClickCapture={() => tipoEspecialidad("Educación Secundaria")} >Educación Secundaria</li>
@@ -182,13 +182,13 @@ const LayoutHeader = props => {
                                 top: 0
                             })
                         }}>Recomendados</a></li>
-                        <li><a onClickCapture={() => {
+                        <li className="pl-4"><a onClickCapture={() => {
                             history.push('/all-resource', 'Recientes');
                             window.scroll({
                                 top: 0
                             })
                         }}>Recientes</a></li>
-                        <li><i className="fas fa-search" ></i></li>
+                        <li className="item-icons"><i className="fas fa-search" ></i></li>
                         {
                             userData ?
                                 <li><i className="fas fa-sign-out-alt" onClickCapture={logOut}></i></li>

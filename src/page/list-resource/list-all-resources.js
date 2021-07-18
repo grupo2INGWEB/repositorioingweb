@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import Card from '../../components/ui/cards/card';
 import Cards from '../../components/ui/cards/cards';
+import Fotter from '../footer-section/footer';
 import './listAll.css';
 
 
@@ -17,10 +18,20 @@ const ListAllResources = (props) => {
             listRecommended
         }
     } = useSelector((state) => state);
+
     return (
         <div className="container">
-            <h2 className="title-all-resources">{props.location.state}</h2>
-            <div className="container-row-arounds">
+            <div className="separator-resouse"></div>
+            {/* <h2 className="title-all-resources">{props.location.state}</h2> */}
+            <div
+                className=" text-secondary text-center"
+                id="scrollspyHeading1"
+            >
+                <h1 className="fw-bold text-dark">{props.location.state}</h1>
+
+            </div>
+            <hr />
+            <div className="d-flex justify-content-center flex-wrap pt-4">
                 {
                     props.location.state === "Más Valorados" ?
                         listMostValued.map((resource) =>
@@ -139,6 +150,7 @@ const ListAllResources = (props) => {
                                     : <h3>No hay Recursos</h3>
                 }
             </div>
+            <Fotter />
         </div>
     );
 }
