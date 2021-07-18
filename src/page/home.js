@@ -146,7 +146,7 @@ const Home = () => {
               </div>
               <div className="w-100 text-center pt-4" id="scrollspyHeading2">
                 <BtnVerMas
-                  nombre="Más Recientes"
+                  nombre="Ver Más"
                   url="/all-resource"
                   state="Recientes"
                 // url="/all-resource"
@@ -195,7 +195,7 @@ const Home = () => {
               </div>
               <div className="w-100 text-center pt-4 pb-5">
                 <BtnVerMas
-                  nombre="Ver Más Valorados"
+                  nombre="Ver Más"
                   // url="/all-resource"
                   // state="Recientes"
                   url="/all-resource"
@@ -262,7 +262,7 @@ const Home = () => {
               </div>
               <div className="w-100 text-center pt-4 pb-5">
                 <BtnVerMas
-                  nombre="Ver Recomendados"
+                  nombre="Ver Más"
                   // url="/all-resource"
                   // state="Recientes"
                   url="/all-resource"
