@@ -88,7 +88,7 @@ const Home = () => {
               className="separator-area text-secondary text-center"
               id="scrollspyHeading1"
             >
-              <h1 className="fw-bold text-white">Publicaciones Recientes</h1>
+              <h1 className="fw-bold text-white">Recursos Recientes</h1>
               <div className="col-lg-6 mx-auto">
                 <p className="description-text-separator">
                   Quickly design and customize responsive mobile-first sites

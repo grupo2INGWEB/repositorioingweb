@@ -157,6 +157,25 @@
     background-color: white;
     border: 1px solid rgb(253, 253, 253);
     border-radius: 10px;
+    height: 35em;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+.about-author>div {
+    margin: 0 auto;
+    width: 50%;
+    /* background-color: rebeccapurple; */
+    height: 100%;
+}
+
+.about-author div img {
+    width: 100%;
+    height: auto;
+}
+
+.about-author video {
+    width: 70%;
 }
 
 .cover {
@@ -214,6 +233,9 @@
 
 .comments {
     margin-top: 6rem;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 1em 1.4em;
 }
 
 .comments h4 {
@@ -224,11 +246,12 @@
     width: 100%;
     display: flex;
     align-items: center;
+    justify-content: center;
     margin-top: 3rem;
 }
 
 .comment .img {
-    width: 5%;
+    width: 7%;
     overflow: hidden;
     border-radius: 100%;
     margin-right: 4rem;
@@ -242,13 +265,13 @@
     text-align: justify;
 }
 
-.comment .decription-comment .autor {
+.autor {
     font-weight: bold;
     margin-bottom: .5rem;
     /* font-size: 1.4rem; */
 }
 
-.comment .decription-comment .date-comment {
+.date-comment {
     color: var(--colorPrimary);
     font-size: 1.4rem;
     margin-top: .5rem;
@@ -283,7 +306,7 @@
 
 .autor-admin {
     margin-bottom: .4rem;
-    color: var(--colorPrimary);
-    font-weight: 800;
+    color: rgb(83, 83, 83);
+    font-weight: 500;
     font-size: 14px;
 }

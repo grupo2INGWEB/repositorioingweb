@@ -3,11 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import "./singleResource.css";
 import Swal from "sweetalert2";
-import { comentarElRecurso } from "../../redux/actions/resourceAction";
+import { buscarPorTags, comentarElRecurso } from "../../redux/actions/resourceAction";
 import { parseDate } from "../../helpers/helpers";
-import { urlApi } from "../../constantes/constants";
+import { urlApi, urlBackend } from "../../constantes/constants";
 import Fotter from "../footer-section/footer";
+import PDFReader from "../../components/utils/pdfReader";
 // import icon from '../../../assets/profile.png'
+
 
 const SingleResource = () => {
   const history = useHistory();
@@ -38,6 +40,10 @@ const SingleResource = () => {
       startComment();
     }
   };
+  const buscarTagsIguales = (tag) => {
+    // Hacer el dispatch
+    disptach(buscarPorTags(tag, history))
+  }
 
   useEffect(() => {
     if (!singleResource) {
@@ -52,12 +58,61 @@ const SingleResource = () => {
     <div className="container">
       <div className="topSeparatos"></div>
       <div className="text-center about-author">
-        <img
-          src="https://icdn.dtcn.com/image/digitaltrends_es/m-de-volvo-carros-bajo-demanda-feat.jpg"
-          className=" img-fluid rounded text-center cover"
-          alt="..."
-          height="70"
-        />
+        {
+          singleResource?.nameResource.includes(".png") || singleResource?.nameResource.includes(".jpeg") || singleResource?.nameResource.includes(".jpeg") ?
+            <div style={
+              {
+                backgroundImage: `url(${urlBackend}${singleResource?.nameResource})`,
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'contain',
+                backgroundPosition: 'center',
+              }
+            }>
+            </div>
+            // <PDFReader url="http://localhost:5000/mipdf.pdf" />
+
+            :
+            singleResource?.nameResource.includes(".pdf") ?
+              <PDFReader
+                url={`${urlBackend}${singleResource?.nameResource}`}
+              />
+              :
+              singleResource?.nameResource.includes(".mp4") || singleResource?.nameResource.includes(".mov") || singleResource?.nameResource.includes(".avi") || singleResource?.nameResource.includes(".mkv") || singleResource?.nameResource.includes(".divx") ?
+                <video controls>
+                  <source src={`${urlBackend}${singleResource?.nameResource}`} />
+                </video>
+                :
+                singleResource?.nameResource.includes(".doc") ?
+                  <div style={
+                    {
+                      backgroundImage: "url(https://cdn.pixabay.com/photo/2013/07/12/15/56/word-document-150594_1280.png)",
+                      backgroundRepeat: 'no-repeat',
+                      backgroundSize: 'contain',
+                      backgroundPosition: 'center',
+                    }
+                  }>
+                    {/* <img
+                    src={`${urlBackend}${singleResource?.nameResource}`}
+                    className="cover"
+                    alt="Img Destacada"
+                  /> */}
+                  </div>
+                  :
+                  <div style={
+                    {
+                      backgroundImage: "url(https://cdn.pixabay.com/photo/2017/07/09/20/48/icon-2488093_1280.png)",
+                      backgroundRepeat: 'no-repeat',
+                      backgroundSize: 'contain',
+                      backgroundPosition: 'center',
+                    }
+                  }>
+                    {/* <img
+                    src={`${urlBackend}${singleResource?.nameResource}`}
+                    className="cover"
+                    alt="Img Destacada"
+                  /> */}
+                  </div>
+        }
       </div>
       <h3 className="title-single ">{singleResource?.title}</h3>
       <hr />
@@ -112,7 +167,7 @@ const SingleResource = () => {
         <strong className="titleCalificacion">Tags:</strong>
         <div className="tags">
           {singleResource?.tags.map((tag) => (
-            <div className="tag">{tag}</div>
+            <div className="tag" id={tag} onClickCapture={() => buscarTagsIguales(tag)} >{tag}</div>
           ))}
         </div>
       </div>
@@ -163,27 +218,6 @@ const SingleResource = () => {
         </div>
       </div>
       <div className="separator-redes"></div>
-      <div className="about-author mt-4">
-        <div className="row p-4">
-          <div className="thumb col-1 ">
-            <img
-              src="https://maanjaa.com/themeger/katen-demo/html/images/other/avatar-about.png"
-              alt="Katen Doe"
-            />
-          </div>
-          <div className="details col p-4">
-            <h4 className="title-detail mb-4">
-              <b>Acerca del Autor:</b>
-            </h4>
-            <h4 className="name">Katen Doe</h4>
-            <p>
-              Hello, I’m a content writer who is fascinated by content fashion,
-              celebrity and lifestyle. She helps clients bring the right content
-              to the right people.
-            </p>
-          </div>
-        </div>
-      </div>
       {/* Comentarios */}
       <div className="comments">
         <h4 className="titleCalificacion">Comentarios</h4>
@@ -191,9 +225,25 @@ const SingleResource = () => {
         {singleResource?.comments.map((comment) => (
           <div className="comment">
             <div className="img">
-              <img src="/profile.png" alt="Profile Icon" />
+              {comment.idUser === singleResource.author ?
+                <img src="https://cdn.icon-icons.com/icons2/11/PNG/256/writer_person_people_man_you_1633.png" alt="Autor" />
+                :
+                <img src="https://media.istockphoto.com/vectors/user-sign-icon-person-symbol-human-avatar-vector-id639085642?k=6&m=639085642&s=170667a&w=0&h=Xq5G_D9UILnAc9u7Ha1NoeQpNPkW3SIk0st25O_KUnU=" alt="Profile Icon" />
+              }
             </div>
-            <div className="decription-comment">
+            <div className="details col p-4">
+              <h4 className="title-detail mb-4">
+                <b>Acerca del Autor:</b>
+              </h4>
+              <h4 className="name"> {comment.autor}  <span className="autor-admin">
+                {comment.idUser === singleResource.author ? "Autor" : ""}{" "}
+              </span>{" "}</h4>
+              <p>
+                {comment.comment}
+              </p>
+              <p className="date-comment">{parseDate(comment.created)}</p>
+            </div>
+            {/* <div className="decription-comment">
               <p className="autor">
                 {comment.autor}{" "}
                 <span className="autor-admin">
@@ -203,7 +253,7 @@ const SingleResource = () => {
 
               <p>{comment.comment}</p>
               <p className="date-comment">{parseDate(comment.created)}</p>
-            </div>
+            </div> */}
           </div>
         ))}
       </div>

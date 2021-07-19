@@ -8,6 +8,7 @@ import SingleResource from "../page/single-resource/singleResource"
 import PendingResources from "../page/pending-resource/pendingResource"
 import UserManagement from "../page/user-management/userManagement"
 import EditResource from "../page/edit-resource/editResource"
+import ListTagsIguales from "../page/list-tagsIguales/list-tagsIguales"
 
 export const AppRouter = () => {
     return (
@@ -23,6 +24,7 @@ export const AppRouter = () => {
                     <Route path='/pending-resource' exact component={PendingResources} />
                     <Route path='/users' exact component={UserManagement} />
                     <Route path='/edit-resource' exact component={EditResource} />
+                    <Route path='/resources-tags' exact component={ListTagsIguales} />
                 </Switch>
             </LayoutHeader>
         </Router>

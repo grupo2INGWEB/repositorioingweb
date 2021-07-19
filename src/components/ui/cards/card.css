@@ -134,6 +134,13 @@
     font-size: 1.4rem;
 }
 
+.tag:hover {
+    cursor: pointer;
+    background-color: #fff!important;
+    color: var(--colorPrimary)!important;
+    border: 1px solid var(--colorPrimary);
+}
+
 .card-black .tags .tag {
     color: rgb(48, 48, 48);
 }

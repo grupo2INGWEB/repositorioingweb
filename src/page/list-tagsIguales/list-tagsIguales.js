@@ -1,22 +1,34 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import Card from '../../components/ui/cards/card';
-// import './myResource.css';
+import Fotter from '../footer-section/footer';
+// import './listAll.css';
 
 
-const PendingResources = () => {
+const ListTagsIguales = () => {
 
     const {
-        resources: { pendingResources },
+        resources: {
+            listResourcesTags
+        }
     } = useSelector((state) => state);
 
     return (
-        <div className="container container-misRecursos">
-            <h2 className="title-me-resources">Recursos Pendientes</h2>
-            <div className="d-flex justify-content-center flex-wrap mt-5">
+        <div className="container">
+            <div className="separator-resouse"></div>
+            {/* <h2 className="title-all-resources">{props.location.state}</h2> */}
+            <div
+                className=" text-secondary text-center"
+                id="scrollspyHeading1"
+            >
+                <h1 className="fw-bold text-dark">Búsqueda de Tags iguales</h1>
+
+            </div>
+            <hr />
+            <div className="d-flex justify-content-center flex-wrap pt-4">
                 {
-                    pendingResources?.map((resource) => {
-                        return <Card
+                    listResourcesTags?.map((resource) =>
+                        <Card
                             calificacion={resource.calificacion}
                             condition={resource.condition}
                             country={resource.country}
@@ -24,15 +36,16 @@ const PendingResources = () => {
                             description={resource.description}
                             id={resource._id}
                             language={resource.language}
+                            nameAuthor={resource.nameAuthor}
                             platform={resource.platform}
                             tags={resource.tags}
                             title={resource.title}
-                            nameAuthor={resource.nameAuthor}
-                            isPending={true}
-                            isAdmin={true}
                             university={resource.university}
                             category={resource.category}
                             specialty={resource.specialty}
+                            isAdmin={true}
+                            isPending={false}
+                            key={resource._id}
                             usersLikes={resource.usersLikes}
                             comments={resource.comments}
                             author={resource.author}
@@ -40,13 +53,12 @@ const PendingResources = () => {
                             urlResource={resource.urlResource}
                             originalNameResource={resource.originalNameResource}
                         />
-                    })
+                    )
                 }
-
             </div>
-            {/* <Cards /> */}
+            <Fotter />
         </div>
     );
 }
 
-export default PendingResources;
+export default ListTagsIguales;

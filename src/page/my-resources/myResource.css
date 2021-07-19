@@ -1,5 +1,41 @@
-.title-me-resources{
+.title-me-resources {
     color: var(--colorPrimary);
-    padding-left: 1rem;
+    padding-left: 1.2em;
     margin-top: 3rem;
+    font-size: 1.9em;
+    font-weight: 600;
+}
+
+.container-misRecursos {
+    margin-top: 15rem!important;
+}
+
+.container-pagination p {
+    color: #000;
+    font-size: 1em;
+}
+
+.container-pagination p i {
+    font-size: .8em;
+}
+
+.container-pagination p i.fa-chevron-left {
+    padding-right: .5rem;
+}
+
+.container-pagination p i.fa-chevron-right {
+    padding-left: .5rem;
+}
+
+.container-pagination p:hover {
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.container-pagination {
+    padding-bottom: 8rem!important;
+}
+
+.container-pagination p:nth-child(1) {
+    margin-right: 1.8em;
 }

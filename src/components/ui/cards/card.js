@@ -7,9 +7,10 @@ import {
   changeSinglePage,
   likeARecurso,
   disLikeARecurso,
+  buscarPorTags
 } from "../../../redux/actions/resourceAction";
 import { cambiarEstadoPublicacion } from "../../../redux/actions/resourceAction";
-
+import { urlBackend } from "../../../constantes/constants";
 const Card = ({
   calificacion,
   condition,
@@ -30,7 +31,7 @@ const Card = ({
   isAdmin = false,
   usersLikes,
   nameAdmin,
-  nameResource,
+  nameResource = "",
   urlResource,
   originalNameResource,
   author,
@@ -155,15 +156,52 @@ const Card = ({
     }
   };
 
+  const buscarTagsIguales = (tag) => {
+    // Hacer el dispatch
+    dispatch(buscarPorTags(tag, history))
+  }
+
   return (
     <div className="d-flex m-2">
       <div className={darkmode ? "card-black" : "card"}>
-        <img
-          // src={originalNameResource ? originalNameResource:"https://icdn.dtcn.com/image/digitaltrends_es/m-de-volvo-carros-bajo-demanda-feat.jpg"}
-          src="https://icdn.dtcn.com/image/digitaltrends_es/m-de-volvo-carros-bajo-demanda-feat.jpg"
-          className="rounded-top-2 card-img-top img-top "
-          alt="carro"
-        />
+        {
+          nameResource.includes(".png") || nameResource.includes(".jpeg") || nameResource.includes(".jpeg") ?
+            <img
+              // src={originalNameResource ? originalNameResource:"https://icdn.dtcn.com/image/digitaltrends_es/m-de-volvo-carros-bajo-demanda-feat.jpg"}
+              // src={`http://${urlBackend}${nameResource}`}
+              src={`${urlBackend}${nameResource}`}
+              className="rounded-top-2 card-img-top img-top "
+              alt="Img Destacada"
+            /> :
+            nameResource.includes(".pdf") ?
+              <img
+                // src={originalNameResource ? originalNameResource:"https://icdn.dtcn.com/image/digitaltrends_es/m-de-volvo-carros-bajo-demanda-feat.jpg"}
+                src="https://cdn.pixabay.com/photo/2020/03/10/17/02/pdf-4919559_1280.png"
+                className="rounded-top-2 card-img-top img-top "
+                alt="carro"
+              /> :
+              nameResource.includes(".mp4") || nameResource.includes(".mov") || nameResource.includes(".avi") || nameResource.includes(".mkv") || nameResource.includes(".divx") ?
+                <img
+                  // src={originalNameResource ? originalNameResource:"https://icdn.dtcn.com/image/digitaltrends_es/m-de-volvo-carros-bajo-demanda-feat.jpg"}
+                  src="https://cdn.pixabay.com/photo/2015/12/03/01/27/play-1073616_1280.png"
+                  className="rounded-top-2 card-img-top img-top "
+                  alt="carro"
+                />
+                :
+                nameResource.includes(".doc") ?
+                  <img
+                    // src={originalNameResource ? originalNameResource:"https://icdn.dtcn.com/image/digitaltrends_es/m-de-volvo-carros-bajo-demanda-feat.jpg"}
+                    src="https://cdn.pixabay.com/photo/2013/07/12/15/56/word-document-150594_1280.png"
+                    className="rounded-top-2 card-img-top img-top "
+                    alt="carro"
+                  /> :
+                  <img
+                    // src={originalNameResource ? originalNameResource:"https://icdn.dtcn.com/image/digitaltrends_es/m-de-volvo-carros-bajo-demanda-feat.jpg"}
+                    src="https://cdn.pixabay.com/photo/2017/07/09/20/48/icon-2488093_1280.png"
+                    className="rounded-top-2 card-img-top img-top "
+                    alt="carro"
+                  />
+        }
         {/* <p>
           {originalNameResource}
         </p> */}
@@ -218,7 +256,7 @@ const Card = ({
           <strong className={darkmode ? "section-title-dark" : "section-title"}>Tags:</strong>
           <div className="tags">
             {tags?.map((tag) => (
-              <div className="tag " id={tag}>
+              <div className="tag " id={tag} onClickCapture={() => buscarTagsIguales(tag)}>
                 {tag}
               </div>
             ))}

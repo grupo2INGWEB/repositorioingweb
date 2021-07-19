@@ -34,7 +34,7 @@ import {
     GET_RECOMMENDED_RESOURCES_SUCCESS,
     GET_TAGS_IGUALES,
     GET_TAGS_IGUALES_ERROR,
-    GET_TAGS_IGUALES_SUCCESS,
+    GET_TAGS_IGUALES_SUCCESS
 } from '../../types/types'
 
 export const crearRecurso = (data, accessToken, resetValues, alertOK, archivo) => {
@@ -433,13 +433,14 @@ export const reinicarState = () => {
     }
 }
 
-export const buscarPorTags = (tag) => {
+export const buscarPorTags = (tag, history) => {
     return async (dispatch) => {
         dispatch({
             type: GET_TAGS_IGUALES
         })
         try {
             const resp = await clienteAxios.get(`resource/resourceTags/${tag}`);
+            history.push("/resources-tags")
             dispatch({
                 type: GET_TAGS_IGUALES_SUCCESS,
                 payload: resp.data.resources
