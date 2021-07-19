@@ -85,6 +85,10 @@ router.delete('/:id',
 router.get('/',
     resourceController.allResources
 );
+// Single Resource
+router.get('/singleResource/:id',
+    resourceController.buscarRecursoID
+)
 // OBTENER MIS RECURSOS
 router.get('/myresources',
     resourceController.myResources
@@ -108,6 +112,10 @@ router.get('/pendingResources',
 // Buscar por tags
 router.get('/resourceTags/:tag',
     resourceController.buscarTagsIguales
+)
+// Motor de Búsqueda
+router.get('/motorBusqueda/',
+    resourceController.motorBusqueda
 )
 
 

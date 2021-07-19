@@ -568,3 +568,29 @@ exports.descargarRecurso = (req, res) => {
     const ruta = __dirname + '/../uploads/' + archivo;
     res.download(ruta)
 }
+
+exports.motorBusqueda = async (req, res) => {
+    const query = req.header('query');
+    const resourceRegex = new RegExp(`${query}`, 'i');
+    try {
+        const resources = await Resource.find({
+            $and: [{ title: resourceRegex, condition: "Publicado" }]
+        });
+        return res.json({ resources })
+    } catch (error) {
+        console.log("Error al realizar Búsqueda");
+        console.log(error);
+        return res.status(400).send('Error al realizar Búsqueda')
+    }
+}
+exports.buscarRecursoID = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const resource = await Resource.findById(id);
+        return res.json({ resource })
+    } catch (error) {
+        console.log("Error el obtener recurso");
+        console.log(error)
+        res.status(400).json({ error: "Hubo un error en el servidor" })
+    }
+}
