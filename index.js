@@ -2,6 +2,7 @@
 const express = require('express');
 const conectarDB = require("./config/db");
 var cors = require('cors');
+const path = require('path');
 
 
 // Crear servidor \
@@ -16,7 +17,8 @@ const port = process.env.PORT || 5000;
 // Habilitar los valores de un body (para las consultas) cunado mandas datos desde Frontend hal backend
 app.use(express.json())
 app.use(cors());
-app.use(express.static('uploads'));
+const publicPath = path.resolve(__dirname, 'uploads');
+app.use(express.static(publicPath));
 
 // DECLARAR Rutas de la app
 app.use('/api/auth', require('./routes/auth_route'));

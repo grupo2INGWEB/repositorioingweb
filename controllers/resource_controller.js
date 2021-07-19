@@ -537,6 +537,31 @@ exports.pendingResources = async (req, res) => {
         });
     }
 }
+exports.buscarTagsIguales = async (req, res) => {
+    try {
+        // PARA TRAER TODOS LOS RECURSOS .find()
+        const { tag } = req.params;
+        const resources = await Resource.find({
+            condition: "Publicado"
+        })
+        const lista = [];
+        resources.forEach((resource) => {
+            if (resource.tags.includes(tag)) {
+                lista.push(resource)
+            }
+        })
+        return res.json({ resources: lista }) // Response of backend. Good Process
+    } catch (error) {
+        console.log("Error en el JWT. Function buscarTagsIguales");
+        console.log(error);
+        console.log("Hubo un error en: Function buscarTagsIguales")
+        console.log(error);
+        return res.status(400).json({
+            typeError: `Error: ${error}`,
+            error: "Hubo un error en el servidor. Intentalo de nuevo"
+        });
+    }
+}
 
 exports.descargarRecurso = (req, res) => {
     const { archivo } = req.params;

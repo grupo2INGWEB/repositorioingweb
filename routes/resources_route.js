@@ -105,5 +105,10 @@ router.get('/mostCalifications',
 router.get('/pendingResources',
     resourceController.pendingResources
 );
+// Buscar por tags
+router.get('/resourceTags/:tag',
+    resourceController.buscarTagsIguales
+)
+
 
 module.exports = router;
