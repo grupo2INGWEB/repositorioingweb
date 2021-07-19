@@ -9,7 +9,7 @@ import {
   disLikeARecurso,
   buscarPorTags
 } from "../../../redux/actions/resourceAction";
-import { cambiarEstadoPublicacion } from "../../../redux/actions/resourceAction";
+import { cambiarEstadoPublicacion, deleteResource } from "../../../redux/actions/resourceAction";
 import { urlBackend } from "../../../constantes/constants";
 const Card = ({
   calificacion,
@@ -159,6 +159,22 @@ const Card = ({
   const buscarTagsIguales = (tag) => {
     // Hacer el dispatch
     dispatch(buscarPorTags(tag, history))
+  }
+  const alertOK = () => {
+    Swal.fire({
+      title: "Recurso Eliminado!",
+      icon: "success"
+    })
+  }
+  const alertError = () => {
+    Swal.fire({
+      title: "Error al eliminar recurso!",
+      icon: "error"
+    })
+  }
+
+  const eliminarRecurso = (type) => {
+    dispatch(deleteResource(id, alertOK, alertError, userData.token, type))
   }
 
   return (
@@ -313,6 +329,9 @@ const Card = ({
                   <p>Ver mas</p>
                 </div>
               </div>
+              <div className="btn-delete">
+                <i className="fas fa-trash" onClickCapture={() => eliminarRecurso('other')} />
+              </div>
             </div>
           ) : !isPending ? (
             <div className="container-btn">
@@ -341,6 +360,9 @@ const Card = ({
                 </div>
                 <div className="btn-vermas">
                   <p>Ver mas</p>
+                </div>
+                <div className="btn-delete">
+                  <i className="fas fa-trash" onClickCapture={() => eliminarRecurso('other')} />
                 </div>
               </div>
             </div>

@@ -33,6 +33,12 @@ import {
     GET_TAGS_IGUALES,
     GET_TAGS_IGUALES_ERROR,
     GET_TAGS_IGUALES_SUCCESS,
+    GET_FIND_MOTOR,
+    GET_FIND_MOTOR_ERROR,
+    GET_FIND_MOTOR_SUCCESS,
+    GET_ID_RESOURCE,
+    GET_ID_RESOURCE_ERROR,
+    GET_ID_RESOURCE_SUCCESS
 } from '../../types/types'
 
 const initialState = {
@@ -51,7 +57,8 @@ const initialState = {
     listSpecialty: [],
     listRecommended: [],
     listResourcesTags: [],
-    listRecommended: []
+    listRecommended: [],
+    listFindResources: null
 }
 export const resourceReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -252,6 +259,38 @@ export const resourceReducer = (state = initialState, action) => {
                 ...state,
                 fetching: false,
                 listResourcesTags: action.payload
+            }
+        case GET_FIND_MOTOR:
+            return {
+                ...state,
+                fetching: true
+            }
+        case GET_FIND_MOTOR_SUCCESS:
+            return {
+                ...state,
+                fetching: false,
+                listFindResources: action.payload
+            }
+        case GET_FIND_MOTOR_ERROR:
+            return {
+                ...state,
+                fetching: false,
+            }
+        case GET_ID_RESOURCE:
+            return {
+                ...state,
+                fetching: true
+            }
+        case GET_ID_RESOURCE_SUCCESS:
+            return {
+                ...state,
+                fetching: false,
+                singleResource: action.payload
+            }
+        case GET_ID_RESOURCE_ERROR:
+            return {
+                ...state,
+                fetching: false
             }
         default:
             return state;

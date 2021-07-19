@@ -11,6 +11,7 @@ import {
   filterSpecialtyResources,
   reinicarState,
 } from "../../../redux/actions/resourceAction";
+import { useFormBusqueda } from "../../../hooks/useFormBusqueda";
 
 const customStyles = {
   content: {
@@ -53,6 +54,7 @@ const LayoutHeader = (props) => {
     password2: "",
     errorLogin: "",
   });
+  const [valuesMotor, handleInputChangeMotor, sendDataMotor] = useFormBusqueda("");
 
   const { email2, password2, errorLogin } = valuesLogin;
   const { email, name, password, repassword, errorRegister } = values;
@@ -148,7 +150,7 @@ const LayoutHeader = (props) => {
             ) : userData?.user.rol !== "internauta" ? (
               <li>
                 <p>
-                  Recursos  
+                  Recursos
                 </p>
                 <ul>
                   <li onClickCapture={() => handleChangeRecurso(1)}>
@@ -175,7 +177,7 @@ const LayoutHeader = (props) => {
                 <div className="row">
                   <div className="col-10">Especialidad</div>
                   <div className="col-2">
-                     
+
                   </div>
                 </div>
               </p>
@@ -242,10 +244,12 @@ const LayoutHeader = (props) => {
             </li>
             <li>
               <div class="search-box">
-                <button class="btn-search">
+                <button class="btn-search" onClickCapture={sendDataMotor}>
                   <i class="fas fa-search"></i>
                 </button>
                 <input
+                  value={valuesMotor}
+                  onChange={handleInputChangeMotor}
                   type="text"
                   class="input-search"
                   placeholder="Buscar Recurso"

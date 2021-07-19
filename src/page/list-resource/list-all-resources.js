@@ -15,7 +15,8 @@ const ListAllResources = (props) => {
             listMostValued,
             listRecentResources,
             listSpecialty,
-            listRecommended
+            listRecommended,
+            listFindResources
         }
     } = useSelector((state) => state);
 
@@ -147,7 +148,37 @@ const ListAllResources = (props) => {
                                             originalNameResource={resource.originalNameResource}
                                         />
                                     )
-                                    : <h3>No hay Recursos</h3>
+                                    :
+                                    props.location.state === "Recursos Disponibles" ?
+                                        listFindResources?.map((resource) =>
+                                            <Card
+                                                calificacion={resource.calificacion}
+                                                condition={resource.condition}
+                                                country={resource.country}
+                                                create={resource.create}
+                                                description={resource.description}
+                                                id={resource._id}
+                                                language={resource.language}
+                                                nameAuthor={resource.nameAuthor}
+                                                platform={resource.platform}
+                                                tags={resource.tags}
+                                                title={resource.title}
+                                                isAdmin={false}
+                                                isPending={false}
+                                                key={resource._id}
+                                                university={resource.university}
+                                                category={resource.category}
+                                                specialty={resource.specialty}
+                                                usersLikes={resource.usersLikes}
+                                                comments={resource.comments}
+                                                author={resource.author}
+                                                nameResource={resource.nameResource}
+                                                urlResource={resource.urlResource}
+                                                originalNameResource={resource.originalNameResource}
+                                            />
+                                        )
+                                        :
+                                        <h3>No hay Recursos</h3>
                 }
             </div>
             <Fotter />

@@ -16,15 +16,15 @@ export const AppRouter = () => {
             {/* Aqui se muestra elheader )(nav) */}
             <LayoutHeader>
                 <Switch>
-                    <Route path='/' exact component={Home} />
                     <Route path='/create-resource' exact component={CreateResource} />
-                    <Route path='/single-resource' exact component={SingleResource} />
-                    <Route path='/all-resource' exact component={ListAllResources} />
                     <Route path='/my-resource' exact component={MyResources} />
                     <Route path='/pending-resource' exact component={PendingResources} />
                     <Route path='/users' exact component={UserManagement} />
                     <Route path='/edit-resource' exact component={EditResource} />
                     <Route path='/resources-tags' exact component={ListTagsIguales} />
+                    <Route path='/all-resource' exact component={ListAllResources} />
+                    <Route path='/single-resource/:id' exact component={SingleResource} />
+                    <Route path='/' exact component={Home} />
                 </Switch>
             </LayoutHeader>
         </Router>

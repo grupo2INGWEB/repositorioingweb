@@ -34,7 +34,16 @@ import {
     GET_RECOMMENDED_RESOURCES_SUCCESS,
     GET_TAGS_IGUALES,
     GET_TAGS_IGUALES_ERROR,
-    GET_TAGS_IGUALES_SUCCESS
+    GET_TAGS_IGUALES_SUCCESS,
+    DELETE_RESOURCES,
+    DELETE_RESOURCES_ERROR,
+    DELETE_RESOURCES_SUCCESS,
+    GET_FIND_MOTOR,
+    GET_FIND_MOTOR_ERROR,
+    GET_FIND_MOTOR_SUCCESS,
+    GET_ID_RESOURCE,
+    GET_ID_RESOURCE_ERROR,
+    GET_ID_RESOURCE_SUCCESS
 } from '../../types/types'
 
 export const crearRecurso = (data, accessToken, resetValues, alertOK, archivo) => {
@@ -300,9 +309,6 @@ export const obtenerRecursosRecomendados = async (dispatch) => {
     })
     try {
         const resp = await clienteAxios.get('resource/recommended')
-
-        console.log("=== Recursos Recomendados")
-        console.log(resp.data);
         dispatch({
             type: GET_RECOMMENDED_RESOURCES_SUCCESS,
             payload: resp.data.resources
@@ -413,7 +419,7 @@ export const changeSinglePage = (data, history, isEdit) => {
         })
         if (!isEdit) {
             setTimeout(() => {
-                history.push('/single-resource');
+                history.push(`/single-resource/${data.id}`);
             }, 1000)
 
         } else {
@@ -456,4 +462,93 @@ export const buscarPorTags = (tag, history) => {
         }
     }
 }
+
+export const deleteResource = (id, alertOk, alertError, accessToken, typeObtener) => {
+    return async (dispatch) => {
+        dispatch({
+            type: DELETE_RESOURCES
+        })
+        try {
+            await clienteAxios.delete(`resource/${id}`, {
+                headers: {
+                    "Authorization": `bearer ${accessToken}`
+                }
+            });
+            alertOk()
+            dispatch({
+                type: DELETE_RESOURCES_SUCCESS,
+            })
+            if (typeObtener === "other") {
+                obtenerRecursosPendientes(dispatch);
+                obtenerRecursosMasValorados(dispatch);
+                obtenerRecursosRecientes(dispatch)
+                obtenerRecursosRecomendados(dispatch)
+            } else {
+                obtenerMisRecursos(dispatch, accessToken);
+            }
+        } catch (error) {
+            console.log("===> Error al eliminar recurso");
+            console.log(error.response);
+            dispatch({
+                type: DELETE_RESOURCES_ERROR
+            })
+            alertError();
+        }
+    }
+}
+
+export const motorDeBusqueda = (query, history) => {
+    return async (dispatch) => {
+        dispatch({
+            type: GET_FIND_MOTOR
+        })
+        try {
+
+            const resp = await clienteAxios.get('resource/motorBusqueda', {
+                headers: {
+                    "query": query
+                }
+            })
+            dispatch({
+                type: GET_FIND_MOTOR_SUCCESS,
+                payload: resp.data.resources
+            })
+            history.push("/all-resource", "Recursos Disponibles");
+        } catch (error) {
+            console.log("===> Error en el motor de Búsqueda");
+            console.log(error.response);
+            dispatch({
+                type: GET_FIND_MOTOR_ERROR,
+            })
+        }
+    }
+}
+
+export const obtenerRecursoID = (id) => {
+    return async (dispatch) => {
+        dispatch({
+            type: GET_ID_RESOURCE
+        })
+        console.log("===> DENTRO DE action");
+        console.log(id);
+        try {
+            const resp = await clienteAxios.get(`resource/singleResource/${id}`)
+            console.log("==> RECURSOOOO ");
+            console.log(resp.data.resource)
+            dispatch({
+                type: GET_ID_RESOURCE_SUCCESS,
+                payload: resp.data.resource
+            })
+
+        } catch (error) {
+            console.log("==> Error al obtener Recurso por ID")
+            console.log(error.response);
+            dispatch({
+                type: GET_ID_RESOURCE_ERROR
+            })
+        }
+    }
+}
+
+
 
