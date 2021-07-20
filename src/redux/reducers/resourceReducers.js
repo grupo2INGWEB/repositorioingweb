@@ -292,6 +292,11 @@ export const resourceReducer = (state = initialState, action) => {
                 ...state,
                 fetching: false
             }
+        case FILTER_SPECIALTY_ERROR:
+            return {
+                ...state,
+                fetching: false
+            }
         default:
             return state;
     }

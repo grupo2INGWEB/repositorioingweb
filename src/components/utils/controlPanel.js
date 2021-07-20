@@ -72,7 +72,7 @@ const ControlPanel = ({ pageNumber, numPages, setPageNumber, scale, setScale }) 
                     onClick={goToLastPage}
                 />
             </div>
-            <div className="d-flex justify-content-between align-items-baseline">
+            {/* <div className="d-flex justify-content-between align-items-baseline">
                 <i
                     className={`fas fa-search-minus mx-3 ${zoomOutClass}`}
                     onClick={zoomOut}
@@ -82,7 +82,7 @@ const ControlPanel = ({ pageNumber, numPages, setPageNumber, scale, setScale }) 
                     className={`fas fa-search-plus mx-3 ${zoomInClass}`}
                     onClick={zoomIn}
                 />
-            </div>
+            </div> */}
             {/* <div className="mx-3">
                 <a href="/assets/docs/file-sample.pdf" download={true} title="download">
                     <i className="fas fa-file-download clickable" />

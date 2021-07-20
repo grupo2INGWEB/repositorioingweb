@@ -12,6 +12,7 @@ import {
   reinicarState,
 } from "../../../redux/actions/resourceAction";
 import { useFormBusqueda } from "../../../hooks/useFormBusqueda";
+import logo from "../../../assets/img/logo.png"
 
 const customStyles = {
   content: {
@@ -136,7 +137,9 @@ const LayoutHeader = (props) => {
     <>
       <header className="fixed-top">
         <div className="logo">
-          <Link to="/">Logo</Link>
+          <Link to="/">
+            <img src={logo} alt="" />
+          </Link>
         </div>
         <nav>
           <ul className="ul-nav">

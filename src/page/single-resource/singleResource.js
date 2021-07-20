@@ -3,11 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router";
 import "./singleResource.css";
 import Swal from "sweetalert2";
-import { buscarPorTags, comentarElRecurso, obtenerRecursoID } from "../../redux/actions/resourceAction";
+import { buscarPorTags, comentarElRecurso, deleteResource, obtenerRecursoID } from "../../redux/actions/resourceAction";
 import { parseDate } from "../../helpers/helpers";
 import { urlApi, urlBackend } from "../../constantes/constants";
 import Fotter from "../footer-section/footer";
 import PDFReader from "../../components/utils/pdfReader";
+import autorIcon from "../../assets/img/autor.png"
+import personIcon from "../../assets/img/persona.jpeg"
 // import icon from '../../../assets/profile.png'
 
 
@@ -53,6 +55,18 @@ const SingleResource = () => {
       icon: "success"
     })
   }
+  const alertOK = () => {
+    Swal.fire({
+      title: "Recurso Eliminado!",
+      icon: "success"
+    })
+  }
+  const alertError = () => {
+    Swal.fire({
+      title: "Error al eliminar recurso!",
+      icon: "error"
+    })
+  }
 
   const copyToClipboard = () => {
     const url = window.location.href;
@@ -63,6 +77,9 @@ const SingleResource = () => {
     document.execCommand("copy");
     textField.remove();
     msgCopy()
+  }
+  const eliminarRecurso = (type) => {
+    disptach(deleteResource(singleResource?.id, alertOK, alertError, userData.token, type, history))
   }
 
   useEffect(() => {
@@ -139,7 +156,14 @@ const SingleResource = () => {
                         </div>
               }
             </div>
-            <h3 className="title-single ">{singleResource?.title}</h3>
+            <h3 className="title-single ">{singleResource?.title} </h3>
+            {
+              userData.user.rol === "admin" ?
+                <div className="btn-delete">
+                  <i className="fas fa-trash" onClickCapture={() => eliminarRecurso('other')} />
+                </div>
+                : <></>
+            }
             <hr />
             <h4 className="color-p">Descripción</h4>
             <div className="info-single py-4">
@@ -256,9 +280,9 @@ const SingleResource = () => {
                 <div className="comment">
                   <div className="img">
                     {comment.idUser === singleResource.author ?
-                      <img src="https://cdn.icon-icons.com/icons2/11/PNG/256/writer_person_people_man_you_1633.png" alt="Autor" />
+                      <img src={autorIcon} alt="Autor" />
                       :
-                      <img src="https://media.istockphoto.com/vectors/user-sign-icon-person-symbol-human-avatar-vector-id639085642?k=6&m=639085642&s=170667a&w=0&h=Xq5G_D9UILnAc9u7Ha1NoeQpNPkW3SIk0st25O_KUnU=" alt="Profile Icon" />
+                      <img src={personIcon} alt="Profile Icon" />
                     }
                   </div>
                   <div className="details col p-4">

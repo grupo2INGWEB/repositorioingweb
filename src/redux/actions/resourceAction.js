@@ -463,7 +463,7 @@ export const buscarPorTags = (tag, history) => {
     }
 }
 
-export const deleteResource = (id, alertOk, alertError, accessToken, typeObtener) => {
+export const deleteResource = (id, alertOk, alertError, accessToken, typeObtener, history) => {
     return async (dispatch) => {
         dispatch({
             type: DELETE_RESOURCES
@@ -478,6 +478,9 @@ export const deleteResource = (id, alertOk, alertError, accessToken, typeObtener
             dispatch({
                 type: DELETE_RESOURCES_SUCCESS,
             })
+            if (history) {
+                history.replace("/")
+            }
             if (typeObtener === "other") {
                 obtenerRecursosPendientes(dispatch);
                 obtenerRecursosMasValorados(dispatch);

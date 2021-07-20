@@ -4,7 +4,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 2rem;
+    padding: 0 5rem;
     /* width: 100%; */
 }
 
@@ -12,7 +12,14 @@ header .logo {
     width: 20%;
     height: 5rem;
     margin: 0;
-    background-color: rgb(68, 68, 68);
+    padding-top: .3em;
+    /* padding-left: 1.5em; */
+    /* display: flex;
+    align-items: center; */
+}
+
+header .logo img {
+    width: 75%;
 }
 
 header nav {
@@ -106,12 +113,14 @@ header nav .ul-nav li ul li:hover {
     font-size: 15px;
     text-align: center;
 }
-.search-box{
+
+.search-box {
     width: fit-content;
     height: fit-content;
     position: relative;
-  }
-  .input-search{
+}
+
+.input-search {
     height: 40px;
     width: 20px;
     border-style: none;
@@ -121,17 +130,20 @@ header nav .ul-nav li ul li:hover {
     outline: none;
     border-radius: 25px;
     transition: all .5s ease-in-out;
-    background-color: rgb(12, 209, 150);;
+    background-color: rgb(12, 209, 150);
+    ;
     padding-right: 40px;
-    color:#fff;
-  }
-  .input-search::placeholder{
-    color:rgba(255, 255, 255, 0.767);
+    color: #fff;
+}
+
+.input-search::placeholder {
+    color: rgba(255, 255, 255, 0.767);
     font-size: 13px;
     letter-spacing: 2px;
     font-weight: 100;
-  }
-  .btn-search{
+}
+
+.btn-search {
     width: 40px;
     height: 40px;
     border-style: none;
@@ -142,23 +154,23 @@ header nav .ul-nav li ul li:hover {
     border-radius: 50%;
     position: absolute;
     right: 0px;
-    color:#ffffff ;
-    background-color:transparent;
-    pointer-events: painted;  
-  }
-  .btn-search:focus ~ .input-search{
+    color: #ffffff;
+    background-color: transparent;
+    pointer-events: painted;
+}
+
+.btn-search:focus~.input-search {
     width: 220px;
     border-radius: 0px;
     background-color: transparent;
-    border-bottom:1px solid rgba(255,255,255,.5);
+    border-bottom: 1px solid rgba(255, 255, 255, .5);
     transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
-  }
-  .input-search:focus{
+}
+
+.input-search:focus {
     width: 300px;
     border-radius: 0px;
     background-color: transparent;
-    border-bottom:1px solid rgba(255,255,255,.5);
+    border-bottom: 1px solid rgba(255, 255, 255, .5);
     transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
-  }
-  
-  
+}

@@ -177,6 +177,24 @@ const Card = ({
     dispatch(deleteResource(id, alertOK, alertError, userData.token, type))
   }
 
+  const msgCopy = () => {
+    Swal.fire({
+      title: "Url copiada en portapapeles!",
+      icon: "success"
+    })
+  }
+
+  const copyToClipboard = () => {
+    const url = `http://localhost:3000/single-resource/${id}`;
+    var textField = document.createElement("textarea");
+    textField.innerText = url;
+    document.body.appendChild(textField);
+    textField.select();
+    document.execCommand("copy");
+    textField.remove();
+    msgCopy()
+  }
+
   return (
     <div className="d-flex m-2">
       <div className={darkmode ? "card-black" : "card"}>
@@ -283,19 +301,24 @@ const Card = ({
                 }    
           </p> */}
           <div className="container-redes mb-4">
+            <script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
             <div className="row">
               <div className="col">
                 <div className="bg-black">
-                  <i className="fab fa-facebook-f"></i>
+                  <a target="_blank" href={`http://www.facebook.com/sharer.php?u=${window.location.href}`}>
+                    <i className="fab fa-facebook-f"></i>
+                  </a>
                 </div>
               </div>
               <div className="col">
                 <div className="bg-black">
-                  <i className="fab fa-twitter"></i>
+                  <a href={`https://twitter.com/intent/tweet?text=Mira%20el%20recurso:%20${title}%20de%20la%20Universidad:%20${university}&url=http%3A%2F%2Flocalhost:3000%2Fsingle-resource%2F${id}`} target="_blank">
+                    <i className="fab fa-twitter"></i>
+                  </a>
                 </div>
               </div>
               <div className="col">
-                <div className="bg-black">
+                <div className="bg-black" onClickCapture={copyToClipboard}>
                   <i className="fas fa-link"></i>
                 </div>
               </div>
