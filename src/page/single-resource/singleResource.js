@@ -101,7 +101,7 @@ const SingleResource = () => {
             <div className="topSeparatos"></div>
             <div className="text-center about-author">
               {
-                singleResource?.nameResource.includes(".png") || singleResource?.nameResource.includes(".jpeg") || singleResource?.nameResource.includes(".jpeg") ?
+                singleResource?.nameResource?.includes(".png") || singleResource?.nameResource?.includes(".jpeg") || singleResource?.nameResource?.includes(".jpeg") ?
                   <div style={
                     {
                       backgroundImage: `url(${urlBackend}${singleResource?.nameResource})`,
@@ -114,17 +114,17 @@ const SingleResource = () => {
                   // <PDFReader url="http://localhost:5000/mipdf.pdf" />
 
                   :
-                  singleResource?.nameResource.includes(".pdf") ?
+                  singleResource?.nameResource?.includes(".pdf") ?
                     <PDFReader
                       url={`${urlBackend}${singleResource?.nameResource}`}
                     />
                     :
-                    singleResource?.nameResource.includes(".mp4") || singleResource?.nameResource.includes(".mov") || singleResource?.nameResource.includes(".avi") || singleResource?.nameResource.includes(".mkv") || singleResource?.nameResource.includes(".divx") ?
+                    singleResource?.nameResource?.includes(".mp4") || singleResource?.nameResource?.includes(".mov") || singleResource?.nameResource?.includes(".avi") || singleResource?.nameResource?.includes(".mkv") || singleResource?.nameResource.includes(".divx") ?
                       <video controls>
                         <source src={`${urlBackend}${singleResource?.nameResource}`} />
                       </video>
                       :
-                      singleResource?.nameResource.includes(".doc") ?
+                      singleResource?.nameResource?.includes(".doc") ?
                         <div style={
                           {
                             backgroundImage: "url(https://cdn.pixabay.com/photo/2013/07/12/15/56/word-document-150594_1280.png)",
