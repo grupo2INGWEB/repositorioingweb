@@ -573,10 +573,19 @@ exports.motorBusqueda = async (req, res) => {
     const query = req.header('query');
     const resourceRegex = new RegExp(`${query}`, 'i');
     try {
-        const resources = await Resource.find({
-            $and: [{ title: resourceRegex, condition: "Publicado" }]
-        });
-        return res.json({ resources })
+        const resources = await Resource.find({ condition: "Publicado" });
+        // const resources = await Resource.find({
+        //     $and: [{ title: resourceRegex, condition: "Publicado" }],
+        // });
+        const temp = [];
+        resources.forEach((resource) => {
+            // const title = resource.title.toLoweCase();
+            if (resource.title.includes(query) || resource.tags.includes(query)) {
+                temp.push(resource)
+            }
+        })
+
+        return res.json({ resources: temp })
     } catch (error) {
         console.log("Error al realizar Búsqueda");
         console.log(error);
