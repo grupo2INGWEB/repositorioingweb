@@ -56,7 +56,7 @@ const ListTagsIguales = () => {
                     )
                 }
             </div>
-            <Fotter />
+            {/* <Fotter /> */}
         </div>
     );
 }

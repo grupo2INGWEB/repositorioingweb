@@ -158,7 +158,7 @@ const SingleResource = () => {
             </div>
             <h3 className="title-single ">{singleResource?.title} </h3>
             {
-              userData.user.rol === "admin" ?
+              userData?.user.rol === "admin" ?
                 <div className="btn-delete">
                   <i className="fas fa-trash" onClickCapture={() => eliminarRecurso('other')} />
                 </div>
@@ -328,7 +328,7 @@ const SingleResource = () => {
               </button>
               <div className="separator"></div>
             </div>
-            <Fotter />
+
           </>
       }
 

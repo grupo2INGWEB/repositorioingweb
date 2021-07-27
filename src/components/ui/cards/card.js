@@ -196,203 +196,211 @@ const Card = ({
   }
 
   return (
-    <div className="d-flex m-2">
-      <div className={darkmode ? "card-black" : "card"}>
-        {
-          nameResource.includes(".png") || nameResource.includes(".jpeg") || nameResource.includes(".jpeg") ?
-            <img
-              // src={originalNameResource ? originalNameResource:"https://icdn.dtcn.com/image/digitaltrends_es/m-de-volvo-carros-bajo-demanda-feat.jpg"}
-              // src={`http://${urlBackend}${nameResource}`}
-              src={`${urlBackend}${nameResource}`}
-              className="rounded-top-2 card-img-top img-top "
-              alt="Img Destacada"
-            /> :
-            nameResource.includes(".pdf") ?
+    // <div className="d-flex m-2 card-container">
+    <div className={darkmode ? "card-black" : "card"}>
+      {
+        nameResource.includes(".png") || nameResource.includes(".jpeg") || nameResource.includes(".jpeg") ?
+          <img
+            // src={originalNameResource ? originalNameResource:"https://icdn.dtcn.com/image/digitaltrends_es/m-de-volvo-carros-bajo-demanda-feat.jpg"}
+            // src={`http://${urlBackend}${nameResource}`}
+            src={`${urlBackend}${nameResource}`}
+            className="rounded-top-2"
+            alt="Img Destacada"
+          /> :
+          nameResource.includes(".pdf") ?
+            <div className="container-ImgCard">
               <img
                 // src={originalNameResource ? originalNameResource:"https://icdn.dtcn.com/image/digitaltrends_es/m-de-volvo-carros-bajo-demanda-feat.jpg"}
                 src="https://cdn.pixabay.com/photo/2020/03/10/17/02/pdf-4919559_1280.png"
                 className="rounded-top-2 card-img-top img-top "
-                alt="carro"
-              /> :
-              nameResource.includes(".mp4") || nameResource.includes(".mov") || nameResource.includes(".avi") || nameResource.includes(".mkv") || nameResource.includes(".divx") ?
+                alt="PDF"
+              />
+            </div>
+            :
+            nameResource.includes(".mp4") || nameResource.includes(".mov") || nameResource.includes(".avi") || nameResource.includes(".mkv") || nameResource.includes(".divx") ?
+              <div className="container-ImgCard">
                 <img
                   // src={originalNameResource ? originalNameResource:"https://icdn.dtcn.com/image/digitaltrends_es/m-de-volvo-carros-bajo-demanda-feat.jpg"}
                   src="https://cdn.pixabay.com/photo/2015/12/03/01/27/play-1073616_1280.png"
                   className="rounded-top-2 card-img-top img-top "
-                  alt="carro"
+                  alt="Video"
                 />
-                :
-                nameResource.includes(".doc") ?
+              </div>
+              :
+              nameResource.includes(".doc") ?
+                <div className="container-ImgCard">
+
                   <img
                     // src={originalNameResource ? originalNameResource:"https://icdn.dtcn.com/image/digitaltrends_es/m-de-volvo-carros-bajo-demanda-feat.jpg"}
                     src="https://cdn.pixabay.com/photo/2013/07/12/15/56/word-document-150594_1280.png"
                     className="rounded-top-2 card-img-top img-top "
-                    alt="carro"
-                  /> :
+                    alt="Word"
+                  />
+                </div>
+                :
+                <div className="img-other">
                   <img
                     // src={originalNameResource ? originalNameResource:"https://icdn.dtcn.com/image/digitaltrends_es/m-de-volvo-carros-bajo-demanda-feat.jpg"}
                     src="https://cdn.pixabay.com/photo/2017/07/09/20/48/icon-2488093_1280.png"
-                    className="rounded-top-2 card-img-top img-top "
-                    alt="carro"
+                    className="rounded-top-2 card-img-top img-top"
+                    alt="Other"
                   />
-        }
-        {/* <p>
-          {originalNameResource}
-        </p> */}
-        <div className="card-body p-4">
-          <div className="card-title title ">
-            <div className="row">
-              <div className="col">
-                <h4 className={darkmode ? "titleCard-dark" : "titleCard"}>
-                  {title}
-                </h4>
-              </div>
-              <div className="col text-end">
-                {verificarLike() ? (
-                  <p>
-                    <i
-                      onClickCapture={disLikeResource}
-                      className={darkmode ? "fas fa-heart icon-heart" : "fas fa-heart icon-heart-w"}
-                    ></i>
-                    <span className={darkmode ? "numberlike" : ""}>{calificacion}</span>
-                  </p>
-                ) : (
-                  <p>
-                    <i
-                      onClickCapture={likeResource}
-                      className={darkmode ? "far fa-heart icon-heart" : "far fa-heart icon-heart-w"}
-                    ></i>
-                    <span className={darkmode ? "numberlike" : "numberlike-w"}>{calificacion}</span>
-                  </p>
-                )}
-              </div>
+                </div>
+      }
+      <div className="card-body p-4">
+        <div className="card-title title ">
+          <div className="row">
+            <div className="col">
+              <h4 className={darkmode ? "titleCard-dark" : "titleCard"}>
+                {title}
+              </h4>
+            </div>
+            <div className="col text-end">
+              {verificarLike() ? (
+                <p>
+                  <i
+                    onClickCapture={disLikeResource}
+                    className={darkmode ? "fas fa-heart icon-heart" : "fas fa-heart icon-heart-w"}
+                  ></i>
+                  <span className={darkmode ? "numberlike" : ""}>{calificacion}</span>
+                </p>
+              ) : (
+                <p>
+                  <i
+                    onClickCapture={likeResource}
+                    className={darkmode ? "far fa-heart icon-heart" : "far fa-heart icon-heart-w"}
+                  ></i>
+                  <span className={darkmode ? "numberlike" : "numberlike-w"}>{calificacion}</span>
+                </p>
+              )}
             </div>
           </div>
-          <div className="info">
-            <p className={darkmode ? "text-description-dark" : "info-section"}>
-              <strong>Publicado por: </strong> {nameAuthor}
+        </div>
+        <div className="info">
+          <p className={darkmode ? "text-description-dark" : "info-section"}>
+            <strong>Publicado por: </strong> {nameAuthor}
+          </p>
+          <p className={darkmode ? "text-description-dark" : "info-section"}>
+            <strong>Lenguaje: </strong> {language}
+          </p>
+          <p className={darkmode ? "text-description-dark" : "info-section"}>
+            <strong>Fecha: </strong>09/06/2021
             </p>
-            <p className={darkmode ? "text-description-dark" : "info-section"}>
-              <strong>Lenguaje: </strong> {language}
-            </p>
-            <p className={darkmode ? "text-description-dark" : "info-section"}>
-              <strong>Fecha: </strong>09/06/2021
-            </p>
-          </div>
-          <hr />
-          <div className={darkmode ? "text-description-dark description" : "description"}>
-            <p>{description}</p>
-          </div>
-          <strong className={darkmode ? "section-title-dark" : "section-title"}>Autor:</strong>
-          <div className={darkmode ? "text-description-dark" : "author"}>
-            <p>- {nameAuthor}</p>
-          </div>
-          <strong className={darkmode ? "section-title-dark" : "section-title"}>Tags:</strong>
-          <div className="tags">
-            {tags?.map((tag) => (
-              <div className="tag " id={tag} onClickCapture={() => buscarTagsIguales(tag)}>
-                {tag}
-              </div>
-            ))}
-          </div>
-          {/* <p>
+        </div>
+        <hr />
+        <div className={darkmode ? "text-description-dark description" : "description"}>
+          <p>{description}</p>
+        </div>
+        <strong className={darkmode ? "section-title-dark" : "section-title"}>Autor:</strong>
+        <div className={darkmode ? "text-description-dark" : "author"}>
+          <p>- {nameAuthor}</p>
+        </div>
+        <strong className={darkmode ? "section-title-dark" : "section-title"}>Tags:</strong>
+        <div className="tags">
+          {tags?.map((tag) => (
+            <div className="tag " id={tag} onClickCapture={() => buscarTagsIguales(tag)}>
+              {tag}
+            </div>
+          ))}
+        </div>
+        {/* <p>
           {
                   originalNameResource
                 }    
           </p> */}
-          <div className="container-redes mb-4">
-            <script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
-            <div className="row">
-              <div className="col">
-                <div className="bg-black">
-                  <a target="_blank" href={`http://www.facebook.com/sharer.php?u=${window.location.href}`}>
-                    <i className="fab fa-facebook-f"></i>
-                  </a>
-                </div>
+        <div className="container-redes mb-4">
+          <script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
+          <div className="row">
+            <div className="col">
+              <div className="bg-black">
+                <a target="_blank" href={`http://www.facebook.com/sharer.php?u=${window.location.href}`}>
+                  <i className="fab fa-facebook-f"></i>
+                </a>
               </div>
-              <div className="col">
-                <div className="bg-black">
-                  <a href={`https://twitter.com/intent/tweet?text=Mira%20el%20recurso:%20${title}%20de%20la%20Universidad:%20${university}&url=http%3A%2F%2Flocalhost:3000%2Fsingle-resource%2F${id}`} target="_blank">
-                    <i className="fab fa-twitter"></i>
-                  </a>
-                </div>
+            </div>
+            <div className="col">
+              <div className="bg-black">
+                <a href={`https://twitter.com/intent/tweet?text=Mira%20el%20recurso:%20${title}%20de%20la%20Universidad:%20${university}&url=http%3A%2F%2Flocalhost:3000%2Fsingle-resource%2F${id}`} target="_blank">
+                  <i className="fab fa-twitter"></i>
+                </a>
               </div>
-              <div className="col">
-                <div className="bg-black" onClickCapture={copyToClipboard}>
-                  <i className="fas fa-link"></i>
-                </div>
+            </div>
+            <div className="col">
+              <div className="bg-black" onClickCapture={copyToClipboard}>
+                <i className="fas fa-link"></i>
               </div>
             </div>
           </div>
-          <hr />
+        </div>
+        <hr />
 
-          {!isAdmin ? (
-            // Mostrar botones de editar y estado
-            <div className="container-isPending">
+        {!isAdmin ? (
+          // Mostrar botones de editar y estado
+          <div className="container-isPending">
+            <div
+              className={
+                condition === "Por publicar"
+                  ? "btn-pendiente"
+                  : "btn-aprobado"
+              }
+            >
+              <p>{condition === "Por publicar" ? "Pendiente" : "Aprobado"}</p>
+            </div>
+            <div className="container-btnsAction">
               <div
-                className={
-                  condition === "Por publicar"
-                    ? "btn-pendiente"
-                    : "btn-aprobado"
-                }
+                className="btn-edit"
+                onClickCapture={navigateToSinglePageEdit}
               >
-                <p>{condition === "Por publicar" ? "Pendiente" : "Aprobado"}</p>
+                <p>Editar</p>
               </div>
-              <div className="container-btnsAction">
-                <div
-                  className="btn-edit"
-                  onClickCapture={navigateToSinglePageEdit}
-                >
-                  <p>Editar</p>
-                </div>
-                <div
-                  className="btn-vermas"
-                  onClickCapture={navigateToSinglePage}
-                >
-                  <p>Ver mas</p>
-                </div>
+              <div
+                className="btn-vermas"
+                onClickCapture={navigateToSinglePage}
+              >
+                <p>Ver mas</p>
+              </div>
+            </div>
+            <div className="btn-delete">
+              <i className="fas fa-trash" onClickCapture={() => eliminarRecurso('other')} />
+            </div>
+          </div>
+        ) : !isPending ? (
+          <div className="container-btn">
+            <Link
+              to="/single-resource"
+              className="btn-leer"
+              onClickCapture={navigateToSinglePage}
+            >
+              Leer Más
+              </Link>
+          </div>
+        ) : (
+          <div className="container-isPending">
+            <div
+              className="btn-condition"
+              onClickCapture={changeSingleResources}
+            >
+              <p>Publicar</p>
+            </div>
+            <div className="container-btnsAction">
+              <div
+                className="btn-edit"
+                onClickCapture={navigateToSinglePageEdit}
+              >
+                <p>Editar</p>
+              </div>
+              <div className="btn-vermas">
+                <p>Ver mas</p>
               </div>
               <div className="btn-delete">
                 <i className="fas fa-trash" onClickCapture={() => eliminarRecurso('other')} />
               </div>
             </div>
-          ) : !isPending ? (
-            <div className="container-btn">
-              <Link
-                to="/single-resource"
-                className="btn-leer"
-                onClickCapture={navigateToSinglePage}
-              >
-                Leer Más
-              </Link>
-            </div>
-          ) : (
-            <div className="container-isPending">
-              <div
-                className="btn-condition"
-                onClickCapture={changeSingleResources}
-              >
-                <p>Publicar</p>
-              </div>
-              <div className="container-btnsAction">
-                <div
-                  className="btn-edit"
-                  onClickCapture={navigateToSinglePageEdit}
-                >
-                  <p>Editar</p>
-                </div>
-                <div className="btn-vermas">
-                  <p>Ver mas</p>
-                </div>
-                <div className="btn-delete">
-                  <i className="fas fa-trash" onClickCapture={() => eliminarRecurso('other')} />
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </div>
+    // </div>
   );
 };
 

@@ -9,6 +9,7 @@ import PendingResources from "../page/pending-resource/pendingResource"
 import UserManagement from "../page/user-management/userManagement"
 import EditResource from "../page/edit-resource/editResource"
 import ListTagsIguales from "../page/list-tagsIguales/list-tagsIguales"
+import Fotter from "../page/footer-section/footer"
 
 export const AppRouter = () => {
     return (
@@ -27,6 +28,7 @@ export const AppRouter = () => {
                     <Route path='/' exact component={Home} />
                 </Switch>
             </LayoutHeader>
+            <Fotter />
         </Router>
     )
 }

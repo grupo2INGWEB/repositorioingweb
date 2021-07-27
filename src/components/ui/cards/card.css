@@ -1,18 +1,50 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;500;600;900&family=Raleway&display=swap');
 .card {
     width: 35rem;
+    margin-right: 2em!important;
     box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.075);
     border-radius: 10px;
     margin-bottom: 3rem;
+    margin-right: 1em;
     background-color: rgb(249, 249, 249);
 }
 
 .card-black {
-    width: 35rem;
-    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.075);
+    width: 27%;
+    margin-right: 2em!important;
+    box-shadow: 0px 0px 10px 5px rgba(138, 138, 138, 0.075);
     border-radius: 10px;
     margin-bottom: 3rem;
     background-color: rgb(25 25 25);
+    border-radius: 4px;
+}
+
+.img-other {
+    width: 100%;
+    padding: 5px 20px;
+}
+
+.img-other img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.card-black img {
+    width: 100%;
+}
+
+.container-ImgCard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 13em;
+    width: 100%;
+    /* background-color: #0cd196; */
+    border-radius: 4px;
+}
+
+.container-ImgCard img {
+    width: 40%;
 }
 
 .titleCard {

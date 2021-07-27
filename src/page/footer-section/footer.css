@@ -1,4 +1,94 @@
-.fotter-section{
-    height: 10rem;
-    
+.fotter-section {
+    /* height: 10rem; */
+    /* background-color: red; */
+    background-image: url("../../assets/img/footer.jpeg");
+    border-top: 3px solid #eaab00;
+}
+
+footer {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding-top: 20px;
+    padding-bottom: 1em;
+}
+
+footer .logo {
+    width: 15%;
+}
+
+footer img {
+    width: 100%;
+}
+
+footer .contactos {
+    width: 35%;
+}
+
+footer .vinculos {
+    width: 50%
+}
+
+footer .contactos div {
+    width: 62%;
+    margin: auto;
+}
+
+/* footer .contactos {
+    /* display: block; */
+
+/* } */
+
+footer .contactos h4, footer .vinculos h4 {
+    text-align: left;
+    color: white;
+    font-size: 13pt;
+    margin-bottom: 1em;
+}
+
+footer .contactos h4::after, footer .vinculos h4::after {
+    content: " ";
+    display: block;
+    background-color: #eaab00;
+    height: 3px;
+    width: 50px;
+    margin: 10px 0 0;
+}
+
+footer .contactos ul, footer .vinculos ul {
+    width: 100%;
+}
+
+footer .contactos ul li, footer .vinculos ul li {
+    padding-bottom: 5px;
+}
+
+footer .contactos ul li i, footer .vinculos ul li i {
+    color: #eaab00;
+    margin-right: 5px;
+}
+
+footer .vinculos ul li i {
+    font-size: .4em;
+}
+
+footer .contactos ul li a, footer .vinculos ul li a {
+    color: #fff;
+}
+
+footer .contactos ul li a:hover, footer .vinculos ul li a:hover {
+    color: #eaab00;
+    cursor: pointer;
+}
+
+footer .vinculos div div {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+}
+
+footer .vinculos div {
+    width: 75%;
+    margin: auto;
 }

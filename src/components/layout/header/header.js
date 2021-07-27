@@ -246,15 +246,15 @@ const LayoutHeader = (props) => {
               </a>
             </li>
             <li>
-              <div class="search-box">
-                <button class="btn-search" onClickCapture={sendDataMotor}>
-                  <i class="fas fa-search"></i>
+              <div className="search-box">
+                <button className="btn-search" onClickCapture={sendDataMotor}>
+                  <i className="fas fa-search"></i>
                 </button>
                 <input
                   value={valuesMotor}
                   onChange={handleInputChangeMotor}
                   type="text"
-                  class="input-search"
+                  className="input-search"
                   placeholder="Buscar Recurso"
                 />
               </div>

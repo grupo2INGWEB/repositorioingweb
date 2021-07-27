@@ -1,12 +1,17 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
 import BtnVerMas from "../components/ui/bt-ver-mas/btn_vermas";
 import Card from "../components/ui/cards/card";
 // import Cards from '../components/ui/cards/cards';
 import TitleSection from "../components/ui/title-section/title-section";
+import { motorDeBusqueda } from "../redux/actions/resourceAction";
 import Fotter from "./footer-section/footer";
 
 const Home = () => {
+  const dispatch = useDispatch();
+  const history = useHistory()
+  const [valuesMotor, setValuesMotor] = useState("")
   const {
     resources: { listRecentResources, listMostValued, listRecommended },
   } = useSelector((state) => state);
@@ -20,6 +25,11 @@ const Home = () => {
   const shortRecommended = () => {
     return listRecommended.slice(0, 6);
   };
+  const handleInputChange = (e) => {
+    if (e.key === "Enter") {
+      dispatch(motorDeBusqueda(valuesMotor, history))
+    }
+  }
 
   return (
     <>
@@ -27,20 +37,25 @@ const Home = () => {
       <div>
         <div className="">
           <div className="separator"></div>
-          <div class="container col-xxl-8  ">
-            <div class="row flex-lg-row-reverse align-items-center ">
-              <div class="col-10 col-sm-8 col-lg-6">
+          <div className="container col-xxl-8  ">
+            <h2 className="fw-bold2 lh-2 mb-3" >Recursos gratis descargables</h2>
+            <p className="description-inputFind">Busca en toda la red de recursos disponibles el que necesites</p>
+            <div className="container-input">
+              <input type="text" className="input-homeFind" placeholder="Ej: Matemáticas" value={valuesMotor} onChange={(e) => setValuesMotor(e.target.value)} onKeyDown={handleInputChange} />
+            </div>
+            <div className="row flex-lg-row-reverse align-items-center ">
+              <div className="col-10 col-sm-8 col-lg-6">
                 <img
                   src="https://i.imgur.com/SlSVIUZ.png"
-                  class="d-block mx-lg-auto img-fluid mt-4"
+                  className="d-block mx-lg-auto img-fluid mt-4"
                   alt="Bootstrap Themes"
                   width="700"
                   height="300"
                   loading="lazy"
                 />
               </div>
-              <div class="col-lg-6 description">
-                <h1 class="display-5 fw-bold lh-1 mb-3">
+              <div className="col-lg-6 description">
+                <h1 className="display-5 fw-bold lh-1 mb-3">
                   Recursos Disponibles
                 </h1>
                 {/* <hr/>      */}
@@ -54,12 +69,12 @@ const Home = () => {
                 </p>
                 <div
                   id="navbar-example2"
-                  class="d-grid gap-2 d-md-flex justify-content-md-start pt-4"
+                  className="d-grid gap-2 d-md-flex justify-content-md-start pt-4"
                 >
                   <a href="#scrollspyHeading1">
                     <button
                       type="button"
-                      class="btn p-2 px-5 text-btn btn-actions-success w-100"
+                      className="btn p-2 px-5 text-btn btn-actions-success w-100"
                     >
                       Recientes
                     </button>
@@ -67,7 +82,7 @@ const Home = () => {
                   <a href="#scrollspyHeading2">
                     <button
                       type="button"
-                      class="btn btn-outline-secondary btn-lg px-4 text-btn btn-actions-success w-100"
+                      className="btn btn-outline-secondary btn-lg px-4 text-btn btn-actions-success w-100"
                     >
                       Mas Valorados
                     </button>
@@ -81,7 +96,7 @@ const Home = () => {
             data-bs-spy="scroll"
             data-bs-target="#navbar-example2"
             data-bs-offset="0"
-            class="scrollspy-example"
+            className="scrollspy-example"
             tabindex="0"
           >
             <div
@@ -272,9 +287,9 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="extencion-recomendados">
+        {/* <div className="extencion-recomendados">
           <Fotter />
-        </div>
+        </div> */}
         {/* </LayoutHeader> */}
       </div>
     </>

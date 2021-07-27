@@ -62,15 +62,21 @@ const MyResources = () => {
                                 <p onClickCapture={() => {
                                     setNumberPagination(numberPagination - 6);
                                     setCurrentPagination(currentPagination - 6)
-                                }}  ><i className="fas fa-chevron-left"></i> Anterior</p>
+                                    window.scroll({
+                                        top: 0
+                                    })
+                                }}  ><i className="fas fa-chevron-left"></i> Anterior Página</p>
                         }
                         {
                             myResources.length <= numberPagination ?
                                 <></>
                                 : <p onClickCapture={() => {
                                     setNumberPagination(numberPagination + 6);
-                                    setCurrentPagination(currentPagination + 6)
-                                }} >Siguiente <i className="fas fa-chevron-right"></i></p>
+                                    setCurrentPagination(currentPagination + 6);
+                                    window.scroll({
+                                        top: 0
+                                    })
+                                }} >Siguiente Página <i className="fas fa-chevron-right"></i></p>
                         }
 
                     </div>

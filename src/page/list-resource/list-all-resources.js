@@ -181,7 +181,7 @@ const ListAllResources = (props) => {
                                         <h3>No hay Recursos</h3>
                 }
             </div>
-            <Fotter />
+            {/* <Fotter /> */}
         </div>
     );
 }
