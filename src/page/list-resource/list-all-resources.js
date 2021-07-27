@@ -51,7 +51,7 @@ const ListAllResources = (props) => {
                                 university={resource.university}
                                 category={resource.category}
                                 specialty={resource.specialty}
-                                isAdmin={false}
+                                isAdmin={true}
                                 isPending={false}
                                 key={resource._id}
                                 usersLikes={resource.usersLikes}
@@ -76,7 +76,7 @@ const ListAllResources = (props) => {
                                     platform={resource.platform}
                                     tags={resource.tags}
                                     title={resource.title}
-                                    isAdmin={false}
+                                    isAdmin={true}
                                     isPending={false}
                                     key={resource._id}
                                     university={resource.university}
@@ -105,7 +105,7 @@ const ListAllResources = (props) => {
                                             platform={resource.platform}
                                             tags={resource.tags}
                                             title={resource.title}
-                                            isAdmin={false}
+                                            isAdmin={true}
                                             isPending={false}
                                             key={resource._id}
                                             university={resource.university}
@@ -134,7 +134,7 @@ const ListAllResources = (props) => {
                                             platform={resource.platform}
                                             tags={resource.tags}
                                             title={resource.title}
-                                            isAdmin={false}
+                                            isAdmin={true}
                                             isPending={false}
                                             key={resource._id}
                                             university={resource.university}
@@ -163,7 +163,7 @@ const ListAllResources = (props) => {
                                                 platform={resource.platform}
                                                 tags={resource.tags}
                                                 title={resource.title}
-                                                isAdmin={false}
+                                                isAdmin={true}
                                                 isPending={false}
                                                 key={resource._id}
                                                 university={resource.university}
