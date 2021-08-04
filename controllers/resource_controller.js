@@ -108,7 +108,8 @@ exports.updateResource = async (req, res) => {
                     platform,
                     country,
                     tags,
-                    updateDate
+                    updateDate,
+                    licence
                 } = req.body;
                 // CREA UN NUEVO OBJETO QUE SE VA A ENVIAR PARA ACTUALIZAR
                 const newResource = {
@@ -118,7 +119,8 @@ exports.updateResource = async (req, res) => {
                     platform,
                     country,
                     tags,
-                    updateDate
+                    updateDate,
+                    licence
                 }
                 // actualizar datos
                 resource = await Resource.findByIdAndUpdate({ _id: resource._id }, { $set: newResource }, { new: true });

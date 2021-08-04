@@ -99,6 +99,10 @@ const resourceSchema = new Schema({
     comments: {
         type: Array,
         default: []
+    },
+    licence: {
+        type: String,
+        default: ""
     }
 
 })
