@@ -34,6 +34,7 @@ const ListTagsIguales = () => {
                             country={resource.country}
                             create={resource.create}
                             description={resource.description}
+                            licence={resource.licence}
                             id={resource._id}
                             language={resource.language}
                             nameAuthor={resource.nameAuthor}

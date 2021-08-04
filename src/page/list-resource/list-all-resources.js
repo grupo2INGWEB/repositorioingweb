@@ -60,6 +60,7 @@ const ListAllResources = (props) => {
                                 nameResource={resource.nameResource}
                                 urlResource={resource.urlResource}
                                 originalNameResource={resource.originalNameResource}
+                                licence={resource.licence}
                             />
                         )
                         : (props.location.state === "Recientes") ?
@@ -69,6 +70,7 @@ const ListAllResources = (props) => {
                                     condition={resource.condition}
                                     country={resource.country}
                                     create={resource.create}
+                                    licence={resource.licence}
                                     description={resource.description}
                                     id={resource._id}
                                     language={resource.language}
@@ -98,6 +100,7 @@ const ListAllResources = (props) => {
                                             condition={resource.condition}
                                             country={resource.country}
                                             create={resource.create}
+                                            licence={resource.licence}
                                             description={resource.description}
                                             id={resource._id}
                                             language={resource.language}
@@ -128,6 +131,7 @@ const ListAllResources = (props) => {
                                             country={resource.country}
                                             create={resource.create}
                                             description={resource.description}
+                                            licence={resource.licence}
                                             id={resource._id}
                                             language={resource.language}
                                             nameAuthor={resource.nameAuthor}
@@ -160,6 +164,7 @@ const ListAllResources = (props) => {
                                                 id={resource._id}
                                                 language={resource.language}
                                                 nameAuthor={resource.nameAuthor}
+                                                licence={resource.licence}
                                                 platform={resource.platform}
                                                 tags={resource.tags}
                                                 title={resource.title}

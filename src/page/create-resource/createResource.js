@@ -23,6 +23,7 @@ const CreateResource = () => {
     specialty: "Educación Infantil",
     category: "",
     university: "",
+    licence: ""
     // archivo: null
   })
 
@@ -35,6 +36,7 @@ const CreateResource = () => {
     specialty,
     category,
     university,
+    licence
     // archivo
   } = valuesResource;
 
@@ -58,6 +60,7 @@ const CreateResource = () => {
           platform={platform}
           specialty={specialty}
           university={university}
+          licence={licence}
           onChange={handleInputChangeResource}
           setTag={setTag}
           setTags={setTags}

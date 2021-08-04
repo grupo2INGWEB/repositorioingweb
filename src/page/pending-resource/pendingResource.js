@@ -24,6 +24,7 @@ const PendingResources = () => {
                             description={resource.description}
                             id={resource._id}
                             language={resource.language}
+                            licence={resource.licence}
                             platform={resource.platform}
                             tags={resource.tags}
                             title={resource.title}
