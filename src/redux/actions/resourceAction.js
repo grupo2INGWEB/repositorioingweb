@@ -100,6 +100,8 @@ export const crearRecurso = (data, accessToken, resetValues, alertOK, archivo) =
 }
 
 export const comentarElRecurso = (id, accessToken, comment, setComment) => {
+    console.log("==> ID DEL RECURSO");
+    console.log(id);
     return async (dispatch) => {
         dispatch({
             type: COMMENT_RESOURCE
@@ -127,7 +129,7 @@ export const comentarElRecurso = (id, accessToken, comment, setComment) => {
             obtenerMisRecursos(dispatch, accessToken);
             obtenerRecursosPendientes(dispatch);
         } catch (error) {
-            console.log("===> Error al Dar Like");
+            console.log("===> Error al Comentar");
             console.log(error.response);
             dispatch({
                 type: COMMENT_RESOURCE_ERROR,

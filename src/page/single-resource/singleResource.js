@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import { buscarPorTags, comentarElRecurso, deleteResource, obtenerRecursoID } from "../../redux/actions/resourceAction";
 import { parseDate } from "../../helpers/helpers";
 import { urlApi, urlBackend } from "../../constantes/constants";
-import Fotter from "../footer-section/footer";
+// import Fotter from "../footer-section/footer";
 import PDFReader from "../../components/utils/pdfReader";
 import autorIcon from "../../assets/img/autor.png"
 import personIcon from "../../assets/img/persona.jpeg"
@@ -28,9 +28,14 @@ const SingleResource = () => {
     disptach(obtenerRecursoID(params.id))
   };
   const startComment = () => {
-    disptach(
-      comentarElRecurso(singleResource.id, userData.token, comment, setComment)
-    );
+    if (singleResource) {
+      console.log(singleResource)
+      disptach(
+        comentarElRecurso(singleResource.id ?? singleResource._id, userData.token, comment, setComment)
+      );
+    } else {
+      console.log("==> NO EXISTE RECURSO")
+    }
   };
 
   const comprobarSesion = () => {
@@ -101,7 +106,7 @@ const SingleResource = () => {
             <div className="topSeparatos"></div>
             <div className="text-center about-author">
               {
-                singleResource?.nameResource?.includes(".png") || singleResource?.nameResource?.includes(".jpeg") || singleResource?.nameResource?.includes(".jpeg") ?
+                singleResource?.nameResource?.includes(".png") || singleResource?.nameResource?.includes(".jpeg") || singleResource?.nameResource?.includes(".jpg") ?
                   <div style={
                     {
                       backgroundImage: `url(${urlBackend}${singleResource?.nameResource})`,
@@ -119,7 +124,7 @@ const SingleResource = () => {
                       url={`${urlBackend}${singleResource?.nameResource}`}
                     />
                     :
-                    singleResource?.nameResource?.includes(".mp4") || singleResource?.nameResource?.includes(".mov") || singleResource?.nameResource?.includes(".avi") || singleResource?.nameResource?.includes(".mkv") || singleResource?.nameResource.includes(".divx") ?
+                    singleResource?.nameResource?.includes(".mp4") || singleResource?.nameResource?.includes(".mov") || singleResource?.nameResource?.includes(".avi") || singleResource?.nameResource?.includes(".mkv") || singleResource?.nameResource?.includes(".divx") ?
                       <video controls>
                         <source src={`${urlBackend}${singleResource?.nameResource}`} />
                       </video>
