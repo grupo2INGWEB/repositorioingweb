@@ -138,27 +138,88 @@ const SingleResource = () => {
                             backgroundPosition: 'center',
                           }
                         }>
-                          {/* <img
-                    src={`${urlBackend}${singleResource?.nameResource}`}
-                    className="cover"
-                    alt="Img Destacada"
-                  /> */}
                         </div>
                         :
-                        <div style={
-                          {
-                            backgroundImage: "url(https://cdn.pixabay.com/photo/2017/07/09/20/48/icon-2488093_1280.png)",
-                            backgroundRepeat: 'no-repeat',
-                            backgroundSize: 'contain',
-                            backgroundPosition: 'center',
-                          }
-                        }>
-                          {/* <img
+                        singleResource?.nameResource?.includes(".xls") || singleResource?.nameResource?.includes(".xlsx") ?
+                          <div style={
+                            {
+                              backgroundImage: "url(https://cdn.pixabay.com/photo/2021/01/30/12/15/excel-5963669_1280.png)",
+                              backgroundRepeat: 'no-repeat',
+                              backgroundSize: 'contain',
+                              backgroundPosition: 'center',
+                            }
+                          }>
+                          </div>
+                          :
+                          singleResource?.nameResource?.includes(".psd") ?
+                            <div style={
+                              {
+                                backgroundImage: "url(https://www.tuexperto.com/wp-content/uploads/2019/11/archivos-psd.png.webp)",
+                                backgroundRepeat: 'no-repeat',
+                                backgroundSize: 'contain',
+                                backgroundPosition: 'center',
+                              }
+                            }>
+                            </div>
+                            :
+                            singleResource?.nameResource?.includes(".zip") || singleResource?.nameResource?.includes(".rar") || singleResource?.nameResource?.includes(".tar") ?
+                              <div style={
+                                {
+                                  backgroundImage: "url(https://img2.freepng.es/20180320/wze/kisspng-minecraft-pocket-edition-zip-android-rar-computer-vector-file-zip-drawing-5ab08923023739.3979192815215188830091.jpg)",
+                                  backgroundRepeat: 'no-repeat',
+                                  backgroundSize: 'contain',
+                                  backgroundPosition: 'center',
+                                }
+                              }>
+                              </div>
+                              :
+                              singleResource?.nameResource?.includes(".zip") || singleResource?.nameResource?.includes(".rar") || singleResource?.nameResource?.includes(".tar") ?
+                                <div style={
+                                  {
+                                    backgroundImage: "url(https://img2.freepng.es/20180320/wze/kisspng-minecraft-pocket-edition-zip-android-rar-computer-vector-file-zip-drawing-5ab08923023739.3979192815215188830091.jpg)",
+                                    backgroundRepeat: 'no-repeat',
+                                    backgroundSize: 'contain',
+                                    backgroundPosition: 'center',
+                                  }
+                                }>
+                                </div>
+                                :
+                                singleResource?.nameResource?.includes(".exe") || singleResource?.nameResource?.includes(".bat") || singleResource?.nameResource?.includes(".dll") || singleResource?.nameResource?.includes(".sys") ?
+                                  <div style={
+                                    {
+                                      backgroundImage: "url(https://img2.freepng.es/20180420/isw/kisspng-exe-executable-installation-windows-installer-wooden-tag-5ada4fc81f2d59.5715799015242567121277.jpg)",
+                                      backgroundRepeat: 'no-repeat',
+                                      backgroundSize: 'contain',
+                                      backgroundPosition: 'center',
+                                    }
+                                  }>
+                                  </div>
+                                  :
+                                  singleResource?.nameResource?.includes(".ppt") || singleResource?.nameResource?.includes(".pptx") ?
+                                    <div style={
+                                      {
+                                        backgroundImage: "url(https://e7.pngegg.com/pngimages/951/352/png-clipart-microsoft-powerpoint-graphics-microsoft-corporation-microsoft-word-ppt-angle-text-thumbnail.png)",
+                                        backgroundRepeat: 'no-repeat',
+                                        backgroundSize: 'contain',
+                                        backgroundPosition: 'center',
+                                      }
+                                    }>
+                                    </div>
+                                    :
+                                    <div style={
+                                      {
+                                        backgroundImage: "url(https://cdn.pixabay.com/photo/2017/07/09/20/48/icon-2488093_1280.png)",
+                                        backgroundRepeat: 'no-repeat',
+                                        backgroundSize: 'contain',
+                                        backgroundPosition: 'center',
+                                      }
+                                    }>
+                                      {/* <img
                     src={`${urlBackend}${singleResource?.nameResource}`}
                     className="cover"
                     alt="Img Destacada"
                   /> */}
-                        </div>
+                                    </div>
               }
             </div>
             <h3 className="title-single ">{singleResource?.title} </h3>
@@ -244,12 +305,16 @@ const SingleResource = () => {
                 {singleResource?.country}
               </p>
               <p className="detail-content">
-                <strong className="title-detail">platforma: </strong>{" "}
+                <strong className="title-detail">plataforma: </strong>{" "}
                 {singleResource?.platform}
               </p>
               <p className="detail-content">
                 <strong className="title-detail">Categoría: </strong>{" "}
                 {singleResource?.category}
+              </p>
+              <p className="detail-content">
+                <strong className="title-detail">Licencia ©: </strong>{" "}
+                {singleResource?.licence && singleResource?.licence !== "" ? singleResource?.licence : "Sin Licencia"}
               </p>
               <div className="container-redes mb-4">
                 <script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>

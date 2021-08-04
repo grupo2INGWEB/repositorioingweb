@@ -31,6 +31,7 @@ const EditResource = () => {
     specialty: singleResource?.specialty,
     category: singleResource?.category,
     university: singleResource?.university,
+    licence: singleResource?.licence,
   })
 
   const {
@@ -42,6 +43,7 @@ const EditResource = () => {
     specialty,
     category,
     university,
+    licence
   } = valuesResource;
 
 
@@ -83,6 +85,7 @@ const EditResource = () => {
           tag={tag}
           tags={tags}
           setValuesResource={setValuesResource}
+          licence={licence}
         />
       </div>
       {
@@ -93,7 +96,7 @@ const EditResource = () => {
           : <></>
       }
       <div className="footer">
-        <div className="btn-guardar" onClickCapture={() => sendDataResource(singleResource.id)} >
+        <div className="btn-guardar" onClickCapture={() => sendDataResource(singleResource.id, tags)} >
           <p> {fetching ? "Actualizando..." : "Actualizar"}</p>
         </div>
       </div>

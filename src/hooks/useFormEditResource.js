@@ -24,7 +24,7 @@ export const useFormEditResource = (initialState = {}) => {
     }
     const mostrarAlertaOk = () => {
         return Swal.fire({
-            title: "Recurso Creado con éxito!",
+            title: "Recurso Actualizado con éxito!",
             icon: "success",
         });
     }
@@ -34,11 +34,11 @@ export const useFormEditResource = (initialState = {}) => {
             icon: "error",
         });
     }
-    const sendDataResource = (id) => {
+    const sendDataResource = (id, tags) => {
         if (valuesResource.title !== "" && valuesResource.description !== "" && valuesResource.language !== "" &&
             valuesResource.platform !== "" && valuesResource.country !== "" && valuesResource.specialty !== "" &&
-            valuesResource.category !== "" && valuesResource.university !== "") {
-
+            valuesResource.category !== "" && valuesResource.university !== "" && valuesResource.licence) {
+            valuesResource.tags = tags;
             dispatch(actualizarRecurso(valuesResource, id, userData.token, resetValues, mostrarAlertaOk, mostrarAlertaError));
         }
     }

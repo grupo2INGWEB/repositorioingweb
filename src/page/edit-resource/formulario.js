@@ -15,7 +15,8 @@ const Formulario = ({ title,
     setTag,
     tags,
     setTags,
-    setValuesResource
+    setValuesResource,
+    licence
 }) => {
     return (
         <div className="formulario">
@@ -85,6 +86,14 @@ const Formulario = ({ title,
                 onChange={onChange}
             />
             <Input
+                id="licence"
+                name="licence"
+                placeholder="Escribe la licencia del recurso"
+                title="Agrega la licencia del recurso"
+                value={licence}
+                onChange={onChange}
+            />
+            <Input
                 id="language"
                 name="language"
                 placeholder="Específica el idioma..."
@@ -114,8 +123,8 @@ const Formulario = ({ title,
             <Input
                 id="platform"
                 name="Plataforma"
-                placeholder="Escribe la platforma..."
-                title="platforma"
+                placeholder="Escribe la plataforma..."
+                title="plataforma"
                 value={platform}
                 onChange={onChange}
             />

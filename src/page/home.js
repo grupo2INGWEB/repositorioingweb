@@ -150,6 +150,7 @@ const Home = () => {
                         urlResource={resource.urlResource}
                         originalNameResource={resource.originalNameResource}
                         darkmode={true}
+                        licence={resource.licence}
                       />
                     ))
                   )}
@@ -200,6 +201,7 @@ const Home = () => {
                       nameResource={resource.nameResource}
                       urlResource={resource.urlResource}
                       originalNameResource={resource.originalNameResource}
+                      licence={resource.licence}
                     />
                   ))
                 )}
@@ -262,6 +264,7 @@ const Home = () => {
                         nameResource={resource.nameResource}
                         urlResource={resource.urlResource}
                         originalNameResource={resource.originalNameResource}
+                        licence={resource.licence}
                       />
                     ))
                   )}

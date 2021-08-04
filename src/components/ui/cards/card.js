@@ -36,6 +36,7 @@ const Card = ({
   originalNameResource,
   author,
   darkmode = false,
+  licence
 }) => {
   // const [isApproved, setIsApproved] = useState(false);
   const dispatch = useDispatch();
@@ -68,6 +69,7 @@ const Card = ({
           nameResource,
           urlResource,
           originalNameResource,
+          licence
         },
         history,
         false
@@ -98,6 +100,7 @@ const Card = ({
           nameResource,
           urlResource,
           originalNameResource,
+          licence
         },
         history,
         true
@@ -199,7 +202,7 @@ const Card = ({
     // <div className="d-flex m-2 card-container">
     <div className={darkmode ? "card-black" : "card"}>
       {
-        nameResource.includes(".png") || nameResource.includes(".jpeg") || nameResource.includes(".jpeg") ?
+        nameResource.includes(".png") || nameResource.includes(".jpeg") || nameResource.includes(".jpg") ?
           <img
             // src={originalNameResource ? originalNameResource:"https://icdn.dtcn.com/image/digitaltrends_es/m-de-volvo-carros-bajo-demanda-feat.jpg"}
             // src={`http://${urlBackend}${nameResource}`}
@@ -217,35 +220,85 @@ const Card = ({
               />
             </div>
             :
-            nameResource.includes(".mp4") || nameResource.includes(".mov") || nameResource.includes(".avi") || nameResource.includes(".mkv") || nameResource.includes(".divx") ?
+            nameResource.includes(".xls") || nameResource.includes(".xlsx") ?
               <div className="container-ImgCard">
                 <img
                   // src={originalNameResource ? originalNameResource:"https://icdn.dtcn.com/image/digitaltrends_es/m-de-volvo-carros-bajo-demanda-feat.jpg"}
-                  src="https://cdn.pixabay.com/photo/2015/12/03/01/27/play-1073616_1280.png"
+                  src="https://cdn.pixabay.com/photo/2021/01/30/12/15/excel-5963669_1280.png"
                   className="rounded-top-2 card-img-top img-top "
-                  alt="Video"
+                  alt="PDF"
                 />
               </div>
               :
-              nameResource.includes(".doc") ?
+              nameResource.includes(".psd") ?
                 <div className="container-ImgCard">
-
                   <img
                     // src={originalNameResource ? originalNameResource:"https://icdn.dtcn.com/image/digitaltrends_es/m-de-volvo-carros-bajo-demanda-feat.jpg"}
-                    src="https://cdn.pixabay.com/photo/2013/07/12/15/56/word-document-150594_1280.png"
+                    src="https://www.tuexperto.com/wp-content/uploads/2019/11/archivos-psd.png.webp"
                     className="rounded-top-2 card-img-top img-top "
-                    alt="Word"
+                    alt="PDF"
                   />
                 </div>
                 :
-                <div className="img-other">
-                  <img
-                    // src={originalNameResource ? originalNameResource:"https://icdn.dtcn.com/image/digitaltrends_es/m-de-volvo-carros-bajo-demanda-feat.jpg"}
-                    src="https://cdn.pixabay.com/photo/2017/07/09/20/48/icon-2488093_1280.png"
-                    className="rounded-top-2 card-img-top img-top"
-                    alt="Other"
-                  />
-                </div>
+                nameResource.includes(".zip") || nameResource.includes(".rar") || nameResource.includes(".tar") ?
+                  <div className="container-ImgCard">
+                    <img
+                      // src={originalNameResource ? originalNameResource:"https://icdn.dtcn.com/image/digitaltrends_es/m-de-volvo-carros-bajo-demanda-feat.jpg"}
+                      src="https://img2.freepng.es/20180320/wze/kisspng-minecraft-pocket-edition-zip-android-rar-computer-vector-file-zip-drawing-5ab08923023739.3979192815215188830091.jpg"
+                      className="rounded-top-2 card-img-top img-top "
+                      alt="PDF"
+                    />
+                  </div>
+                  :
+                  nameResource.includes(".exe") || nameResource.includes(".bat") || nameResource.includes(".dll") || nameResource.includes(".sys") ?
+                    <div className="container-ImgCard">
+                      <img
+                        // src={originalNameResource ? originalNameResource:"https://icdn.dtcn.com/image/digitaltrends_es/m-de-volvo-carros-bajo-demanda-feat.jpg"}
+                        src="https://img2.freepng.es/20180420/isw/kisspng-exe-executable-installation-windows-installer-wooden-tag-5ada4fc81f2d59.5715799015242567121277.jpg"
+                        className="rounded-top-2 card-img-top img-top "
+                        alt="PDF"
+                      />
+                    </div>
+                    :
+                    nameResource.includes(".ppt") || nameResource.includes(".pptx") ?
+                      <div className="container-ImgCard">
+                        <img
+                          // src={originalNameResource ? originalNameResource:"https://icdn.dtcn.com/image/digitaltrends_es/m-de-volvo-carros-bajo-demanda-feat.jpg"}
+                          src="https://e7.pngegg.com/pngimages/951/352/png-clipart-microsoft-powerpoint-graphics-microsoft-corporation-microsoft-word-ppt-angle-text-thumbnail.png"
+                          className="rounded-top-2 card-img-top img-top "
+                          alt="PDF"
+                        />
+                      </div>
+                      :
+                      nameResource.includes(".mp4") || nameResource.includes(".mov") || nameResource.includes(".avi") || nameResource.includes(".mkv") || nameResource.includes(".divx") ?
+                        <div className="container-ImgCard">
+                          <img
+                            // src={originalNameResource ? originalNameResource:"https://icdn.dtcn.com/image/digitaltrends_es/m-de-volvo-carros-bajo-demanda-feat.jpg"}
+                            src="https://cdn.pixabay.com/photo/2015/12/03/01/27/play-1073616_1280.png"
+                            className="rounded-top-2 card-img-top img-top "
+                            alt="Video"
+                          />
+                        </div>
+                        :
+                        nameResource.includes(".doc") || nameResource.includes(".txt") || nameResource.includes(".docx") ?
+                          <div className="container-ImgCard">
+
+                            <img
+                              // src={originalNameResource ? originalNameResource:"https://icdn.dtcn.com/image/digitaltrends_es/m-de-volvo-carros-bajo-demanda-feat.jpg"}
+                              src="https://cdn.pixabay.com/photo/2013/07/12/15/56/word-document-150594_1280.png"
+                              className="rounded-top-2 card-img-top img-top "
+                              alt="Word"
+                            />
+                          </div>
+                          :
+                          <div className="img-other">
+                            <img
+                              // src={originalNameResource ? originalNameResource:"https://icdn.dtcn.com/image/digitaltrends_es/m-de-volvo-carros-bajo-demanda-feat.jpg"}
+                              src="https://cdn.pixabay.com/photo/2017/07/09/20/48/icon-2488093_1280.png"
+                              className="rounded-top-2 card-img-top img-top"
+                              alt="Other"
+                            />
+                          </div>
       }
       <div className="card-body p-4">
         <div className="card-title title ">

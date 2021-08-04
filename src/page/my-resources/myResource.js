@@ -30,6 +30,7 @@ const MyResources = () => {
                             country={resource.country}
                             create={resource.create}
                             description={resource.description}
+                            licence={resource.licence}
                             id={resource._id}
                             language={resource.language}
                             platform={resource.platform}
