@@ -106,7 +106,7 @@ const SingleResource = () => {
             <div className="topSeparatos"></div>
             <div className="text-center about-author">
               {
-                singleResource?.nameResource?.includes(".png") || singleResource?.nameResource?.includes(".jpeg") || singleResource?.nameResource?.includes(".jpg") ?
+                singleResource?.nameResource?.includes(".png") || singleResource?.nameResource?.includes(".jpeg") || singleResource?.nameResource?.includes(".jpg") || singleResource?.nameResource.includes(".JPEG") || singleResource?.nameResource.includes(".PNG") || singleResource?.nameResource.includes(".JPG")?
                   <div style={
                     {
                       backgroundImage: `url(${urlBackend}${singleResource?.nameResource})`,

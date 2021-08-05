@@ -202,14 +202,16 @@ const Card = ({
     // <div className="d-flex m-2 card-container">
     <div className={darkmode ? "card-black" : "card"}>
       {
-        nameResource.includes(".png") || nameResource.includes(".jpeg") || nameResource.includes(".jpg") ?
-          <img
+        nameResource.includes(".png") || nameResource.includes(".jpeg") || nameResource.includes(".jpg") || nameResource.includes(".JPEG") || nameResource.includes(".PNG") || nameResource.includes(".JPG") ?
+          <div className="img-card">
+            <img
             // src={originalNameResource ? originalNameResource:"https://icdn.dtcn.com/image/digitaltrends_es/m-de-volvo-carros-bajo-demanda-feat.jpg"}
             // src={`http://${urlBackend}${nameResource}`}
             src={`${urlBackend}${nameResource}`}
             className="rounded-top-2"
             alt="Img Destacada"
-          /> :
+          /> 
+          </div>:
           nameResource.includes(".pdf") ?
             <div className="container-ImgCard">
               <img
