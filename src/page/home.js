@@ -106,11 +106,7 @@ const Home = () => {
               <h1 className="fw-bold text-white">Recursos Recientes</h1>
               <div className="col-lg-6 mx-auto">
                 <p className="description-text-separator">
-                  Quickly design and customize responsive mobile-first sites
-                  with Bootstrap, the world’s most popular front-end open source
-                  toolkit, featuring Sass variables and mixins, responsive grid
-                  system, extensive prebuilt components, and powerful JavaScript
-                  plugins.
+                  En esta sección se presentarán los últimos Recursos agregados
                 </p>
               </div>
             </div>
@@ -234,11 +230,7 @@ const Home = () => {
                 </h1>
                 <div className="col-lg-6 mx-auto">
                   <p className="description-text-separator">
-                    Quickly design and customize responsive mobile-first sites
-                    with Bootstrap, the world’s most popular front-end open
-                    source toolkit, featuring Sass variables and mixins,
-                    responsive grid system, extensive prebuilt components, and
-                    powerful JavaScript plugins.
+                    En está sección se presentarán los Recursos Recomendados por los usuarios 
                   </p>
                 </div>
               </div>
