@@ -235,7 +235,7 @@ const SingleResource = () => {
             <div className="info-single py-4">
               <p>
                 <strong className="description-text">Publicado por: </strong>{" "}
-                {singleResource?.nameAdmin ? singleResource?.nameAdmin : "-------"}
+                {singleResource?.nameAdmin && singleResource?.nameAdmin !== "" ? singleResource?.nameAdmin : ""}
               </p>
               <p>
                 <strong className="description-text">Lenguaje: </strong>{" "}

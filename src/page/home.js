@@ -155,6 +155,7 @@ const Home = () => {
                         originalNameResource={resource.originalNameResource}
                         darkmode={true}
                         licence={resource.licence}
+                        nameAdmin={resource.nameAdmin}
                       />
                     ))
                   )}

@@ -331,7 +331,7 @@ const Card = ({
         </div>
         <div className="info">
           <p className={darkmode ? "text-description-dark" : "info-section"}>
-            <strong>Publicado por: </strong> {nameAuthor}
+            <strong>Publicado por: </strong> {nameAdmin}
           </p>
           <p className={darkmode ? "text-description-dark" : "info-section"}>
             <strong>Lenguaje: </strong> {language}
